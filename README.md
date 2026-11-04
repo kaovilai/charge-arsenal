@@ -23,7 +23,7 @@ python3 scripts/strategy.py
 ```
 
 This regenerates [STRATEGY.md](STRATEGY.md), the 30-minute, two-AC-plug
-state-of-charge priority matrix.
+state-of-charge priority matrices for the Anker 747 and CUKTECH A12.
 
 ## Current arsenal
 

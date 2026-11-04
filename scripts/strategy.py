@@ -102,6 +102,27 @@ def build_matrix(macbook: dict, cuktech: dict, bricks: list) -> list[list[str]]:
     return rows
 
 
+def build_a12_matrix(macbook: dict, cuktech: dict, bricks: list) -> list[list[str]]:
+    """Which device should get the CUKTECH A12 if it is the only brick in use?"""
+    a12_watts = {
+        "macbook": wall_watts_from_bricks(macbook, bricks, ["cuktech-a12-65w-card"]),
+        "cuktech": wall_watts_from_bricks(cuktech, bricks, ["cuktech-a12-65w-card"]),
+    }
+
+    rows = []
+    for mac_soc in SOC_STEPS:
+        row = [f"{mac_soc}%"]
+        for cuk_soc in SOC_STEPS:
+            mac_on_a12 = gain_wh(macbook, mac_soc, a12_watts["macbook"])
+            cuk_on_a12 = gain_wh(cuktech, cuk_soc, a12_watts["cuktech"])
+            if mac_on_a12 >= cuk_on_a12:
+                row.append(f"MacBook / {fmt_wh(mac_on_a12)}")
+            else:
+                row.append(f"CUKTECH 10 / {fmt_wh(cuk_on_a12)}")
+        rows.append(row)
+    return rows
+
+
 def render_matrix(rows: list[list[str]]) -> str:
     header = ["MacBook SOC"] + [f"CUKTECH 10: {soc}%" for soc in SOC_STEPS]
     lines = ["| " + " | ".join(header) + " |", "|" + "|".join([" --- "] * len(header)) + "|"]
@@ -135,6 +156,7 @@ def main() -> int:
     cuktech = find_item(banks, "cuktech-10")
 
     matrix_rows = build_matrix(macbook, cuktech, bricks)
+    a12_matrix_rows = build_a12_matrix(macbook, cuktech, bricks)
     all_charge_targets = devices + banks
 
     doc = [
@@ -150,6 +172,13 @@ def main() -> int:
         "## Who gets the Anker 747?",
         "",
         render_matrix(matrix_rows),
+        "",
+        "## Who gets the CUKTECH A12?",
+        "",
+        "Use this when the A12 is the only charger in play, or when you are deciding",
+        "which device should take the A12 while the Anker 747 feeds the other port.",
+        "",
+        render_matrix(a12_matrix_rows),
         "",
         "## 30-minute gain from 0% state of charge",
         "",

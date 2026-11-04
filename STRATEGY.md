@@ -18,6 +18,20 @@ model charge taper near full.
 | 80% | CUKTECH 10 / 51.5 Wh | CUKTECH 10 / 44.1 Wh | MacBook / 36.7 Wh | MacBook / 29.3 Wh | MacBook / 21.9 Wh | MacBook / 18.2 Wh |
 | 90% | CUKTECH 10 / 44.2 Wh | CUKTECH 10 / 36.8 Wh | MacBook / 29.4 Wh | MacBook / 22.0 Wh | MacBook / 14.6 Wh | MacBook / 10.9 Wh |
 
+## Who gets the CUKTECH A12?
+
+Use this when the A12 is the only charger in play, or when you are deciding
+which device should take the A12 while the Anker 747 feeds the other port.
+
+| MacBook SOC | CUKTECH 10: 0% | CUKTECH 10: 20% | CUKTECH 10: 40% | CUKTECH 10: 60% | CUKTECH 10: 80% | CUKTECH 10: 90% |
+| --- | --- | --- | --- | --- | --- | --- |
+| 0% | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh |
+| 20% | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh |
+| 40% | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh |
+| 60% | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh |
+| 80% | CUKTECH 10 / 27.6 Wh | CUKTECH 10 / 27.6 Wh | CUKTECH 10 / 22.2 Wh | CUKTECH 10 / 14.8 Wh | MacBook / 14.5 Wh | MacBook / 14.5 Wh |
+| 90% | CUKTECH 10 / 27.6 Wh | CUKTECH 10 / 27.6 Wh | CUKTECH 10 / 22.2 Wh | CUKTECH 10 / 14.8 Wh | CUKTECH 10 / 7.4 Wh | MacBook / 7.2 Wh |
+
 ## 30-minute gain from 0% state of charge
 
 | Device | Best wall input | 30-minute gain from 0% |
