@@ -36,7 +36,7 @@ state-of-charge priority matrices for the Anker 747 and CUKTECH A12.
 | Samsung Galaxy Z Fold7 | Phone | 4400mAh / 16.95Wh, 25W wired charging |
 | Apple iPad 10th generation | Tablet | 28.6Wh, 20W wired charging |
 | Apple MacBook Pro 14-inch M4 Pro | Laptop | 72.4Wh, 96W fast charging over USB-C |
-| Samsung Galaxy Watch8 | Smartwatch | 44mm: 435mAh / 40mm: 325mAh, wireless charging only |
+| Samsung Galaxy Watch8 | Smartwatch | 44mm: 435mAh / 40mm: 325mAh, 10W via official USB-C fast wireless charger |
 
 ## Charge map
 
@@ -60,30 +60,34 @@ flowchart LR
         mac[MacBook Pro 14 M4 Pro<br/>96W in]
         fold[Galaxy Z Fold7<br/>25W in]
         ipad[iPad 10th gen<br/>20W in]
-        watch[Galaxy Watch8<br/>wireless only]
+        watch[Galaxy Watch8<br/>10W via official wireless charger]
     end
 
     anker -->|96W USB-C| mac
     anker -->|25W USB-C| fold
     anker -->|20W USB-C| ipad
+    anker -->|10W USB-C to puck| watch
     anker -->|90W USB-C| cuk10
     anker -->|65W USB-C| y270
 
     a12 -->|65W USB-C| y270
     a12 -->|25W USB-C| fold
     a12 -->|20W USB-C| ipad
+    a12 -->|10W USB-C to puck| watch
 
     y270 -->|96W USB-C| mac
     y270 -->|25W USB-C| fold
     y270 -->|20W USB-C| ipad
+    y270 -->|10W USB-C to puck| watch
 
     cuk10 -->|96W USB-C| mac
     cuk10 -->|25W USB-C| fold
     cuk10 -->|20W USB-C| ipad
+    cuk10 -->|10W USB-C to puck| watch
 ```
 
-The Galaxy Watch8 appears as a target but has no USB-C route in this arsenal;
-it needs Samsung's magnetic wireless charging puck.
+The Galaxy Watch8 is modeled as a 10W USB-C-fed target through Samsung's
+official magnetic wireless charger, not as a direct USB-C port on the watch.
 
 ## Two-plug priority chart
 
@@ -155,9 +159,8 @@ flowchart TD
 - **MacBook Pro 14-inch M4 Pro:** use any Thunderbolt 4 / USB-C port. The
   Anker 747, Y270, or CUKTECH 10 can supply **96W**; the CUKTECH A12 tops out
   at **65W**.
-- **Galaxy Watch8:** no USB-C input on the watch itself. Use Samsung’s
-  magnetic wireless charging puck or a compatible charger; wattage is not yet
-  verified.
+- **Galaxy Watch8:** model it as a 10W USB-C-fed target through Samsung’s
+  official magnetic wireless charger.
 
 ### Charging both banks at once
 
@@ -229,8 +232,8 @@ negotiation and cable quality.
 
 - 44mm model: 435mAh battery
 - 40mm model: 325mAh battery
-- Wireless charging only; requires Samsung’s magnetic charging puck or a
-  compatible charger
+- 10W input via Samsung’s official USB-C fast wireless charger
+- The watch itself has no USB-C port; the model tracks the charger puck’s input
 
 ## Data model
 

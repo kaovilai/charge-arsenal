@@ -92,7 +92,7 @@ def charge_estimate(target: dict, watts: float) -> dict:
     efficiency = behavior.get("avg_input_efficiency", 0.85)
     effective_w = watts * efficiency
     hours = capacity_wh / effective_w if effective_w > 0 else None
-    wh_per_30 = effective_w * 0.5
+    wh_per_30 = min(effective_w * 0.5, capacity_wh)
     pct_per_30 = min(100.0, 100.0 * wh_per_30 / capacity_wh)
     return {
         "effective_w": effective_w,

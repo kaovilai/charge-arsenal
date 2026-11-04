@@ -140,10 +140,7 @@ def render_gain_table(devices: list, bricks: list) -> str:
         watts = best_wall_watts(device, bricks)
         gain = gain_wh(device, 0, watts)
         label = f"{device['brand']} {device['model']}"
-        if watts:
-            lines.append(f"| {label} | {watts:g}W | {fmt_wh(gain)} |")
-        else:
-            lines.append(f"| {label} | wireless only | not modeled |")
+        lines.append(f"| {label} | {watts:g}W | {fmt_wh(gain)} |")
     return "\n".join(lines)
 
 
@@ -190,7 +187,7 @@ def main() -> int:
         "- If the MacBook is above 60% and the CUKTECH 10 is below about 20%, put the CUKTECH 10 on the Anker 747.",
         "- Otherwise, the MacBook still wins the Anker 747.",
         "- Put the Z Fold7, iPad, or Y270 on the CUKTECH A12 or the Anker 747's second USB-C port.",
-        "- The Galaxy Watch8 needs Samsung's wireless charging puck and is not part of the USB-C matcher.",
+        "- The Galaxy Watch8 is modeled as a 10W USB-C-fed target through Samsung's official wireless charger.",
         "",
     ]
 

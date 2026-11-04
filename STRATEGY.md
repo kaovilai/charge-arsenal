@@ -39,7 +39,7 @@ which device should take the A12 while the Anker 747 feeds the other port.
 | Samsung Galaxy Z Fold7 | 25W | 10.6 Wh |
 | Apple iPad 10th generation | 20W | 8.5 Wh |
 | Apple MacBook Pro 14-inch M4 Pro | 96W | 40.8 Wh |
-| Samsung Galaxy Watch8 | wireless only | not modeled |
+| Samsung Galaxy Watch8 | 10W | 1.6 Wh |
 | Raydyn Y270 | 65W | 19.8 Wh |
 | CUKTECH 10 | 90W | 37.0 Wh |
 
@@ -49,4 +49,4 @@ which device should take the A12 while the Anker 747 feeds the other port.
 - If the MacBook is above 60% and the CUKTECH 10 is below about 20%, put the CUKTECH 10 on the Anker 747.
 - Otherwise, the MacBook still wins the Anker 747.
 - Put the Z Fold7, iPad, or Y270 on the CUKTECH A12 or the Anker 747's second USB-C port.
-- The Galaxy Watch8 needs Samsung's wireless charging puck and is not part of the USB-C matcher.
+- The Galaxy Watch8 is modeled as a 10W USB-C-fed target through Samsung's official wireless charger.

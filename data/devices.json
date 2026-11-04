@@ -101,18 +101,23 @@
       "capacity_wh": 1.65,
       "variant_note": "Default entry is the 44mm model (435mAh). The 40mm model is 325mAh.",
       "charge_behavior": {
+        "max_input_w": 10,
         "avg_input_efficiency": 0.65,
-        "notes": "Wireless-only target. Requires Samsung's magnetic wireless charging puck or a compatible charger; charging wattage is not yet verified."
+        "notes": "Modeled as a 10W USB-C-fed target through Samsung's official magnetic wireless charger. The watch itself has no USB-C port; this represents the charger puck's USB-C input."
       },
       "ports": [
         {
-          "id": "wireless",
-          "label": "Samsung wireless charging puck",
-          "type": "wireless",
+          "id": "usb-c-via-wireless-puck",
+          "label": "USB-C via official wireless charger",
+          "type": "usb-c",
           "direction": "in",
-          "protocols": ["samsung-wireless"],
+          "protocols": ["pd3.0", "samsung-wireless"],
           "input": {
-            "notes": "No USB-C input on the watch itself. Wattage unverified."
+            "max_w": 10,
+            "pd_profiles": [
+              { "v": 5, "a": 2 }
+            ],
+            "notes": "Assumes Samsung's official USB-C fast wireless charger."
           }
         }
       ],
