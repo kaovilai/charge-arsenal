@@ -1,0 +1,104 @@
+{
+  "bricks": [
+    {
+      "id": "anker-747-a2340",
+      "label": "Anker 747 Charger (GaNPrime 150W)",
+      "brand": "Anker",
+      "model": "747 Charger (GaNPrime 150W)",
+      "aka": ["Anker A2340"],
+      "data_confidence": "researched-listings",
+      "total_output_w": 150,
+      "port_distribution_note": "One USB-C port alone can provide 100W. Two USB-C ports together share a 150W maximum; exact split depends on negotiation.",
+      "ports": [
+        {
+          "id": "c1",
+          "label": "USB-C 1",
+          "type": "usb-c",
+          "direction": "out",
+          "output": {
+            "max_w": 100,
+            "pd_profiles": [
+              { "v": 5, "a": 3 },
+              { "v": 9, "a": 3 },
+              { "v": 12, "a": 3 },
+              { "v": 15, "a": 3 },
+              { "v": 20, "a": 5 }
+            ]
+          }
+        },
+        {
+          "id": "c2",
+          "label": "USB-C 2",
+          "type": "usb-c",
+          "direction": "out",
+          "output": {
+            "max_w": 100,
+            "pd_profiles": [
+              { "v": 5, "a": 3 },
+              { "v": 9, "a": 3 },
+              { "v": 12, "a": 3 },
+              { "v": 15, "a": 3 },
+              { "v": 20, "a": 5 }
+            ]
+          }
+        },
+        {
+          "id": "c3",
+          "label": "USB-C 3",
+          "type": "usb-c",
+          "direction": "out",
+          "output": {
+            "max_w": 100,
+            "pd_profiles": [
+              { "v": 5, "a": 3 },
+              { "v": 9, "a": 3 },
+              { "v": 12, "a": 3 },
+              { "v": 15, "a": 3 },
+              { "v": 20, "a": 5 }
+            ]
+          }
+        },
+        {
+          "id": "a1",
+          "label": "USB-A",
+          "type": "usb-a",
+          "direction": "out",
+          "output": {
+            "max_w": 22.5
+          }
+        }
+      ],
+      "sources": [
+        "https://web.archive.org/web/20240912211829/https://www.anker.com/products/a2340"
+      ]
+    },
+    {
+      "id": "cuktech-a12-65w-card",
+      "label": "CUKTECH A12 65W GaN ultrathin card charger",
+      "brand": "CUKTECH",
+      "model": "A12 65W GaN ultrathin card charger",
+      "data_confidence": "researched-listings",
+      "ports": [
+        {
+          "id": "c1",
+          "label": "USB-C",
+          "type": "usb-c",
+          "direction": "out",
+          "output": {
+            "max_w": 65,
+            "pd_profiles": [
+              { "v": 5, "a": 3 },
+              { "v": 9, "a": 3 },
+              { "v": 12, "a": 3 },
+              { "v": 15, "a": 3 },
+              { "v": 20, "a": 3.25 }
+            ]
+          }
+        }
+      ],
+      "sources": [
+        "https://cuktech.com/products/a12-cuktech-65w-usb-c-pd-power-charger"
+      ]
+    }
+  ]
+}

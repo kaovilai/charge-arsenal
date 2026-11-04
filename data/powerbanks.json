@@ -1,0 +1,174 @@
+{
+  "powerbanks": [
+    {
+      "id": "raydyn-y270",
+      "brand": "Raydyn",
+      "model": "Y270",
+      "aka": ["Shenzhen Yonglian Y270"],
+      "manufacturer": "Shenzhen Yonglian Technology Co., Ltd",
+      "data_confidence": "researched-listings",
+      "capacity_mah": 27000,
+      "cell_voltage": 3.68,
+      "capacity_wh": 99.3,
+      "airline_carry_on": true,
+      "pse_certified": true,
+      "weight_g": 455,
+      "dimensions_mm": [55, 34, 153],
+      "display": "LCD showing battery percentage, real-time watts, volts, and amps",
+      "total_output_w": 250,
+      "pass_through": true,
+      "low_current_mode": true,
+      "charge_behavior": {
+        "max_input_w": 65,
+        "claimed_full_charge_hours": 2.5,
+        "avg_input_efficiency": 0.61,
+        "notes": "65W is the input circuit cap. The bank negotiates the PD 20V fixed profile (20V/3.25A); higher-wattage bricks do not speed it up. The 2.5h full-charge claim implies roughly 40W average effective input after conversion losses and end-of-charge taper."
+      },
+      "ports": [
+        {
+          "id": "c1",
+          "label": "USB-C 1",
+          "type": "usb-c",
+          "direction": "inout",
+          "protocols": ["pd3.1", "pd3.0", "pd2.0"],
+          "input": {
+            "max_w": 65,
+            "pd_profiles": [
+              { "v": 5, "a": 3 },
+              { "v": 9, "a": 3 },
+              { "v": 12, "a": 3 },
+              { "v": 15, "a": 3 },
+              { "v": 20, "a": 3.25 }
+            ]
+          },
+          "output": {
+            "max_w": 140,
+            "pd_profiles": [
+              { "v": 5, "a": 3 },
+              { "v": 9, "a": 3 },
+              { "v": 12, "a": 3 },
+              { "v": 15, "a": 3 },
+              { "v": 20, "a": 5 },
+              { "v": 28, "a": 5 }
+            ]
+          }
+        },
+        {
+          "id": "c2",
+          "label": "USB-C 2",
+          "type": "usb-c",
+          "direction": "inout",
+          "protocols": ["pd3.1", "pd3.0", "pd2.0"],
+          "input": {
+            "max_w": 65,
+            "pd_profiles": [
+              { "v": 5, "a": 3 },
+              { "v": 9, "a": 3 },
+              { "v": 12, "a": 3 },
+              { "v": 15, "a": 3 },
+              { "v": 20, "a": 3.25 }
+            ]
+          },
+          "output": {
+            "max_w": 140,
+            "pd_profiles": [
+              { "v": 5, "a": 3 },
+              { "v": 9, "a": 3 },
+              { "v": 12, "a": 3 },
+              { "v": 15, "a": 3 },
+              { "v": 20, "a": 5 },
+              { "v": 28, "a": 5 }
+            ]
+          }
+        },
+        {
+          "id": "a1",
+          "label": "USB-A",
+          "type": "usb-a",
+          "direction": "out",
+          "protocols": ["legacy-fast-charge"],
+          "output": {
+            "max_w": 22.5,
+            "confidence": "estimated",
+            "notes": "Output-only. Wattage not confirmed in listings; 22.5W is a typical ceiling for this class. Verify with a meter."
+          }
+        }
+      ],
+      "cable_gotcha": "To reach the full 140W output (28V/5A PD 3.1 EPR) you need a 240W/EPR-rated cable. The included 100W cable is limited to 20V/5A = 100W. The listing FAQ claims the included cable supports maximum output, which contradicts the PD 3.1 spec.",
+      "sources": [
+        "https://shopstaff.jp/items/B0DGD4FFDS",
+        "https://www.amazon.co.jp/dp/B0DBDS1ZF3"
+      ]
+    }
+    ,
+    {
+      "id": "cuktech-10",
+      "brand": "CUKTECH",
+      "model": "10",
+      "aka": ["CUKTECH 10 Power Bank 10000mAh 150W"],
+      "data_confidence": "researched-listings",
+      "capacity_mah": 10000,
+      "cell_voltage": 3.7,
+      "capacity_wh": 37,
+      "airline_carry_on": true,
+      "weight_g": 287,
+      "dimensions_mm": [143, 45, 33.4],
+      "display": "TFT color screen showing battery percentage, power, voltage, current, and remaining charge/discharge time",
+      "total_output_w": 150,
+      "pass_through": true,
+      "low_current_mode": true,
+      "charge_behavior": {
+        "max_input_w": 90,
+        "claimed_15_min_charge_percent": 55,
+        "avg_input_efficiency": 0.85,
+        "notes": "Official spec claims 55% charge in 15 minutes at 90W. The 85% average input efficiency is an estimate for the whole charge cycle; early charging is faster and the tail tapers."
+      },
+      "ports": [
+        {
+          "id": "c1",
+          "label": "USB-C",
+          "type": "usb-c",
+          "direction": "inout",
+          "protocols": ["pd3.0", "pps", "qc", "fcp", "scp"],
+          "input": {
+            "max_w": 90,
+            "pd_profiles": [
+              { "v": 5, "a": 3 },
+              { "v": 9, "a": 3 },
+              { "v": 12, "a": 3 },
+              { "v": 15, "a": 3 },
+              { "v": 20, "a": 4.5 }
+            ]
+          },
+          "output": {
+            "max_w": 100,
+            "pd_profiles": [
+              { "v": 5, "a": 3 },
+              { "v": 9, "a": 3 },
+              { "v": 12, "a": 3 },
+              { "v": 15, "a": 3 },
+              { "v": 20, "a": 5 }
+            ],
+            "proprietary_max_w": 120,
+            "proprietary_note": "Xiaomi proprietary fast charge can reach 120W on compatible Xiaomi devices."
+          }
+        },
+        {
+          "id": "a1",
+          "label": "USB-A",
+          "type": "usb-a",
+          "direction": "out",
+          "protocols": ["legacy-fast-charge"],
+          "output": {
+            "max_w": 33
+          }
+        }
+      ],
+      "cable_gotcha": "Use the included 240W/6A USB-C cable for the full 100W standard-PD output. Xiaomi proprietary 120W charging requires a compatible Xiaomi device and is not standard USB-C PD.",
+      "sources": [
+        "https://cuktech.com/products/cuktech-10-power-bank-10000mah-150w.json",
+        "https://cdn.shopify.com/s/files/1/0727/1501/0367/files/PB100P__PC_10603097-145c-46d7-b6f2-06d02688473e.jpg?v=1715770173"
+      ]
+    }
+  ]
+}
