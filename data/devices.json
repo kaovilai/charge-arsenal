@@ -1,0 +1,124 @@
+{
+  "devices": [
+    {
+      "id": "galaxy-z-fold7",
+      "brand": "Samsung",
+      "model": "Galaxy Z Fold7",
+      "data_confidence": "researched-listings",
+      "capacity_mah": 4400,
+      "capacity_wh": 16.95,
+      "charge_behavior": {
+        "max_input_w": 25,
+        "avg_input_efficiency": 0.85,
+        "notes": "Samsung advertises 25W wired charging. Full speed generally requires a USB-C PD/PPS source; the matcher models the equivalent fixed-PD rails until PPS negotiation is added."
+      },
+      "ports": [
+        {
+          "id": "usb-c",
+          "label": "USB-C",
+          "type": "usb-c",
+          "direction": "in",
+          "protocols": ["pd3.0", "pps", "samsung-super-fast-charging"],
+          "input": {
+            "max_w": 25,
+            "pd_profiles": [
+              { "v": 9, "a": 2.77 }
+            ]
+          }
+        }
+      ],
+      "sources": [
+        "https://www.samsung.com/us/smartphones/galaxy-z-fold7/"
+      ]
+    },
+    {
+      "id": "ipad-10th-gen",
+      "brand": "Apple",
+      "model": "iPad 10th generation",
+      "data_confidence": "researched-listings",
+      "capacity_wh": 28.6,
+      "charge_behavior": {
+        "max_input_w": 20,
+        "avg_input_efficiency": 0.85,
+        "notes": "Apple lists a 20W USB-C Power Adapter for this iPad. The 20W input ceiling is the practical wired limit for this arsenal."
+      },
+      "ports": [
+        {
+          "id": "usb-c",
+          "label": "USB-C",
+          "type": "usb-c",
+          "direction": "in",
+          "protocols": ["pd3.0"],
+          "input": {
+            "max_w": 20,
+            "pd_profiles": [
+              { "v": 9, "a": 2.22 },
+              { "v": 15, "a": 1.33 }
+            ]
+          }
+        }
+      ],
+      "sources": [
+        "https://www.apple.com/ipad-10.9/specs/"
+      ]
+    },
+    {
+      "id": "macbook-pro-14-m4-pro",
+      "brand": "Apple",
+      "model": "MacBook Pro 14-inch M4 Pro",
+      "data_confidence": "researched-listings",
+      "capacity_wh": 72.4,
+      "charge_behavior": {
+        "max_input_w": 96,
+        "avg_input_efficiency": 0.85,
+        "notes": "Apple specifies fast charging with a 96W or higher USB-C PD source. Any of the three Thunderbolt 4 USB-C ports can charge the laptop; MagSafe 3 is not part of this matcher."
+      },
+      "ports": [
+        {
+          "id": "usb-c",
+          "label": "Any Thunderbolt 4 / USB-C",
+          "type": "usb-c",
+          "direction": "in",
+          "protocols": ["pd3.0"],
+          "input": {
+            "max_w": 96,
+            "pd_profiles": [
+              { "v": 20, "a": 4.8 }
+            ]
+          }
+        }
+      ],
+      "sources": [
+        "https://www.apple.com/macbook-pro-14-and-16/specs/"
+      ]
+    },
+    {
+      "id": "galaxy-watch8",
+      "brand": "Samsung",
+      "model": "Galaxy Watch8",
+      "data_confidence": "researched-listings",
+      "capacity_mah": 435,
+      "capacity_wh": 1.65,
+      "variant_note": "Default entry is the 44mm model (435mAh). The 40mm model is 325mAh.",
+      "charge_behavior": {
+        "avg_input_efficiency": 0.65,
+        "notes": "Wireless-only target. Requires Samsung's magnetic wireless charging puck or a compatible charger; charging wattage is not yet verified."
+      },
+      "ports": [
+        {
+          "id": "wireless",
+          "label": "Samsung wireless charging puck",
+          "type": "wireless",
+          "direction": "in",
+          "protocols": ["samsung-wireless"],
+          "input": {
+            "notes": "No USB-C input on the watch itself. Wattage unverified."
+          }
+        }
+      ],
+      "sources": [
+        "https://www.samsung.com/us/watches/galaxy-watch8/"
+      ]
+    }
+  ]
+}

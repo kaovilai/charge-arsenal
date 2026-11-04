@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Compute optimal charging pairings for the charge-arsenal database.
 
-Reads data/{powerbanks,bricks,cables}.json and regenerates MATCHES.md with:
+Reads data/{powerbanks,bricks,cables,devices}.json and regenerates MATCHES.md with:
   1. The best brick port -> bank port + cable combo for recharging each bank.
-  2. The best port + cable combo for drawing power out of each bank.
+  2. The best brick or bank port -> device port + cable combo for charging devices.
 
 No third-party dependencies.
 """
@@ -39,24 +39,27 @@ def fmt_profile(profile: dict) -> str:
 
 
 def fmt_watts(value: float) -> str:
-    return f"{fmt_num(value)}W"
+    rounded = round(value)
+    if abs(value - rounded) < 0.05:
+        return f"{rounded}W"
+    return f"{value:.1f}W"
 
 
-def negotiate_input(brick_port: dict, bank_port: dict, cable: dict) -> dict | None:
-    """Best brick-to-bank deal: highest shared PD profile the cable can carry."""
-    bank_input = bank_port.get("input")
-    brick_output = brick_port.get("output")
-    if not bank_input or not brick_output:
+def negotiate(source_port: dict, sink_port: dict, cable: dict) -> dict | None:
+    """Best source-to-sink deal: highest shared PD profile the cable can carry."""
+    source_output = source_port.get("output")
+    sink_input = sink_port.get("input")
+    if not source_output or not sink_input:
         return None
-    if brick_port.get("type") != "usb-c" or bank_port.get("type") != "usb-c":
+    if source_port.get("type") != "usb-c" or sink_port.get("type") != "usb-c":
         return None
     if cable.get("connector") != "usb-c":
         return None
 
     best = None
-    for wanted in bank_input.get("pd_profiles", []):
+    for wanted in sink_input.get("pd_profiles", []):
         rail_v = wanted["v"]
-        for offered in brick_output.get("pd_profiles", []):
+        for offered in source_output.get("pd_profiles", []):
             if offered["v"] != rail_v:
                 continue
             if cable.get("max_v", 0) < rail_v:
@@ -72,8 +75,8 @@ def negotiate_input(brick_port: dict, bank_port: dict, cable: dict) -> dict | No
                 continue
             watts = min(
                 rail_v * current,
-                brick_output.get("max_w", float("inf")),
-                bank_input.get("max_w", float("inf")),
+                source_output.get("max_w", float("inf")),
+                sink_input.get("max_w", float("inf")),
             )
             better = best is None or watts > best["watts"] or (
                 watts == best["watts"] and rail_v > best["profile"]["v"]
@@ -83,34 +86,9 @@ def negotiate_input(brick_port: dict, bank_port: dict, cable: dict) -> dict | No
     return best
 
 
-def negotiate_output(bank_port: dict, cable: dict) -> dict | None:
-    """Best bank-to-device deal for a USB-C port and cable."""
-    bank_output = bank_port.get("output")
-    if not bank_output:
-        return None
-    if bank_port.get("type") != "usb-c" or cable.get("connector") != "usb-c":
-        return None
-
-    best = None
-    for profile in bank_output.get("pd_profiles", []):
-        rail_v = profile["v"]
-        if cable.get("max_v", 0) < rail_v:
-            continue
-        current = min(profile["a"], cable.get("max_a", float("inf")))
-        if current <= 0:
-            continue
-        watts = min(rail_v * current, bank_output.get("max_w", float("inf")))
-        better = best is None or watts > best["watts"] or (
-            watts == best["watts"] and rail_v > best["profile"]["v"]
-        )
-        if better:
-            best = {"watts": watts, "profile": {"v": rail_v, "a": current}}
-    return best
-
-
-def charge_estimate(bank: dict, watts: float) -> dict:
-    behavior = bank["charge_behavior"]
-    capacity_wh = bank["capacity_wh"]
+def charge_estimate(target: dict, watts: float) -> dict:
+    behavior = target["charge_behavior"]
+    capacity_wh = target["capacity_wh"]
     efficiency = behavior.get("avg_input_efficiency", 0.85)
     effective_w = watts * efficiency
     hours = capacity_wh / effective_w if effective_w > 0 else None
@@ -131,7 +109,7 @@ def build_input_rows(banks: list, bricks: list, cables: list) -> list:
             for brick_port in brick["ports"]:
                 for bank_port in bank["ports"]:
                     for cable in cables:
-                        deal = negotiate_input(brick_port, bank_port, cable)
+                        deal = negotiate(brick_port, bank_port, cable)
                         if not deal:
                             continue
                         est = charge_estimate(bank, deal["watts"])
@@ -151,25 +129,42 @@ def build_input_rows(banks: list, bricks: list, cables: list) -> list:
     return rows
 
 
-def build_output_rows(banks: list, cables: list) -> list:
+def build_device_rows(devices: list, bricks: list, banks: list, cables: list) -> list:
     rows = []
+    sources = []
+    for brick in bricks:
+        for port in brick["ports"]:
+            sources.append({"kind": "brick", "device": brick, "port": port})
     for bank in banks:
-        for bank_port in bank["ports"]:
-            if bank_port.get("type") != "usb-c":
+        for port in bank["ports"]:
+            sources.append({"kind": "bank", "device": bank, "port": port})
+
+    for device in devices:
+        for device_port in device["ports"]:
+            if device_port.get("type") != "usb-c":
                 continue
-            for cable in cables:
-                deal = negotiate_output(bank_port, cable)
-                if not deal:
+            for source in sources:
+                source_port = source["port"]
+                if source_port.get("type") != "usb-c":
                     continue
-                rows.append(
-                    {
-                        "bank": bank,
-                        "bank_port": bank_port,
-                        "cable": cable,
-                        "watts": deal["watts"],
-                        "profile": deal["profile"],
-                    }
-                )
+                for cable in cables:
+                    deal = negotiate(source_port, device_port, cable)
+                    if not deal:
+                        continue
+                    est = charge_estimate(device, deal["watts"])
+                    rows.append(
+                        {
+                            "device": device,
+                            "device_port": device_port,
+                            "source_kind": source["kind"],
+                            "source": source["device"],
+                            "source_port": source_port,
+                            "cable": cable,
+                            "watts": deal["watts"],
+                            "profile": deal["profile"],
+                            **est,
+                        }
+                    )
     rows.sort(key=lambda r: -r["watts"])
     return rows
 
@@ -198,21 +193,74 @@ def render_input_table(rows: list) -> str:
     return "\n".join(lines)
 
 
-def render_output_table(rows: list) -> str:
+def render_device_table(rows: list) -> str:
     lines = [
-        "| Bank port | Cable | Max out | Profile |",
-        "| --- | --- | --- | --- |",
+        "| Device | Source | Source port | Device port | Cable | Negotiated | Profile | Est. full | Wh / 30 min |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
     ]
     for row in rows:
         lines.append(
-            "| {port} | {cable} | {watts} | {profile} |".format(
-                port=row["bank_port"]["label"],
+            "| {device} | {source} | {source_port} | {device_port} | {cable} | {watts} | {profile} | {hours} | {wh} |".format(
+                device=row["device"]["model"],
+                source=row["source"]["label"] if row["source_kind"] == "brick" else f"{row['source']['brand']} {row['source']['model']}",
+                source_port=row["source_port"]["label"],
+                device_port=row["device_port"]["label"],
                 cable=row["cable"]["label"],
                 watts=fmt_watts(row["watts"]),
                 profile=fmt_profile(row["profile"]),
+                hours=f"{row['hours']:.1f} h",
+                wh=fmt_num(round(row["wh_per_30"], 1)),
             )
         )
     return "\n".join(lines)
+
+
+def render_device_bottom_line(devices: list, device_rows: list) -> list:
+    sections = []
+    for device in devices:
+        rows = [r for r in device_rows if r["device"]["id"] == device["id"]]
+        if not rows:
+            notes = device.get("charge_behavior", {}).get("notes", "")
+            sections.append(
+                [
+                    f"### {device['brand']} {device['model']}",
+                    "",
+                    f"- **No USB-C route in this arsenal:** {notes}",
+                    "",
+                ]
+            )
+            continue
+
+        best_wall = next((r for r in rows if r["source_kind"] == "brick"), None)
+        best_bank = next((r for r in rows if r["source_kind"] == "bank"), None)
+        section = [
+            f"### {device['brand']} {device['model']}",
+            "",
+        ]
+        if best_wall:
+            section.extend(
+                [
+                    f"- **Best wall route:** {best_wall['source']['label']} {best_wall['source_port']['label']}"
+                    f" -> {best_wall['device_port']['label']} with the {best_wall['cable']['label']}:"
+                    f" **{fmt_watts(best_wall['watts'])}** ({fmt_profile(best_wall['profile'])}).",
+                    f"- **Estimated time to full:** ~{best_wall['hours']:.1f} h"
+                    f" ({fmt_watts(best_wall['effective_w'])} average effective input).",
+                    f"- **30 minutes at the wall buys:** ~{fmt_num(round(best_wall['wh_per_30'], 1))} Wh"
+                    f" (~{best_wall['pct_per_30']:.0f}% of the battery). Early charging is faster than this average.",
+                ]
+            )
+        if best_bank:
+            section.extend(
+                [
+                    f"- **Best bank route:** {best_bank['source']['brand']} {best_bank['source']['model']}"
+                    f" {best_bank['source_port']['label']} -> {best_bank['device_port']['label']}"
+                    f" with the {best_bank['cable']['label']}: **{fmt_watts(best_bank['watts'])}**"
+                    f" ({fmt_profile(best_bank['profile'])}).",
+                ]
+            )
+        section.extend(["", device.get("charge_behavior", {}).get("notes", ""), ""])
+        sections.append(section)
+    return sections
 
 
 def render_bottom_line(banks: list, input_rows: list) -> list:
@@ -230,7 +278,7 @@ def render_bottom_line(banks: list, input_rows: list) -> list:
                 f" -> {best['bank_port']['label']} with the {best['cable']['label']}:"
                 f" **{fmt_watts(best['watts'])}** ({fmt_profile(best['profile'])}).",
                 f"- **Estimated time to full:** ~{best['hours']:.1f} h"
-                f" ({fmt_num(best['effective_w'])}W average effective input).",
+                f" ({fmt_watts(best['effective_w'])} average effective input).",
                 f"- **30 minutes at the wall buys:** ~{fmt_num(round(best['wh_per_30'], 1))} Wh"
                 f" (~{best['pct_per_30']:.0f}% of the pack). Early charging is faster than this"
                 " average; the tail end tapers.",
@@ -245,12 +293,16 @@ def main() -> int:
     banks = load_json("powerbanks.json")["powerbanks"]
     bricks = load_json("bricks.json")["bricks"]
     cables = load_json("cables.json")["cables"]
+    devices = load_json("devices.json")["devices"]
 
     input_rows = build_input_rows(banks, bricks, cables)
-    output_rows = build_output_rows(banks, cables)
+    device_rows = build_device_rows(devices, bricks, banks, cables)
 
     if not input_rows:
         print("No viable brick -> bank pairings found; check the data files.", file=sys.stderr)
+        return 1
+    if not device_rows:
+        print("No viable source -> device pairings found; check the data files.", file=sys.stderr)
         return 1
 
     doc = [
@@ -264,6 +316,10 @@ def main() -> int:
     for section in render_bottom_line(banks, input_rows):
         doc.extend(section)
 
+    doc.extend(["## Bottom line for devices", ""])
+    for section in render_device_bottom_line(devices, device_rows):
+        doc.extend(section)
+
     doc.extend(
         [
             "## Recharging the banks (wall -> bank)",
@@ -273,18 +329,18 @@ def main() -> int:
             "",
             render_input_table(input_rows),
             "",
-            "## Charging devices (bank -> device)",
+            "## Charging devices (wall or bank -> device)",
             "",
-            "Single-port use; per-port power drops when multiple devices share the bank.",
+            "Single-port use; per-port power drops when multiple devices share a brick or bank.",
             "",
-            render_output_table(output_rows),
+            render_device_table(device_rows),
             "",
         ]
     )
 
     OUTPUT_FILE.write_text("\n".join(doc), encoding="utf-8")
     best = input_rows[0]
-    print(f"Wrote {OUTPUT_FILE} with {len(input_rows)} input and {len(output_rows)} output pairings.")
+    print(f"Wrote {OUTPUT_FILE} with {len(input_rows)} bank-input and {len(device_rows)} device pairings.")
     print(
         f"Best combo: {best['brick']['label']} {best['brick_port']['label']} -> "
         f"{best['bank_port']['label']} via {best['cable']['label']} = {fmt_watts(best['watts'])}"

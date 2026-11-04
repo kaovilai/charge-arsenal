@@ -14,8 +14,9 @@ python3 scripts/match.py
 ```
 
 This regenerates [MATCHES.md](MATCHES.md) with every brick x bank x cable
-pairing, ranked by negotiated watts, plus estimated time-to-full and
-watt-hours recovered per 30-minute wall session.
+pairing and every brick/bank x device x cable pairing, ranked by negotiated
+watts, plus estimated time-to-full and watt-hours recovered per 30-minute wall
+session.
 
 ## Current arsenal
 
@@ -25,6 +26,10 @@ watt-hours recovered per 30-minute wall session.
 | CUKTECH 10 | 10000mAh / 37Wh power bank | 90W max input, 100W USB-C PD output, 150W total output |
 | Anker 747 Charger (GaNPrime 150W, A2340) | 4-port wall brick | 100W max per USB-C port, 150W total shared output |
 | CUKTECH A12 65W GaN ultrathin card charger | 1-port wall brick | 65W max on USB-C |
+| Samsung Galaxy Z Fold7 | Phone | 4400mAh / 16.95Wh, 25W wired charging |
+| Apple iPad 10th generation | Tablet | 28.6Wh, 20W wired charging |
+| Apple MacBook Pro 14-inch M4 Pro | Laptop | 72.4Wh, 96W fast charging over USB-C |
+| Samsung Galaxy Watch8 | Smartwatch | 44mm: 435mAh / 40mm: 325mAh, wireless charging only |
 
 ## Fastest routes
 
@@ -61,6 +66,20 @@ watt-hours recovered per 30-minute wall session.
 - **Best speed:** 100W standard PD (20V/5A) with the included 240W/6A cable.
 - **Proprietary exception:** compatible Xiaomi devices can negotiate up to
   120W via Xiaomi’s proprietary fast-charge protocol, not standard USB-C PD.
+
+### Devices
+
+- **Galaxy Z Fold7:** use any USB-C port on the Anker 747, CUKTECH A12,
+  Y270, or CUKTECH 10. Practical ceiling is **25W**; the phone is the
+  bottleneck, not the brick or bank.
+- **iPad 10th generation:** use any USB-C port on the Anker 747, CUKTECH A12,
+  Y270, or CUKTECH 10. Practical ceiling is **20W**.
+- **MacBook Pro 14-inch M4 Pro:** use any Thunderbolt 4 / USB-C port. The
+  Anker 747, Y270, or CUKTECH 10 can supply **96W**; the CUKTECH A12 tops out
+  at **65W**.
+- **Galaxy Watch8:** no USB-C input on the watch itself. Use Samsung’s
+  magnetic wireless charging puck or a compatible charger; wattage is not yet
+  verified.
 
 ### Charging both banks at once
 
@@ -110,6 +129,31 @@ negotiation and cable quality.
 - Foldable plug
 - Includes a 100W USB-C cable
 
+### Samsung Galaxy Z Fold7
+
+- 4400mAh / 16.95Wh
+- USB-C wired charging up to 25W
+- 15W wireless charging
+- 4.5W reverse wireless charging
+
+### Apple iPad 10th generation
+
+- 28.6Wh battery
+- USB-C wired charging up to 20W
+
+### Apple MacBook Pro 14-inch M4 Pro
+
+- 72.4Wh battery
+- MagSafe 3 and three Thunderbolt 4 / USB-C charging ports
+- 96W fast charging with a 96W or higher USB-C PD source
+
+### Samsung Galaxy Watch8
+
+- 44mm model: 435mAh battery
+- 40mm model: 325mAh battery
+- Wireless charging only; requires Samsung’s magnetic charging puck or a
+  compatible charger
+
 ## Data model
 
 All data lives in `data/` as plain JSON:
@@ -117,6 +161,7 @@ All data lives in `data/` as plain JSON:
 - `powerbanks.json` - the banks themselves
 - `bricks.json` - wall chargers
 - `cables.json` - the wires that quietly decide everything
+- `devices.json` - phones, tablets, laptops, and other charge targets
 
 Each USB-C port carries separate `input` and `output` blocks with a `max_w`
 ceiling and a list of `pd_profiles` (voltage/current pairs). The matcher picks
@@ -141,6 +186,7 @@ Every device entry carries a `data_confidence` field:
 ## Roadmap
 
 - Measure actual PD profiles and taper curves with a USB power meter
+- Model PPS negotiation for Samsung Super Fast Charging
 - Model charge speed vs. state of charge (the last 20% is always slower)
 - Model multi-port wall-brick allocation
 - Static viewer for GitHub Pages
