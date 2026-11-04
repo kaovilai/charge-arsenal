@@ -18,6 +18,13 @@ pairing and every brick/bank x device x cable pairing, ranked by negotiated
 watts, plus estimated time-to-full and watt-hours recovered per 30-minute wall
 session.
 
+```sh
+python3 scripts/strategy.py
+```
+
+This regenerates [STRATEGY.md](STRATEGY.md), the 30-minute, two-AC-plug
+state-of-charge priority matrix.
+
 ## Current arsenal
 
 | Device | Role | Key numbers |
