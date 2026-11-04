@@ -38,6 +38,77 @@ state-of-charge priority matrices for the Anker 747 and CUKTECH A12.
 | Apple MacBook Pro 14-inch M4 Pro | Laptop | 72.4Wh, 96W fast charging over USB-C |
 | Samsung Galaxy Watch8 | Smartwatch | 44mm: 435mAh / 40mm: 325mAh, wireless charging only |
 
+## Charge map
+
+This chart shows the best single-port route from each wall brick or power bank
+to each charge target. The Anker 747's 150W total is shared when more than one
+port is used, so these are best-case routes rather than simultaneous limits.
+
+```mermaid
+flowchart LR
+    subgraph wall[Wall bricks]
+        anker[Anker 747<br/>150W total]
+        a12[CUKTECH A12<br/>65W]
+    end
+
+    subgraph banks[Power banks]
+        y270[Raydyn Y270<br/>65W in / 140W out]
+        cuk10[CUKTECH 10<br/>90W in / 100W out]
+    end
+
+    subgraph devices[Devices]
+        mac[MacBook Pro 14 M4 Pro<br/>96W in]
+        fold[Galaxy Z Fold7<br/>25W in]
+        ipad[iPad 10th gen<br/>20W in]
+        watch[Galaxy Watch8<br/>wireless only]
+    end
+
+    anker -->|96W USB-C| mac
+    anker -->|25W USB-C| fold
+    anker -->|20W USB-C| ipad
+    anker -->|90W USB-C| cuk10
+    anker -->|65W USB-C| y270
+
+    a12 -->|65W USB-C| y270
+    a12 -->|25W USB-C| fold
+    a12 -->|20W USB-C| ipad
+
+    y270 -->|96W USB-C| mac
+    y270 -->|25W USB-C| fold
+    y270 -->|20W USB-C| ipad
+
+    cuk10 -->|96W USB-C| mac
+    cuk10 -->|25W USB-C| fold
+    cuk10 -->|20W USB-C| ipad
+```
+
+The Galaxy Watch8 appears as a target but has no USB-C route in this arsenal;
+it needs Samsung's magnetic wireless charging puck.
+
+## Two-plug priority chart
+
+This is the 30-minute decision tree when you have two AC wall plugs: one
+Anker 747 and one CUKTECH A12.
+
+```mermaid
+flowchart TD
+    start[30 minutes, 2 AC plugs] --> q1{MacBook below 60%?}
+
+    q1 -->|Yes| a1[Anker 747 USB-C 1 -> MacBook 96W]
+    a1 --> b1[CUKTECH A12 USB-C -> CUKTECH 10 65W<br/>or next best device]
+
+    q1 -->|No| q2{CUKTECH 10 below 20%?}
+    q2 -->|Yes| a2[Anker 747 USB-C 1 -> CUKTECH 10 90W]
+    a2 --> b2[CUKTECH A12 USB-C -> MacBook 65W]
+
+    q2 -->|No| a3[Anker 747 USB-C 1 -> MacBook 96W]
+    a3 --> b3[CUKTECH A12 USB-C -> CUKTECH 10 65W]
+```
+
+## 30-minute gain ranking
+
+![30-minute charge gain by device](charts/30-minute-gain.svg)
+
 ## Fastest routes
 
 ### Wall -> Raydyn Y270
