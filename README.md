@@ -23,7 +23,7 @@ python3 scripts/strategy.py
 ```
 
 This regenerates [STRATEGY.md](STRATEGY.md), the 30-minute, two-AC-plug
-state-of-charge priority matrices for the Anker 747 and CUKTECH A12.
+state-of-charge priority matrices for the Anker 747 and CUKTECH AC65B2.
 
 ```sh
 python3 scripts/view.py
@@ -41,7 +41,7 @@ curve data exists). No third-party dependencies; light and dark themes.
 | Raydyn Y270 (Shenzhen Yonglian Tech) | 27000mAh / 99.3Wh power bank | 65W max input per vendor (reviewer measured ~100W peak); 140W max single-port output, 250W total output |
 | CUKTECH 10 | 10000mAh / 37Wh power bank | 90W max input (86W measured), 100W USB-C PD output, 150W total output |
 | Anker 747 Charger (GaNPrime 150W, A2340) | 4-port wall brick | 100W max per USB-C port, PPS 3.3-11V/5A, 150W total shared output |
-| CUKTECH A12 65W GaN ultrathin card charger | 1-port wall brick | 65W max on USB-C, PPS (family-inferred) |
+| CUKTECH AC65B2 (Lighter 65W, 2C) | 2-port wall brick | 65W USB-C 1 (20V/3.25A) + 20W USB-C 2; PPS 5-11V/3A + 5-20V/3A measured |
 | Samsung Galaxy Z Fold7 | Phone | 4400mAh / 16.95Wh, 25W wired charging via PPS (~22W measured) |
 | Apple iPad 10th generation | Tablet | 28.6Wh, ~30W real ceiling via the 15V PDO (not 20W) |
 | Apple MacBook Pro 14-inch M4 Pro | Laptop | 72.4Wh, 96W charger but ~88-92W measured ceiling |
@@ -57,7 +57,7 @@ port is used, so these are best-case routes rather than simultaneous limits.
 flowchart LR
     subgraph wall[Wall bricks]
         anker[Anker 747<br/>150W total]
-        a12[CUKTECH A12<br/>65W]
+        a12[CUKTECH AC65B2<br/>65W + 20W]
     end
 
     subgraph banks[Power banks]
@@ -101,21 +101,21 @@ official magnetic wireless charger, not as a direct USB-C port on the watch.
 ## Two-plug priority chart
 
 This is the 30-minute decision tree when you have two AC wall plugs: one
-Anker 747 and one CUKTECH A12.
+Anker 747 and one CUKTECH AC65B2.
 
 ```mermaid
 flowchart TD
     start[30 minutes, 2 AC plugs] --> q1{MacBook below 60%?}
 
     q1 -->|Yes| a1[Anker 747 USB-C 1 -> MacBook 96W]
-    a1 --> b1[CUKTECH A12 USB-C -> CUKTECH 10 65W<br/>or next best device]
+    a1 --> b1[CUKTECH AC65B2 USB-C -> CUKTECH 10 65W<br/>or next best device]
 
     q1 -->|No| q2{CUKTECH 10 below 20%?}
     q2 -->|Yes| a2[Anker 747 USB-C 1 -> CUKTECH 10 90W]
-    a2 --> b2[CUKTECH A12 USB-C -> MacBook 65W]
+    a2 --> b2[CUKTECH AC65B2 USB-C -> MacBook 65W]
 
     q2 -->|No| a3[Anker 747 USB-C 1 -> MacBook 96W]
-    a3 --> b3[CUKTECH A12 USB-C -> CUKTECH 10 65W]
+    a3 --> b3[CUKTECH AC65B2 USB-C -> CUKTECH 10 65W]
 ```
 
 ## 30-minute gain ranking
@@ -128,12 +128,12 @@ The current chart (taper-curve-based, interactive) is in the
 
 ### Wall -> Raydyn Y270
 
-- **Best port:** any USB-C port on the Anker 747 or the CUKTECH A12, into
+- **Best port:** any USB-C port on the Anker 747 or the CUKTECH AC65B2 (C1), into
   either USB-C port on the Y270.
 - **Best speed:** 65W (20V/3.25A) per vendor spec — but one reviewer measured
   ~100W initial input from a 100W PD charger before taper, so the real ceiling
   is contested. A 3A cable caps any source at 60W.
-- **Cable:** the Y270’s included 100W cable, the CUKTECH A12’s included 100W
+- **Cable:** the Y270’s included 100W cable, the CUKTECH 100W USB-C cable that came with the AC65B2
   cable, or the CUKTECH 10’s included 240W cable all work.
 - **Capacity caveat:** the same reviewer measured only 74Wh input for a full
   recharge (~20000mAh), well short of the 27000mAh label.
@@ -145,7 +145,7 @@ The current chart (taper-curve-based, interactive) is in the
 - **Best speed:** 90W (20V/4.5A) rated; measured 86W peak (20V/4.3A), full in
   44-46 min. The Anker’s USB-C port can supply 100W, but the bank caps input at
   90W.
-- **Cable:** use the CUKTECH 10’s included 240W/6A cable. The CUKTECH A12
+- **Cable:** use the CUKTECH 10’s included 240W/6A cable. The CUKTECH AC65B2
   card charger tops out at 65W and cannot saturate this bank.
 
 ### Raydyn Y270 -> device
@@ -177,7 +177,7 @@ The current chart (taper-curve-based, interactive) is in the
   ceiling is **~30W** (not 20W) — the bundled 20W adapter is 9V-locked.
 - **MacBook Pro 14-inch M4 Pro:** use any Thunderbolt 4 / USB-C port. The
   Anker 747, Y270, or CUKTECH 10 all land in the laptop's measured **88-92W**
-  ceiling; the CUKTECH A12 tops out at **65W**.
+  ceiling; the CUKTECH AC65B2 (C1) tops out at **65W**.
 - **Galaxy Watch8:** 10W cap through Samsung’s official EP-OL300 puck (5V/2A);
   a bigger brick gains nothing.
 
@@ -223,7 +223,7 @@ Real-world readings live in [`data/measurements.json`](data/measurements.json)
 | Source | Reading | Why |
 | --- | --- | --- |
 | Owner: Anker 747 second USB-C port, MacBook charging on the first | **~25W @ 20V** (Y270) | Same 20V PD contract, but the shared budget gave the MacBook priority and granted ~1.25A. Testers see the same starvation transient (a port cut from 20V/3.25A to 20V/2.2A on plug-in) — the ceiling returns to ~75W once both sides renegotiate |
-| Owner: CUKTECH A12 alone | **~60W @ 20V** (Y270) | Single-device 20V/3A contract; A12's 20V/3.25A ceiling binds |
+| Owner: CUKTECH AC65B2 alone | **~60W @ 20V** (Y270) | Single-device 20V/3A contract; its 20V/3.25A C1 ceiling binds |
 | Reviewer: 100W PD charger | **~100W initial → 50-60W** (Y270) | Above the 65W vendor rating; same tester measured 74Wh input for a full recharge (~20000mAh real) |
 | Reviewer: Apple 140W | **86W @ 20V/4.3A** (CUKTECH 10) | 44-46 min full; 55%-in-15-min claim confirmed |
 | Tester: any 96W+ source | **88-92W @ 20V/~4.5A** (MacBook 14) | The laptop never draws its adapter's full 96W |
@@ -236,8 +236,8 @@ voltage. See the multi-port allocation model above.
 ## PPS and taper modeling
 
 - **PPS (Samsung Super Fast Charging):** the Anker 747 meters PPS 3.3-11V/5A on
-  all three USB-C ports; the CUKTECH 10 meters 5-11V/5A and 5-20V/3A; the A12
-  declares PPS but only family data exists (inference). The Z Fold7 needs
+  all three USB-C ports; the CUKTECH 10 meters 5-11V/5A and 5-20V/3A; the
+  CUKTECH AC65B2 meters 5-11V/3A and 5-20V/3A. The Z Fold7 needs
   3.3-11V at >=2.75A and converges at ~9V/2.5A = 21.6-22.9W on any PPS source,
   so the matcher models a 22.5W PPS contract for it and 45W/100W/140W bricks
   gain nothing. Without PPS Samsung's guidance is a ~15W fallback (one bench
@@ -289,13 +289,16 @@ voltage. See the multi-port allocation model above.
 - Measured efficiency 87.3-94.4%; 65.6-69.9 °C surface after 1h at 100W without derating
 - Measured two-device splits: 75W+75W (two laptops), 100W+24W rule (C1+USB-A)
 
-### CUKTECH A12 65W GaN ultrathin card charger
+### CUKTECH AC65B2 (Lighter 65W, 2C)
 
-- 1x USB-C
-- 65W max (20V/3.25A); official page adds a 10V/5A entry
-- PD 3.0 and PPS; family metered at 5-11V/5A (A12 itself unmeasured — inference)
-- Model caveat: international A12 is AD651N (cube); the card-form unit is AD652S (China) — confirm the code on the unit
-- Includes a 100W USB-C cable
+- 2x USB-C: C1 65W (5/9/12/15V⎓3A, 20V⎓3.25A) + C2 20W (5V/3A, 9V/2.25A)
+- PPS on C1: 5-11V/3A and 5-20V/3A (metered) — covers Samsung SFC 25W
+- Dual-port: 39W+18W or 45W+10W (2023 revision); 45W+18W/63W (original)
+- Revision caveat: two hardware revisions share the AC65B2 code — original
+  white 100-240V (C1 derates to 45W on 100-130V mains), 2023 silver 200-240V
+  only. Check the input line on the label
+- Measured: 86-93.8% efficiency, 59.6 °C after 1h at 65W, 63W sustained for
+  1h09m into a MacBook Pro 16 (full charge 2h20m), standby 0.099W
 
 ### Samsung Galaxy Z Fold7
 
@@ -372,7 +375,7 @@ Every device entry carries a `data_confidence` field:
 ## Roadmap
 
 - Verify remaining third-party numbers with the owner's own USB power meter
-  (highest value: Y270 real capacity and ~100W input, A12 PPS range, Y270
-  multi-output 5V collapse)
-- Confirm the A12's model code: whether the owner's "A12 card charger" is
-  AD651N or AD652S
+  (highest value: Y270 real capacity and ~100W input, Y270 multi-output 5V
+  collapse)
+- Read the input line on the AC65B2 label: 100-240V (original, C1 derates to
+  45W on 120V mains) or 200-240V (2023 revision)

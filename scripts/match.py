@@ -388,8 +388,9 @@ def build_multiport_rows(bricks: list, targets: list, measurements: list) -> lis
     """Two-device scenarios for every shared-budget brick in the arsenal."""
     rows = []
     for brick in bricks:
-        if not brick.get("multiport_allocation"):
-            continue
+        mp = brick.get("multiport_allocation") or {}
+        if not mp.get("total_budget_w"):
+            continue  # combos documented but fixed per-revision: no modeled scenarios
         for primary in targets:
             for secondary in targets:
                 if primary["id"] == secondary["id"]:

@@ -38,7 +38,7 @@ SHORT_LABELS = {
     "raydyn-y270": "Raydyn Y270",
     "cuktech-10": "CUKTECH 10",
     "anker-747-a2340": "Anker 747",
-    "cuktech-a12-65w-card": "CUKTECH A12",
+    "cuktech-ac65b2-65w": "CUKTECH AC65B2",
     "galaxy-z-fold7": "Galaxy Z Fold7",
     "ipad-10th-gen": "iPad 10th gen",
     "macbook-pro-14-m4-pro": "MacBook Pro 14",

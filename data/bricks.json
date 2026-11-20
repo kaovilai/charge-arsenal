@@ -215,15 +215,42 @@
       }
     },
     {
-      "id": "cuktech-a12-65w-card",
-      "label": "CUKTECH A12 65W GaN ultrathin card charger",
+      "id": "cuktech-ac65b2-65w",
+      "label": "CUKTECH AC65B2 65W GaN ultra-slim (2C)",
       "brand": "CUKTECH",
-      "model": "A12 65W GaN ultrathin card charger",
-      "data_confidence": "researched-listings",
+      "model": "AC65B2 超薄GaN充电器 65W(2C) / Lighter 65W",
+      "aka": [
+        "CUKTECH Lighter 65W",
+        "previously logged as 'A12 card charger'"
+      ],
+      "data_confidence": "reviewer-measured",
+      "total_output_w": 65,
+      "model_note": "Owner confirmed the model code AC65B2 (2026-11-20) - this is NOT the 'A12' (AD651N cube); the earlier repo label came from the purchase name. Two hardware revisions share the AC65B2 code: the original white wide-input unit (100-240V; C1 derates to 45W max on 100-130V mains) and a 2023 silver-grey unit (200-240V input only). Check the input line on the label to identify yours; dual-port splits also differ by revision. The owner's ~60W reading into the Y270 shows C1 running at full 20V/3A+ where measured.",
+      "multiport_allocation": {
+        "combos": [
+          {
+            "ports": [
+              "c1",
+              "c2"
+            ],
+            "total_w": 57,
+            "per_port_split": "39W + 18W (2023 revision)"
+          },
+          {
+            "ports": [
+              "c1",
+              "c2"
+            ],
+            "total_w": 55,
+            "per_port_split": "45W + 10W (2023 revision)"
+          }
+        ],
+        "note": "Original wide-input revision instead does 45W+18W (63W total), 18W+18W, or 40W+5W. Fixed published splits per revision - no modeled scenarios."
+      },
       "ports": [
         {
           "id": "c1",
-          "label": "USB-C",
+          "label": "USB-C 1 (65W)",
           "type": "usb-c",
           "direction": "out",
           "output": {
@@ -253,23 +280,54 @@
           },
           "pps_profiles": [
             {
-              "v_min": 3.3,
+              "v_min": 5,
               "v_max": 11,
-              "a": 5,
-              "confidence": "inferred"
+              "a": 3
+            },
+            {
+              "v_min": 5,
+              "v_max": 20,
+              "a": 3
             }
           ],
-          "pps_note": "No metered PPS test exists for the A12 itself. CUKTECH 65W-family card/2C1A bricks (AD652S, AD653C/EU) meter PPS 5-11V/5A; the international A12 is model AD651N, whose manual only states 'supports PD3.0 and PPS'. Value here is family inference (medium confidence). Covers Samsung SFC 25W (3.3-11V >=2.75A)."
+          "pps_note": "Metered (chongdiantou POWER-Z KM002C/KM003C): 5-20V/3A PPS on the original revision; the 2023 revision adds 5-11V/3A. Covers Samsung SFC 25W (needs >=2.75A in 3.3-11V) at the 9-10V operating point; no 45W SFC 2.0 (needs 5A)."
+        },
+        {
+          "id": "c2",
+          "label": "USB-C 2 (20W)",
+          "type": "usb-c",
+          "direction": "out",
+          "output": {
+            "max_w": 20,
+            "pd_profiles": [
+              {
+                "v": 5,
+                "a": 3
+              },
+              {
+                "v": 9,
+                "a": 2.25
+              }
+            ]
+          },
+          "notes": "20W secondary port; original revision also offered 11V/1.8A and 12V/1.67A here."
         }
       ],
-      "sources": [
-        "https://cuktech.com/products/a12-cuktech-65w-usb-c-pd-power-charger"
-      ],
-      "model_note": "Owner calls this the 'A12 card charger'. The international A12 (AD651N) is a 50x50x28mm cube; CUKTECH's card-form charger is the China-market 6号电能卡片 (AD652S). If the owner's unit is the AD652S, the metered family PPS data applies directly. Confirm the model code on the unit.",
       "measured": {
-        "efficiency": "88-94% on 100-140V mains (manual)",
-        "sustained_output": "No dedicated sustained-load test for the A12; a sibling CUKTECH 65W brick (AD653CEU) held a metered 65W sustained"
-      }
+        "efficiency": "86.01-93.83% across taps (90%+ except 5V/3A)",
+        "thermal": "59.6C surface after 1h at 20V/3.25A (220V); 56.5C at 110V/20V/2.25A",
+        "standby": "0.099W at 220V, 0.004W at 110V",
+        "sustained": "63W stable for the first 1h09m charging a MacBook Pro 16 M1 Max; full charge 2h20m",
+        "sources": [
+          "https://www.chongdiantou.com/archives/195245.html",
+          "https://www.chongdiantou.com/archives/241482.html",
+          "https://www.chongdiantou.com/archives/196821.html"
+        ]
+      },
+      "sources": [
+        "https://www.chongdiantou.com/archives/195245.html",
+        "https://www.chongdiantou.com/archives/241482.html"
+      ]
     }
   ]
 }

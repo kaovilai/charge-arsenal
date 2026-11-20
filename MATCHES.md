@@ -65,40 +65,49 @@ end-of-charge taper; `Wh / 30 min` is the airport-layover number.
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Anker 747 Charger (GaNPrime 150W) | USB-C 1 | USB-C | CUKTECH 10 included 240W EPR USB-C cable | 90W | 20V/4.5A | 1.0 h | 25.4 | 69% |
 | Anker 747 Charger (GaNPrime 150W) | USB-C 1 | USB-C | Y270 included 100W USB-C cable | 90W | 20V/4.5A | 1.0 h | 25.4 | 69% |
-| Anker 747 Charger (GaNPrime 150W) | USB-C 1 | USB-C | CUKTECH A12 included 100W USB-C cable | 90W | 20V/4.5A | 1.0 h | 25.4 | 69% |
+| Anker 747 Charger (GaNPrime 150W) | USB-C 1 | USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 90W | 20V/4.5A | 1.0 h | 25.4 | 69% |
 | Anker 747 Charger (GaNPrime 150W) | USB-C 2 | USB-C | CUKTECH 10 included 240W EPR USB-C cable | 90W | 20V/4.5A | 1.0 h | 25.4 | 69% |
 | Anker 747 Charger (GaNPrime 150W) | USB-C 2 | USB-C | Y270 included 100W USB-C cable | 90W | 20V/4.5A | 1.0 h | 25.4 | 69% |
-| Anker 747 Charger (GaNPrime 150W) | USB-C 2 | USB-C | CUKTECH A12 included 100W USB-C cable | 90W | 20V/4.5A | 1.0 h | 25.4 | 69% |
+| Anker 747 Charger (GaNPrime 150W) | USB-C 2 | USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 90W | 20V/4.5A | 1.0 h | 25.4 | 69% |
 | Anker 747 Charger (GaNPrime 150W) | USB-C 3 | USB-C | CUKTECH 10 included 240W EPR USB-C cable | 90W | 20V/4.5A | 1.0 h | 25.4 | 69% |
 | Anker 747 Charger (GaNPrime 150W) | USB-C 3 | USB-C | Y270 included 100W USB-C cable | 90W | 20V/4.5A | 1.0 h | 25.4 | 69% |
-| Anker 747 Charger (GaNPrime 150W) | USB-C 3 | USB-C | CUKTECH A12 included 100W USB-C cable | 90W | 20V/4.5A | 1.0 h | 25.4 | 69% |
-| CUKTECH A12 65W GaN ultrathin card charger | USB-C | USB-C | CUKTECH 10 included 240W EPR USB-C cable | 65W | 20V/3.25A | 1.3 h | 20.8 | 56% |
-| CUKTECH A12 65W GaN ultrathin card charger | USB-C | USB-C | Y270 included 100W USB-C cable | 65W | 20V/3.25A | 1.3 h | 20.8 | 56% |
-| CUKTECH A12 65W GaN ultrathin card charger | USB-C | USB-C | CUKTECH A12 included 100W USB-C cable | 65W | 20V/3.25A | 1.3 h | 20.8 | 56% |
+| Anker 747 Charger (GaNPrime 150W) | USB-C 3 | USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 90W | 20V/4.5A | 1.0 h | 25.4 | 69% |
+| CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 1 (65W) | USB-C | CUKTECH 10 included 240W EPR USB-C cable | 65W | 20V/3.25A | 1.3 h | 20.8 | 56% |
+| CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 1 (65W) | USB-C | Y270 included 100W USB-C cable | 65W | 20V/3.25A | 1.3 h | 20.8 | 56% |
+| CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 1 (65W) | USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 65W | 20V/3.25A | 1.3 h | 20.8 | 56% |
 | Anker 747 Charger (GaNPrime 150W) | USB-C 1 | USB-C 1 | CUKTECH 10 included 240W EPR USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
 | Anker 747 Charger (GaNPrime 150W) | USB-C 1 | USB-C 1 | Y270 included 100W USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
-| Anker 747 Charger (GaNPrime 150W) | USB-C 1 | USB-C 1 | CUKTECH A12 included 100W USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
+| Anker 747 Charger (GaNPrime 150W) | USB-C 1 | USB-C 1 | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
 | Anker 747 Charger (GaNPrime 150W) | USB-C 1 | USB-C 2 | CUKTECH 10 included 240W EPR USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
 | Anker 747 Charger (GaNPrime 150W) | USB-C 1 | USB-C 2 | Y270 included 100W USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
-| Anker 747 Charger (GaNPrime 150W) | USB-C 1 | USB-C 2 | CUKTECH A12 included 100W USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
+| Anker 747 Charger (GaNPrime 150W) | USB-C 1 | USB-C 2 | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
 | Anker 747 Charger (GaNPrime 150W) | USB-C 2 | USB-C 1 | CUKTECH 10 included 240W EPR USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
 | Anker 747 Charger (GaNPrime 150W) | USB-C 2 | USB-C 1 | Y270 included 100W USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
-| Anker 747 Charger (GaNPrime 150W) | USB-C 2 | USB-C 1 | CUKTECH A12 included 100W USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
+| Anker 747 Charger (GaNPrime 150W) | USB-C 2 | USB-C 1 | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
 | Anker 747 Charger (GaNPrime 150W) | USB-C 2 | USB-C 2 | CUKTECH 10 included 240W EPR USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
 | Anker 747 Charger (GaNPrime 150W) | USB-C 2 | USB-C 2 | Y270 included 100W USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
-| Anker 747 Charger (GaNPrime 150W) | USB-C 2 | USB-C 2 | CUKTECH A12 included 100W USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
+| Anker 747 Charger (GaNPrime 150W) | USB-C 2 | USB-C 2 | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
 | Anker 747 Charger (GaNPrime 150W) | USB-C 3 | USB-C 1 | CUKTECH 10 included 240W EPR USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
 | Anker 747 Charger (GaNPrime 150W) | USB-C 3 | USB-C 1 | Y270 included 100W USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
-| Anker 747 Charger (GaNPrime 150W) | USB-C 3 | USB-C 1 | CUKTECH A12 included 100W USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
+| Anker 747 Charger (GaNPrime 150W) | USB-C 3 | USB-C 1 | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
 | Anker 747 Charger (GaNPrime 150W) | USB-C 3 | USB-C 2 | CUKTECH 10 included 240W EPR USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
 | Anker 747 Charger (GaNPrime 150W) | USB-C 3 | USB-C 2 | Y270 included 100W USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
-| Anker 747 Charger (GaNPrime 150W) | USB-C 3 | USB-C 2 | CUKTECH A12 included 100W USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
-| CUKTECH A12 65W GaN ultrathin card charger | USB-C | USB-C 1 | CUKTECH 10 included 240W EPR USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
-| CUKTECH A12 65W GaN ultrathin card charger | USB-C | USB-C 1 | Y270 included 100W USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
-| CUKTECH A12 65W GaN ultrathin card charger | USB-C | USB-C 1 | CUKTECH A12 included 100W USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
-| CUKTECH A12 65W GaN ultrathin card charger | USB-C | USB-C 2 | CUKTECH 10 included 240W EPR USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
-| CUKTECH A12 65W GaN ultrathin card charger | USB-C | USB-C 2 | Y270 included 100W USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
-| CUKTECH A12 65W GaN ultrathin card charger | USB-C | USB-C 2 | CUKTECH A12 included 100W USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
+| Anker 747 Charger (GaNPrime 150W) | USB-C 3 | USB-C 2 | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
+| CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 1 (65W) | USB-C 1 | CUKTECH 10 included 240W EPR USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
+| CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 1 (65W) | USB-C 1 | Y270 included 100W USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
+| CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 1 (65W) | USB-C 1 | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
+| CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 1 (65W) | USB-C 2 | CUKTECH 10 included 240W EPR USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
+| CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 1 (65W) | USB-C 2 | Y270 included 100W USB-C cable | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
+| CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 1 (65W) | USB-C 2 | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 65W | 20V/3.25A | 2.9 h | 24.6 | 25% |
+| CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 2 (20W) | USB-C | CUKTECH 10 included 240W EPR USB-C cable | 20W | 9V/2.25A | 4.2 h | 7.8 | 21% |
+| CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 2 (20W) | USB-C | Y270 included 100W USB-C cable | 20W | 9V/2.25A | 4.2 h | 7.8 | 21% |
+| CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 2 (20W) | USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 20W | 9V/2.25A | 4.2 h | 7.8 | 21% |
+| CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 2 (20W) | USB-C 1 | CUKTECH 10 included 240W EPR USB-C cable | 20W | 9V/2.25A | 10.2 h | 7.6 | 8% |
+| CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 2 (20W) | USB-C 1 | Y270 included 100W USB-C cable | 20W | 9V/2.25A | 10.2 h | 7.6 | 8% |
+| CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 2 (20W) | USB-C 1 | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 20W | 9V/2.25A | 10.2 h | 7.6 | 8% |
+| CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 2 (20W) | USB-C 2 | CUKTECH 10 included 240W EPR USB-C cable | 20W | 9V/2.25A | 10.2 h | 7.6 | 8% |
+| CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 2 (20W) | USB-C 2 | Y270 included 100W USB-C cable | 20W | 9V/2.25A | 10.2 h | 7.6 | 8% |
+| CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 2 (20W) | USB-C 2 | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 20W | 9V/2.25A | 10.2 h | 7.6 | 8% |
 
 ## Charging devices (wall or bank -> device)
 
@@ -108,88 +117,97 @@ Single-port use; per-port power drops when multiple devices share a brick or ban
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | MacBook Pro 14-inch M4 Pro | Anker 747 Charger (GaNPrime 150W) | USB-C 1 | Any Thunderbolt 4 / USB-C | CUKTECH 10 included 240W EPR USB-C cable | 92W | 20V/4.6A | 1.7 h | 36.8 |
 | MacBook Pro 14-inch M4 Pro | Anker 747 Charger (GaNPrime 150W) | USB-C 1 | Any Thunderbolt 4 / USB-C | Y270 included 100W USB-C cable | 92W | 20V/4.6A | 1.7 h | 36.8 |
-| MacBook Pro 14-inch M4 Pro | Anker 747 Charger (GaNPrime 150W) | USB-C 1 | Any Thunderbolt 4 / USB-C | CUKTECH A12 included 100W USB-C cable | 92W | 20V/4.6A | 1.7 h | 36.8 |
+| MacBook Pro 14-inch M4 Pro | Anker 747 Charger (GaNPrime 150W) | USB-C 1 | Any Thunderbolt 4 / USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 92W | 20V/4.6A | 1.7 h | 36.8 |
 | MacBook Pro 14-inch M4 Pro | Anker 747 Charger (GaNPrime 150W) | USB-C 2 | Any Thunderbolt 4 / USB-C | CUKTECH 10 included 240W EPR USB-C cable | 92W | 20V/4.6A | 1.7 h | 36.8 |
 | MacBook Pro 14-inch M4 Pro | Anker 747 Charger (GaNPrime 150W) | USB-C 2 | Any Thunderbolt 4 / USB-C | Y270 included 100W USB-C cable | 92W | 20V/4.6A | 1.7 h | 36.8 |
-| MacBook Pro 14-inch M4 Pro | Anker 747 Charger (GaNPrime 150W) | USB-C 2 | Any Thunderbolt 4 / USB-C | CUKTECH A12 included 100W USB-C cable | 92W | 20V/4.6A | 1.7 h | 36.8 |
+| MacBook Pro 14-inch M4 Pro | Anker 747 Charger (GaNPrime 150W) | USB-C 2 | Any Thunderbolt 4 / USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 92W | 20V/4.6A | 1.7 h | 36.8 |
 | MacBook Pro 14-inch M4 Pro | Anker 747 Charger (GaNPrime 150W) | USB-C 3 | Any Thunderbolt 4 / USB-C | CUKTECH 10 included 240W EPR USB-C cable | 92W | 20V/4.6A | 1.7 h | 36.8 |
 | MacBook Pro 14-inch M4 Pro | Anker 747 Charger (GaNPrime 150W) | USB-C 3 | Any Thunderbolt 4 / USB-C | Y270 included 100W USB-C cable | 92W | 20V/4.6A | 1.7 h | 36.8 |
-| MacBook Pro 14-inch M4 Pro | Anker 747 Charger (GaNPrime 150W) | USB-C 3 | Any Thunderbolt 4 / USB-C | CUKTECH A12 included 100W USB-C cable | 92W | 20V/4.6A | 1.7 h | 36.8 |
+| MacBook Pro 14-inch M4 Pro | Anker 747 Charger (GaNPrime 150W) | USB-C 3 | Any Thunderbolt 4 / USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 92W | 20V/4.6A | 1.7 h | 36.8 |
 | MacBook Pro 14-inch M4 Pro | Raydyn Y270 | USB-C 1 | Any Thunderbolt 4 / USB-C | CUKTECH 10 included 240W EPR USB-C cable | 92W | 20V/4.6A | 1.7 h | 36.8 |
 | MacBook Pro 14-inch M4 Pro | Raydyn Y270 | USB-C 1 | Any Thunderbolt 4 / USB-C | Y270 included 100W USB-C cable | 92W | 20V/4.6A | 1.7 h | 36.8 |
-| MacBook Pro 14-inch M4 Pro | Raydyn Y270 | USB-C 1 | Any Thunderbolt 4 / USB-C | CUKTECH A12 included 100W USB-C cable | 92W | 20V/4.6A | 1.7 h | 36.8 |
+| MacBook Pro 14-inch M4 Pro | Raydyn Y270 | USB-C 1 | Any Thunderbolt 4 / USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 92W | 20V/4.6A | 1.7 h | 36.8 |
 | MacBook Pro 14-inch M4 Pro | Raydyn Y270 | USB-C 2 | Any Thunderbolt 4 / USB-C | CUKTECH 10 included 240W EPR USB-C cable | 92W | 20V/4.6A | 1.7 h | 36.8 |
 | MacBook Pro 14-inch M4 Pro | Raydyn Y270 | USB-C 2 | Any Thunderbolt 4 / USB-C | Y270 included 100W USB-C cable | 92W | 20V/4.6A | 1.7 h | 36.8 |
-| MacBook Pro 14-inch M4 Pro | Raydyn Y270 | USB-C 2 | Any Thunderbolt 4 / USB-C | CUKTECH A12 included 100W USB-C cable | 92W | 20V/4.6A | 1.7 h | 36.8 |
+| MacBook Pro 14-inch M4 Pro | Raydyn Y270 | USB-C 2 | Any Thunderbolt 4 / USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 92W | 20V/4.6A | 1.7 h | 36.8 |
 | MacBook Pro 14-inch M4 Pro | CUKTECH 10 | USB-C | Any Thunderbolt 4 / USB-C | CUKTECH 10 included 240W EPR USB-C cable | 92W | 20V/4.6A | 1.7 h | 36.8 |
 | MacBook Pro 14-inch M4 Pro | CUKTECH 10 | USB-C | Any Thunderbolt 4 / USB-C | Y270 included 100W USB-C cable | 92W | 20V/4.6A | 1.7 h | 36.8 |
-| MacBook Pro 14-inch M4 Pro | CUKTECH 10 | USB-C | Any Thunderbolt 4 / USB-C | CUKTECH A12 included 100W USB-C cable | 92W | 20V/4.6A | 1.7 h | 36.8 |
-| MacBook Pro 14-inch M4 Pro | CUKTECH A12 65W GaN ultrathin card charger | USB-C | Any Thunderbolt 4 / USB-C | CUKTECH 10 included 240W EPR USB-C cable | 65W | 20V/3.25A | 2.2 h | 27.6 |
-| MacBook Pro 14-inch M4 Pro | CUKTECH A12 65W GaN ultrathin card charger | USB-C | Any Thunderbolt 4 / USB-C | Y270 included 100W USB-C cable | 65W | 20V/3.25A | 2.2 h | 27.6 |
-| MacBook Pro 14-inch M4 Pro | CUKTECH A12 65W GaN ultrathin card charger | USB-C | Any Thunderbolt 4 / USB-C | CUKTECH A12 included 100W USB-C cable | 65W | 20V/3.25A | 2.2 h | 27.6 |
+| MacBook Pro 14-inch M4 Pro | CUKTECH 10 | USB-C | Any Thunderbolt 4 / USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 92W | 20V/4.6A | 1.7 h | 36.8 |
+| MacBook Pro 14-inch M4 Pro | CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 1 (65W) | Any Thunderbolt 4 / USB-C | CUKTECH 10 included 240W EPR USB-C cable | 65W | 20V/3.25A | 2.2 h | 27.6 |
+| MacBook Pro 14-inch M4 Pro | CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 1 (65W) | Any Thunderbolt 4 / USB-C | Y270 included 100W USB-C cable | 65W | 20V/3.25A | 2.2 h | 27.6 |
+| MacBook Pro 14-inch M4 Pro | CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 1 (65W) | Any Thunderbolt 4 / USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 65W | 20V/3.25A | 2.2 h | 27.6 |
 | iPad 10th generation | Anker 747 Charger (GaNPrime 150W) | USB-C 1 | USB-C | CUKTECH 10 included 240W EPR USB-C cable | 30W | 15V/2A | 1.6 h | 11.5 |
 | iPad 10th generation | Anker 747 Charger (GaNPrime 150W) | USB-C 1 | USB-C | Y270 included 100W USB-C cable | 30W | 15V/2A | 1.6 h | 11.5 |
-| iPad 10th generation | Anker 747 Charger (GaNPrime 150W) | USB-C 1 | USB-C | CUKTECH A12 included 100W USB-C cable | 30W | 15V/2A | 1.6 h | 11.5 |
+| iPad 10th generation | Anker 747 Charger (GaNPrime 150W) | USB-C 1 | USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 30W | 15V/2A | 1.6 h | 11.5 |
 | iPad 10th generation | Anker 747 Charger (GaNPrime 150W) | USB-C 2 | USB-C | CUKTECH 10 included 240W EPR USB-C cable | 30W | 15V/2A | 1.6 h | 11.5 |
 | iPad 10th generation | Anker 747 Charger (GaNPrime 150W) | USB-C 2 | USB-C | Y270 included 100W USB-C cable | 30W | 15V/2A | 1.6 h | 11.5 |
-| iPad 10th generation | Anker 747 Charger (GaNPrime 150W) | USB-C 2 | USB-C | CUKTECH A12 included 100W USB-C cable | 30W | 15V/2A | 1.6 h | 11.5 |
+| iPad 10th generation | Anker 747 Charger (GaNPrime 150W) | USB-C 2 | USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 30W | 15V/2A | 1.6 h | 11.5 |
 | iPad 10th generation | Anker 747 Charger (GaNPrime 150W) | USB-C 3 | USB-C | CUKTECH 10 included 240W EPR USB-C cable | 30W | 15V/2A | 1.6 h | 11.5 |
 | iPad 10th generation | Anker 747 Charger (GaNPrime 150W) | USB-C 3 | USB-C | Y270 included 100W USB-C cable | 30W | 15V/2A | 1.6 h | 11.5 |
-| iPad 10th generation | Anker 747 Charger (GaNPrime 150W) | USB-C 3 | USB-C | CUKTECH A12 included 100W USB-C cable | 30W | 15V/2A | 1.6 h | 11.5 |
-| iPad 10th generation | CUKTECH A12 65W GaN ultrathin card charger | USB-C | USB-C | CUKTECH 10 included 240W EPR USB-C cable | 30W | 15V/2A | 1.6 h | 11.5 |
-| iPad 10th generation | CUKTECH A12 65W GaN ultrathin card charger | USB-C | USB-C | Y270 included 100W USB-C cable | 30W | 15V/2A | 1.6 h | 11.5 |
-| iPad 10th generation | CUKTECH A12 65W GaN ultrathin card charger | USB-C | USB-C | CUKTECH A12 included 100W USB-C cable | 30W | 15V/2A | 1.6 h | 11.5 |
+| iPad 10th generation | Anker 747 Charger (GaNPrime 150W) | USB-C 3 | USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 30W | 15V/2A | 1.6 h | 11.5 |
+| iPad 10th generation | CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 1 (65W) | USB-C | CUKTECH 10 included 240W EPR USB-C cable | 30W | 15V/2A | 1.6 h | 11.5 |
+| iPad 10th generation | CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 1 (65W) | USB-C | Y270 included 100W USB-C cable | 30W | 15V/2A | 1.6 h | 11.5 |
+| iPad 10th generation | CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 1 (65W) | USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 30W | 15V/2A | 1.6 h | 11.5 |
 | iPad 10th generation | Raydyn Y270 | USB-C 1 | USB-C | CUKTECH 10 included 240W EPR USB-C cable | 30W | 15V/2A | 1.6 h | 11.5 |
 | iPad 10th generation | Raydyn Y270 | USB-C 1 | USB-C | Y270 included 100W USB-C cable | 30W | 15V/2A | 1.6 h | 11.5 |
-| iPad 10th generation | Raydyn Y270 | USB-C 1 | USB-C | CUKTECH A12 included 100W USB-C cable | 30W | 15V/2A | 1.6 h | 11.5 |
+| iPad 10th generation | Raydyn Y270 | USB-C 1 | USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 30W | 15V/2A | 1.6 h | 11.5 |
 | iPad 10th generation | Raydyn Y270 | USB-C 2 | USB-C | CUKTECH 10 included 240W EPR USB-C cable | 30W | 15V/2A | 1.6 h | 11.5 |
 | iPad 10th generation | Raydyn Y270 | USB-C 2 | USB-C | Y270 included 100W USB-C cable | 30W | 15V/2A | 1.6 h | 11.5 |
-| iPad 10th generation | Raydyn Y270 | USB-C 2 | USB-C | CUKTECH A12 included 100W USB-C cable | 30W | 15V/2A | 1.6 h | 11.5 |
+| iPad 10th generation | Raydyn Y270 | USB-C 2 | USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 30W | 15V/2A | 1.6 h | 11.5 |
 | iPad 10th generation | CUKTECH 10 | USB-C | USB-C | CUKTECH 10 included 240W EPR USB-C cable | 30W | 15V/2A | 1.6 h | 11.5 |
 | iPad 10th generation | CUKTECH 10 | USB-C | USB-C | Y270 included 100W USB-C cable | 30W | 15V/2A | 1.6 h | 11.5 |
-| iPad 10th generation | CUKTECH 10 | USB-C | USB-C | CUKTECH A12 included 100W USB-C cable | 30W | 15V/2A | 1.6 h | 11.5 |
+| iPad 10th generation | CUKTECH 10 | USB-C | USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 30W | 15V/2A | 1.6 h | 11.5 |
 | Galaxy Z Fold7 | Raydyn Y270 | USB-C 1 | USB-C | CUKTECH 10 included 240W EPR USB-C cable | 24.9W | 9V/2.77A | 1.3 h | 9.4 |
 | Galaxy Z Fold7 | Raydyn Y270 | USB-C 1 | USB-C | Y270 included 100W USB-C cable | 24.9W | 9V/2.77A | 1.3 h | 9.4 |
-| Galaxy Z Fold7 | Raydyn Y270 | USB-C 1 | USB-C | CUKTECH A12 included 100W USB-C cable | 24.9W | 9V/2.77A | 1.3 h | 9.4 |
+| Galaxy Z Fold7 | Raydyn Y270 | USB-C 1 | USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 24.9W | 9V/2.77A | 1.3 h | 9.4 |
 | Galaxy Z Fold7 | Raydyn Y270 | USB-C 2 | USB-C | CUKTECH 10 included 240W EPR USB-C cable | 24.9W | 9V/2.77A | 1.3 h | 9.4 |
 | Galaxy Z Fold7 | Raydyn Y270 | USB-C 2 | USB-C | Y270 included 100W USB-C cable | 24.9W | 9V/2.77A | 1.3 h | 9.4 |
-| Galaxy Z Fold7 | Raydyn Y270 | USB-C 2 | USB-C | CUKTECH A12 included 100W USB-C cable | 24.9W | 9V/2.77A | 1.3 h | 9.4 |
+| Galaxy Z Fold7 | Raydyn Y270 | USB-C 2 | USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 24.9W | 9V/2.77A | 1.3 h | 9.4 |
 | Galaxy Z Fold7 | Anker 747 Charger (GaNPrime 150W) | USB-C 1 | USB-C | CUKTECH 10 included 240W EPR USB-C cable | 22.5W | 9V/2.5A | 1.4 h | 9.3 |
 | Galaxy Z Fold7 | Anker 747 Charger (GaNPrime 150W) | USB-C 1 | USB-C | Y270 included 100W USB-C cable | 22.5W | 9V/2.5A | 1.4 h | 9.3 |
-| Galaxy Z Fold7 | Anker 747 Charger (GaNPrime 150W) | USB-C 1 | USB-C | CUKTECH A12 included 100W USB-C cable | 22.5W | 9V/2.5A | 1.4 h | 9.3 |
+| Galaxy Z Fold7 | Anker 747 Charger (GaNPrime 150W) | USB-C 1 | USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 22.5W | 9V/2.5A | 1.4 h | 9.3 |
 | Galaxy Z Fold7 | Anker 747 Charger (GaNPrime 150W) | USB-C 2 | USB-C | CUKTECH 10 included 240W EPR USB-C cable | 22.5W | 9V/2.5A | 1.4 h | 9.3 |
 | Galaxy Z Fold7 | Anker 747 Charger (GaNPrime 150W) | USB-C 2 | USB-C | Y270 included 100W USB-C cable | 22.5W | 9V/2.5A | 1.4 h | 9.3 |
-| Galaxy Z Fold7 | Anker 747 Charger (GaNPrime 150W) | USB-C 2 | USB-C | CUKTECH A12 included 100W USB-C cable | 22.5W | 9V/2.5A | 1.4 h | 9.3 |
+| Galaxy Z Fold7 | Anker 747 Charger (GaNPrime 150W) | USB-C 2 | USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 22.5W | 9V/2.5A | 1.4 h | 9.3 |
 | Galaxy Z Fold7 | Anker 747 Charger (GaNPrime 150W) | USB-C 3 | USB-C | CUKTECH 10 included 240W EPR USB-C cable | 22.5W | 9V/2.5A | 1.4 h | 9.3 |
 | Galaxy Z Fold7 | Anker 747 Charger (GaNPrime 150W) | USB-C 3 | USB-C | Y270 included 100W USB-C cable | 22.5W | 9V/2.5A | 1.4 h | 9.3 |
-| Galaxy Z Fold7 | Anker 747 Charger (GaNPrime 150W) | USB-C 3 | USB-C | CUKTECH A12 included 100W USB-C cable | 22.5W | 9V/2.5A | 1.4 h | 9.3 |
-| Galaxy Z Fold7 | CUKTECH A12 65W GaN ultrathin card charger | USB-C | USB-C | CUKTECH 10 included 240W EPR USB-C cable | 22.5W | 9V/2.5A | 1.4 h | 9.3 |
-| Galaxy Z Fold7 | CUKTECH A12 65W GaN ultrathin card charger | USB-C | USB-C | Y270 included 100W USB-C cable | 22.5W | 9V/2.5A | 1.4 h | 9.3 |
-| Galaxy Z Fold7 | CUKTECH A12 65W GaN ultrathin card charger | USB-C | USB-C | CUKTECH A12 included 100W USB-C cable | 22.5W | 9V/2.5A | 1.4 h | 9.3 |
+| Galaxy Z Fold7 | Anker 747 Charger (GaNPrime 150W) | USB-C 3 | USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 22.5W | 9V/2.5A | 1.4 h | 9.3 |
+| Galaxy Z Fold7 | CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 1 (65W) | USB-C | CUKTECH 10 included 240W EPR USB-C cable | 22.5W | 9V/2.5A | 1.4 h | 9.3 |
+| Galaxy Z Fold7 | CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 1 (65W) | USB-C | Y270 included 100W USB-C cable | 22.5W | 9V/2.5A | 1.4 h | 9.3 |
+| Galaxy Z Fold7 | CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 1 (65W) | USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 22.5W | 9V/2.5A | 1.4 h | 9.3 |
 | Galaxy Z Fold7 | CUKTECH 10 | USB-C | USB-C | CUKTECH 10 included 240W EPR USB-C cable | 22.5W | 9V/2.5A | 1.4 h | 9.3 |
 | Galaxy Z Fold7 | CUKTECH 10 | USB-C | USB-C | Y270 included 100W USB-C cable | 22.5W | 9V/2.5A | 1.4 h | 9.3 |
-| Galaxy Z Fold7 | CUKTECH 10 | USB-C | USB-C | CUKTECH A12 included 100W USB-C cable | 22.5W | 9V/2.5A | 1.4 h | 9.3 |
+| Galaxy Z Fold7 | CUKTECH 10 | USB-C | USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 22.5W | 9V/2.5A | 1.4 h | 9.3 |
+| Galaxy Z Fold7 | CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 2 (20W) | USB-C | CUKTECH 10 included 240W EPR USB-C cable | 20W | 9V/2.25A | 1.5 h | 8.3 |
+| Galaxy Z Fold7 | CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 2 (20W) | USB-C | Y270 included 100W USB-C cable | 20W | 9V/2.25A | 1.5 h | 8.3 |
+| Galaxy Z Fold7 | CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 2 (20W) | USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 20W | 9V/2.25A | 1.5 h | 8.3 |
+| iPad 10th generation | CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 2 (20W) | USB-C | CUKTECH 10 included 240W EPR USB-C cable | 20W | 9V/2.22A | 2.1 h | 8.5 |
+| iPad 10th generation | CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 2 (20W) | USB-C | Y270 included 100W USB-C cable | 20W | 9V/2.22A | 2.1 h | 8.5 |
+| iPad 10th generation | CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 2 (20W) | USB-C | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 20W | 9V/2.22A | 2.1 h | 8.5 |
 | Galaxy Watch8 | Anker 747 Charger (GaNPrime 150W) | USB-C 1 | USB-C via official wireless charger | CUKTECH 10 included 240W EPR USB-C cable | 10W | 5V/2A | 1.5 h | 0.7 |
 | Galaxy Watch8 | Anker 747 Charger (GaNPrime 150W) | USB-C 1 | USB-C via official wireless charger | Y270 included 100W USB-C cable | 10W | 5V/2A | 1.5 h | 0.7 |
-| Galaxy Watch8 | Anker 747 Charger (GaNPrime 150W) | USB-C 1 | USB-C via official wireless charger | CUKTECH A12 included 100W USB-C cable | 10W | 5V/2A | 1.5 h | 0.7 |
+| Galaxy Watch8 | Anker 747 Charger (GaNPrime 150W) | USB-C 1 | USB-C via official wireless charger | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 10W | 5V/2A | 1.5 h | 0.7 |
 | Galaxy Watch8 | Anker 747 Charger (GaNPrime 150W) | USB-C 2 | USB-C via official wireless charger | CUKTECH 10 included 240W EPR USB-C cable | 10W | 5V/2A | 1.5 h | 0.7 |
 | Galaxy Watch8 | Anker 747 Charger (GaNPrime 150W) | USB-C 2 | USB-C via official wireless charger | Y270 included 100W USB-C cable | 10W | 5V/2A | 1.5 h | 0.7 |
-| Galaxy Watch8 | Anker 747 Charger (GaNPrime 150W) | USB-C 2 | USB-C via official wireless charger | CUKTECH A12 included 100W USB-C cable | 10W | 5V/2A | 1.5 h | 0.7 |
+| Galaxy Watch8 | Anker 747 Charger (GaNPrime 150W) | USB-C 2 | USB-C via official wireless charger | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 10W | 5V/2A | 1.5 h | 0.7 |
 | Galaxy Watch8 | Anker 747 Charger (GaNPrime 150W) | USB-C 3 | USB-C via official wireless charger | CUKTECH 10 included 240W EPR USB-C cable | 10W | 5V/2A | 1.5 h | 0.7 |
 | Galaxy Watch8 | Anker 747 Charger (GaNPrime 150W) | USB-C 3 | USB-C via official wireless charger | Y270 included 100W USB-C cable | 10W | 5V/2A | 1.5 h | 0.7 |
-| Galaxy Watch8 | Anker 747 Charger (GaNPrime 150W) | USB-C 3 | USB-C via official wireless charger | CUKTECH A12 included 100W USB-C cable | 10W | 5V/2A | 1.5 h | 0.7 |
-| Galaxy Watch8 | CUKTECH A12 65W GaN ultrathin card charger | USB-C | USB-C via official wireless charger | CUKTECH 10 included 240W EPR USB-C cable | 10W | 5V/2A | 1.5 h | 0.7 |
-| Galaxy Watch8 | CUKTECH A12 65W GaN ultrathin card charger | USB-C | USB-C via official wireless charger | Y270 included 100W USB-C cable | 10W | 5V/2A | 1.5 h | 0.7 |
-| Galaxy Watch8 | CUKTECH A12 65W GaN ultrathin card charger | USB-C | USB-C via official wireless charger | CUKTECH A12 included 100W USB-C cable | 10W | 5V/2A | 1.5 h | 0.7 |
+| Galaxy Watch8 | Anker 747 Charger (GaNPrime 150W) | USB-C 3 | USB-C via official wireless charger | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 10W | 5V/2A | 1.5 h | 0.7 |
+| Galaxy Watch8 | CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 1 (65W) | USB-C via official wireless charger | CUKTECH 10 included 240W EPR USB-C cable | 10W | 5V/2A | 1.5 h | 0.7 |
+| Galaxy Watch8 | CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 1 (65W) | USB-C via official wireless charger | Y270 included 100W USB-C cable | 10W | 5V/2A | 1.5 h | 0.7 |
+| Galaxy Watch8 | CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 1 (65W) | USB-C via official wireless charger | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 10W | 5V/2A | 1.5 h | 0.7 |
+| Galaxy Watch8 | CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 2 (20W) | USB-C via official wireless charger | CUKTECH 10 included 240W EPR USB-C cable | 10W | 5V/2A | 1.5 h | 0.7 |
+| Galaxy Watch8 | CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 2 (20W) | USB-C via official wireless charger | Y270 included 100W USB-C cable | 10W | 5V/2A | 1.5 h | 0.7 |
+| Galaxy Watch8 | CUKTECH AC65B2 65W GaN ultra-slim (2C) | USB-C 2 (20W) | USB-C via official wireless charger | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 10W | 5V/2A | 1.5 h | 0.7 |
 | Galaxy Watch8 | Raydyn Y270 | USB-C 1 | USB-C via official wireless charger | CUKTECH 10 included 240W EPR USB-C cable | 10W | 5V/2A | 1.5 h | 0.7 |
 | Galaxy Watch8 | Raydyn Y270 | USB-C 1 | USB-C via official wireless charger | Y270 included 100W USB-C cable | 10W | 5V/2A | 1.5 h | 0.7 |
-| Galaxy Watch8 | Raydyn Y270 | USB-C 1 | USB-C via official wireless charger | CUKTECH A12 included 100W USB-C cable | 10W | 5V/2A | 1.5 h | 0.7 |
+| Galaxy Watch8 | Raydyn Y270 | USB-C 1 | USB-C via official wireless charger | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 10W | 5V/2A | 1.5 h | 0.7 |
 | Galaxy Watch8 | Raydyn Y270 | USB-C 2 | USB-C via official wireless charger | CUKTECH 10 included 240W EPR USB-C cable | 10W | 5V/2A | 1.5 h | 0.7 |
 | Galaxy Watch8 | Raydyn Y270 | USB-C 2 | USB-C via official wireless charger | Y270 included 100W USB-C cable | 10W | 5V/2A | 1.5 h | 0.7 |
-| Galaxy Watch8 | Raydyn Y270 | USB-C 2 | USB-C via official wireless charger | CUKTECH A12 included 100W USB-C cable | 10W | 5V/2A | 1.5 h | 0.7 |
+| Galaxy Watch8 | Raydyn Y270 | USB-C 2 | USB-C via official wireless charger | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 10W | 5V/2A | 1.5 h | 0.7 |
 | Galaxy Watch8 | CUKTECH 10 | USB-C | USB-C via official wireless charger | CUKTECH 10 included 240W EPR USB-C cable | 10W | 5V/2A | 1.5 h | 0.7 |
 | Galaxy Watch8 | CUKTECH 10 | USB-C | USB-C via official wireless charger | Y270 included 100W USB-C cable | 10W | 5V/2A | 1.5 h | 0.7 |
-| Galaxy Watch8 | CUKTECH 10 | USB-C | USB-C via official wireless charger | CUKTECH A12 included 100W USB-C cable | 10W | 5V/2A | 1.5 h | 0.7 |
+| Galaxy Watch8 | CUKTECH 10 | USB-C | USB-C via official wireless charger | CUKTECH 100W USB-C cable (came with the AC65B2 purchase) | 10W | 5V/2A | 1.5 h | 0.7 |
 
 ## Multi-port allocation
 
@@ -208,6 +226,8 @@ Official per-combination caps:
 | Anker 747 Charger (GaNPrime 150W) | c2 + a1 | 122.5W total | 100W + 22.5W |
 | Anker 747 Charger (GaNPrime 150W) | c3 + a1 | 122.5W total | 100W + 22.5W |
 | Anker 747 Charger (GaNPrime 150W) | c2 or c3 + c1+a1 | 124W total | 100W + 24W |
+| CUKTECH AC65B2 65W GaN ultra-slim (2C) | c1 + c2 | 57W total | 39W + 18W (2023 revision) |
+| CUKTECH AC65B2 65W GaN ultra-slim (2C) | c1 + c2 | 55W total | 45W + 10W (2023 revision) |
 
 First-order two-USB-C-port scenarios (model assumes an adequate cable;
 measured values from `data/measurements.json` always win over the model):
