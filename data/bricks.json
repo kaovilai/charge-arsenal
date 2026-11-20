@@ -300,7 +300,18 @@
                 "v": 20,
                 "a": 3.25
               }
-            ]
+            ],
+            "mains_derating": {
+              "100-130V": {
+                "max_w": 45,
+                "pd_profile": {
+                  "v": 20,
+                  "a": 2.25
+                },
+                "applies_to": "original wide-input revision only"
+              },
+              "note": "The matcher assumes full 65W output (the owner's measured ~60W at 20V/3A supports this where the brick is used). If the label reads 100-240V and the brick is used on 120V mains, cap C1 at 45W per this table. 2023 revision is 200-240V input only."
+            }
           },
           "pps_profiles": [
             {
