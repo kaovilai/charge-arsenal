@@ -20,8 +20,11 @@ curves exist (the last 20% charges much slower), flat first-order otherwise.
 
 ## Who gets the CUKTECH AC65B2?
 
-Use this when the AC65B2 is the only charger in play, or when you are deciding
-which device should take the AC65B2 while the Anker 747 feeds the other port.
+Use this only when the AC65B2 is the only charger in play. In the two-plug
+scenario, use the Anker 747 matrix above and give the other device the AC65B2 -
+this standalone table can disagree with that pairing (e.g. MacBook 60% / CUKTECH
+10 0% reads CUKTECH 10 here, but the pairing correctly gives the MacBook the
+AC65B2 once the Anker goes to the CUKTECH 10).
 
 | MacBook SOC | CUKTECH 10: 0% | CUKTECH 10: 20% | CUKTECH 10: 40% | CUKTECH 10: 60% | CUKTECH 10: 80% | CUKTECH 10: 90% |
 | --- | --- | --- | --- | --- | --- | --- |
