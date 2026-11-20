@@ -11,12 +11,12 @@ curves exist (the last 20% charges much slower), flat first-order otherwise.
 
 | MacBook SOC | CUKTECH 10: 0% | CUKTECH 10: 20% | CUKTECH 10: 40% | CUKTECH 10: 60% | CUKTECH 10: 80% | CUKTECH 10: 90% |
 | --- | --- | --- | --- | --- | --- | --- |
-| 0% | MacBook / 62.8 Wh | MacBook / 59.5 Wh | MacBook / 55.8 Wh | MacBook / 51.6 Wh | MacBook / 44.2 Wh | MacBook / 40.5 Wh |
-| 20% | MacBook / 59.4 Wh | MacBook / 56.2 Wh | MacBook / 52.4 Wh | MacBook / 48.2 Wh | MacBook / 40.8 Wh | MacBook / 37.1 Wh |
-| 40% | MacBook / 52.8 Wh | MacBook / 49.6 Wh | MacBook / 45.8 Wh | MacBook / 41.6 Wh | MacBook / 34.2 Wh | MacBook / 30.5 Wh |
-| 60% | CUKTECH 10 / 46.2 Wh | CUKTECH 10 / 42.0 Wh | CUKTECH 10 / 37.9 Wh | CUKTECH 10 / 33.6 Wh | CUKTECH 10 / 26.2 Wh | CUKTECH 10 / 22.5 Wh |
-| 80% | CUKTECH 10 / 37.4 Wh | MacBook / 34.0 Wh | MacBook / 30.3 Wh | MacBook / 26.1 Wh | MacBook / 18.7 Wh | MacBook / 15.0 Wh |
-| 90% | MacBook / 33.3 Wh | MacBook / 30.0 Wh | MacBook / 26.2 Wh | MacBook / 22.0 Wh | MacBook / 14.6 Wh | MacBook / 10.9 Wh |
+| 0% | MacBook / 63.2 Wh | MacBook / 59.8 Wh | MacBook / 55.8 Wh | MacBook / 51.6 Wh | MacBook / 44.2 Wh | MacBook / 40.5 Wh |
+| 20% | MacBook / 60.3 Wh | MacBook / 56.9 Wh | MacBook / 52.9 Wh | MacBook / 48.7 Wh | MacBook / 41.3 Wh | MacBook / 37.6 Wh |
+| 40% | MacBook / 54.5 Wh | MacBook / 51.2 Wh | MacBook / 47.1 Wh | MacBook / 42.9 Wh | MacBook / 35.5 Wh | MacBook / 31.8 Wh |
+| 60% | MacBook / 47.1 Wh | MacBook / 43.7 Wh | MacBook / 39.7 Wh | MacBook / 35.5 Wh | MacBook / 28.1 Wh | MacBook / 24.4 Wh |
+| 80% | MacBook / 38.9 Wh | MacBook / 35.6 Wh | MacBook / 31.5 Wh | MacBook / 27.3 Wh | MacBook / 19.9 Wh | MacBook / 16.2 Wh |
+| 90% | MacBook / 33.6 Wh | MacBook / 30.3 Wh | MacBook / 26.3 Wh | MacBook / 22.0 Wh | MacBook / 14.6 Wh | MacBook / 10.9 Wh |
 
 ## Who gets the CUKTECH AC65B2?
 
@@ -29,11 +29,11 @@ AC65B2 once the Anker goes to the CUKTECH 10).
 | MacBook SOC | CUKTECH 10: 0% | CUKTECH 10: 20% | CUKTECH 10: 40% | CUKTECH 10: 60% | CUKTECH 10: 80% | CUKTECH 10: 90% |
 | --- | --- | --- | --- | --- | --- | --- |
 | 0% | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh |
-| 20% | MacBook / 26.8 Wh | MacBook / 26.8 Wh | MacBook / 26.8 Wh | MacBook / 26.8 Wh | MacBook / 26.8 Wh | MacBook / 26.8 Wh |
-| 40% | CUKTECH 10 / 26.0 Wh | MacBook / 24.7 Wh | MacBook / 24.7 Wh | MacBook / 24.7 Wh | MacBook / 24.7 Wh | MacBook / 24.7 Wh |
-| 60% | CUKTECH 10 / 26.0 Wh | CUKTECH 10 / 22.8 Wh | CUKTECH 10 / 19.0 Wh | MacBook / 18.8 Wh | MacBook / 18.8 Wh | MacBook / 18.8 Wh |
-| 80% | CUKTECH 10 / 26.0 Wh | CUKTECH 10 / 22.8 Wh | CUKTECH 10 / 19.0 Wh | CUKTECH 10 / 14.8 Wh | MacBook / 10.1 Wh | MacBook / 10.1 Wh |
-| 90% | CUKTECH 10 / 26.0 Wh | CUKTECH 10 / 22.8 Wh | CUKTECH 10 / 19.0 Wh | CUKTECH 10 / 14.8 Wh | CUKTECH 10 / 7.4 Wh | MacBook / 5.8 Wh |
+| 20% | MacBook / 26.9 Wh | MacBook / 26.9 Wh | MacBook / 26.9 Wh | MacBook / 26.9 Wh | MacBook / 26.9 Wh | MacBook / 26.9 Wh |
+| 40% | CUKTECH 10 / 26.4 Wh | MacBook / 24.7 Wh | MacBook / 24.7 Wh | MacBook / 24.7 Wh | MacBook / 24.7 Wh | MacBook / 24.7 Wh |
+| 60% | CUKTECH 10 / 26.4 Wh | CUKTECH 10 / 23.0 Wh | CUKTECH 10 / 19.0 Wh | MacBook / 18.8 Wh | MacBook / 18.8 Wh | MacBook / 18.8 Wh |
+| 80% | CUKTECH 10 / 26.4 Wh | CUKTECH 10 / 23.0 Wh | CUKTECH 10 / 19.0 Wh | CUKTECH 10 / 14.8 Wh | MacBook / 10.1 Wh | MacBook / 10.1 Wh |
+| 90% | CUKTECH 10 / 26.4 Wh | CUKTECH 10 / 23.0 Wh | CUKTECH 10 / 19.0 Wh | CUKTECH 10 / 14.8 Wh | CUKTECH 10 / 7.4 Wh | MacBook / 5.8 Wh |
 
 ## 30-minute gain from 0% state of charge
 
@@ -43,13 +43,12 @@ AC65B2 once the Anker goes to the CUKTECH 10).
 | Apple iPad 10th generation | 30W | 11.5 Wh |
 | Apple MacBook Pro 14-inch M4 Pro | 92W | 36.8 Wh |
 | Samsung Galaxy Watch8 | 10W | 0.7 Wh |
-| Raydyn Y270 | 65W | 26.6 Wh |
+| Raydyn Y270 | 65W | 27.6 Wh |
 | CUKTECH 10 | 90W | 27.3 Wh |
 
 ## Rule of thumb
 
-- If the MacBook is below about 40%, put it on the Anker 747.
-- If the MacBook is above about 60%, give the Anker to the CUKTECH 10 - unless the CUKTECH 10 is itself nearly full (80%+), where the MacBook still wins.
+- Rough guide: below ~40% MacBook SOC the MacBook wins the Anker 747; above ~60% the CUKTECH 10 usually does. Near the boundary - and whenever either battery is 80%+ - trust the matrix above, not these thresholds: the taper flips assignments there.
 - The taper is the reason the boundary moved: the same device at 90% SOC gains roughly a quarter of what it gains at 0%, so a nearly-full battery rarely deserves the big port.
 - Put the Z Fold7, iPad, or Y270 on the CUKTECH AC65B2 or the Anker 747's second USB-C port - but expect far less than the single-port number on that second port (see below).
 - The Galaxy Watch8 is modeled as a 10W USB-C-fed target through Samsung's official wireless charger.

@@ -243,9 +243,33 @@
             ],
             "total_w": 55,
             "per_port_split": "45W + 10W (2023 revision)"
+          },
+          {
+            "ports": [
+              "c1",
+              "c2"
+            ],
+            "total_w": 63,
+            "per_port_split": "45W + 18W (original wide-input revision)"
+          },
+          {
+            "ports": [
+              "c1",
+              "c2"
+            ],
+            "total_w": 36,
+            "per_port_split": "18W + 18W (original wide-input revision)"
+          },
+          {
+            "ports": [
+              "c1",
+              "c2"
+            ],
+            "total_w": 45,
+            "per_port_split": "40W + 5W (original wide-input revision)"
           }
         ],
-        "note": "Original wide-input revision instead does 45W+18W (63W total), 18W+18W, or 40W+5W. Fixed published splits per revision - no modeled scenarios."
+        "note": "Fixed published splits per revision - no modeled scenarios. Which revision applies depends on the input range on the label (open roadmap item)."
       },
       "ports": [
         {

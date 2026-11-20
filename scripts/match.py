@@ -178,8 +178,9 @@ def curve_estimate(
     curve = pick_curve(behavior, available_w)
     if not curve or capacity_wh <= 0:
         return None
-    # clamp per point: a weaker source caps the peak draw, not the tapered tail
-    points = [(m, min(w, available_w)) for m, w in curve["points"]]
+    # original points; the source cap is applied at evaluation time so it
+    # never introduces taper before the curve's own draw reaches the cap
+    points = curve["points"]
 
     step = 0.5  # minutes
     first_30_wh = 0.0
@@ -188,7 +189,7 @@ def curve_estimate(
     t = 0.0
     last_minute = points[-1][0]
     while t < last_minute + step:
-        w = curve_watts(points, t) * efficiency  # watts into the battery
+        w = min(curve_watts(points, t), available_w) * efficiency  # watts into the battery
         energy = w * step / 60.0
         if t < 30:
             first_30_wh += min(energy, max(0.0, 30 - t) * w / 60.0)
@@ -225,9 +226,9 @@ def select_soc_curve(behavior: dict, available_w: float):
         if fitting
         else min(soc_curves, key=lambda c: c["peak_w"])
     )
-    # clamp per point, not proportional scaling: a weaker source limits the
-    # peak draw but must not slow the already-tapered tail below the source cap
-    return curve, [(s, min(w, available_w)) for s, w in curve["points"]]
+    # return the original points; callers clamp at evaluation time so the
+    # source cap never introduces taper before the curve's own draw reaches it
+    return curve, list(curve["points"])
 
 
 def soc_time_to_full(target: dict, available_w: float) -> float | None:
@@ -243,7 +244,7 @@ def soc_time_to_full(target: dict, available_w: float) -> float | None:
     soc = 0.0
     t = 0.0
     while t < 600 and soc < 100:
-        w = curve_watts(points, soc) * efficiency
+        w = min(curve_watts(points, soc), available_w) * efficiency
         dwh = w * step / 60.0
         if dwh <= 0:
             return None
@@ -283,7 +284,7 @@ def soc_gain(
         t = 0.0
         while t < minutes and soc < 100:
             dt = min(step, minutes - t)  # never integrate past the request
-            w = curve_watts(points, soc) * efficiency
+            w = min(curve_watts(points, soc), available_w) * efficiency
             dwh = w * dt / 60.0
             remaining = capacity_wh * (1 - soc / 100.0)
             dwh = min(dwh, max(0.0, remaining))
@@ -302,13 +303,13 @@ def soc_gain(
         curve = pick_curve(behavior, available_w)
         if curve is None:
             return None
-        pts = [(m, min(w, available_w)) for m, w in curve["points"]]
+        pts = curve["points"]
         step = 0.25
         t = 0.0
         gained = 0.0
         while t < minutes:
             dt = min(step, minutes - t)
-            gained += curve_watts(pts, t) * efficiency * dt / 60.0
+            gained += min(curve_watts(pts, t), available_w) * efficiency * dt / 60.0
             t += dt
         gained = min(gained, capacity_wh)
         return {
@@ -741,8 +742,10 @@ def main() -> int:
             "",
             "Multi-port gotchas:",
             "",
-            "- USB-C1 + USB-A on the Anker 747 collapses to 24W total (5V/4.8A); put a",
-            "  laptop on USB-C2 or C3 whenever USB-A is in use (100W + 22.5W).",
+            "- USB-C1 + USB-A on the Anker 747 collapses to 24W total on the label",
+            "  (5V/4.8A); one metered run actually exceeded it (88.6W + 20.6W via",
+            "  dynamic allocation), but the guaranteed 100W + 22.5W split needs the",
+            "  laptop on USB-C2 or C3 whenever USB-A is in use.",
             "- No fixed C+C split is published; PowerIQ 4.0 allocates dynamically. Two",
             "  high-draw laptops balance near 75W + 75W, but a high-draw primary can",
             "  starve the second port: the Y270 measured ~25W behind a charging MacBook",
