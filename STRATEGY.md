@@ -11,12 +11,12 @@ curves exist (the last 20% charges much slower), flat first-order otherwise.
 
 | MacBook SOC | CUKTECH 10: 0% | CUKTECH 10: 20% | CUKTECH 10: 40% | CUKTECH 10: 60% | CUKTECH 10: 80% | CUKTECH 10: 90% |
 | --- | --- | --- | --- | --- | --- | --- |
-| 0% | MacBook / 59.3 Wh | MacBook / 55.8 Wh | MacBook / 52.4 Wh | MacBook / 49.1 Wh | MacBook / 44.2 Wh | MacBook / 40.5 Wh |
-| 20% | MacBook / 55.9 Wh | MacBook / 52.4 Wh | MacBook / 49.1 Wh | MacBook / 45.8 Wh | MacBook / 40.8 Wh | MacBook / 37.1 Wh |
-| 40% | CUKTECH 10 / 51.7 Wh | CUKTECH 10 / 47.5 Wh | CUKTECH 10 / 43.4 Wh | CUKTECH 10 / 39.2 Wh | MacBook / 34.2 Wh | MacBook / 30.5 Wh |
-| 60% | CUKTECH 10 / 46.0 Wh | CUKTECH 10 / 41.8 Wh | CUKTECH 10 / 37.7 Wh | CUKTECH 10 / 33.5 Wh | MacBook / 26.1 Wh | MacBook / 22.4 Wh |
-| 80% | CUKTECH 10 / 37.3 Wh | CUKTECH 10 / 33.1 Wh | CUKTECH 10 / 29.0 Wh | CUKTECH 10 / 24.8 Wh | MacBook / 18.7 Wh | MacBook / 15.0 Wh |
-| 90% | CUKTECH 10 / 33.1 Wh | CUKTECH 10 / 28.9 Wh | CUKTECH 10 / 24.8 Wh | CUKTECH 10 / 20.6 Wh | MacBook / 14.6 Wh | MacBook / 10.9 Wh |
+| 0% | MacBook / 62.8 Wh | MacBook / 59.5 Wh | MacBook / 55.8 Wh | MacBook / 51.6 Wh | MacBook / 44.2 Wh | MacBook / 40.5 Wh |
+| 20% | MacBook / 59.4 Wh | MacBook / 56.2 Wh | MacBook / 52.4 Wh | MacBook / 48.2 Wh | MacBook / 40.8 Wh | MacBook / 37.1 Wh |
+| 40% | MacBook / 52.8 Wh | MacBook / 49.6 Wh | MacBook / 45.8 Wh | MacBook / 41.6 Wh | MacBook / 34.2 Wh | MacBook / 30.5 Wh |
+| 60% | CUKTECH 10 / 46.2 Wh | CUKTECH 10 / 42.0 Wh | CUKTECH 10 / 37.9 Wh | CUKTECH 10 / 33.6 Wh | CUKTECH 10 / 26.2 Wh | CUKTECH 10 / 22.5 Wh |
+| 80% | CUKTECH 10 / 37.4 Wh | MacBook / 34.0 Wh | MacBook / 30.3 Wh | MacBook / 26.1 Wh | MacBook / 18.7 Wh | MacBook / 15.0 Wh |
+| 90% | MacBook / 33.3 Wh | MacBook / 30.0 Wh | MacBook / 26.2 Wh | MacBook / 22.0 Wh | MacBook / 14.6 Wh | MacBook / 10.9 Wh |
 
 ## Who gets the CUKTECH AC65B2?
 
@@ -29,11 +29,11 @@ AC65B2 once the Anker goes to the CUKTECH 10).
 | MacBook SOC | CUKTECH 10: 0% | CUKTECH 10: 20% | CUKTECH 10: 40% | CUKTECH 10: 60% | CUKTECH 10: 80% | CUKTECH 10: 90% |
 | --- | --- | --- | --- | --- | --- | --- |
 | 0% | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh |
-| 20% | MacBook / 26.7 Wh | MacBook / 26.7 Wh | MacBook / 26.7 Wh | MacBook / 26.7 Wh | MacBook / 26.7 Wh | MacBook / 26.7 Wh |
-| 40% | MacBook / 24.4 Wh | MacBook / 24.4 Wh | MacBook / 24.4 Wh | MacBook / 24.4 Wh | MacBook / 24.4 Wh | MacBook / 24.4 Wh |
-| 60% | CUKTECH 10 / 22.5 Wh | CUKTECH 10 / 19.0 Wh | MacBook / 18.7 Wh | MacBook / 18.7 Wh | MacBook / 18.7 Wh | MacBook / 18.7 Wh |
-| 80% | CUKTECH 10 / 22.5 Wh | CUKTECH 10 / 19.0 Wh | CUKTECH 10 / 15.7 Wh | CUKTECH 10 / 12.3 Wh | MacBook / 10.0 Wh | MacBook / 10.0 Wh |
-| 90% | CUKTECH 10 / 22.5 Wh | CUKTECH 10 / 19.0 Wh | CUKTECH 10 / 15.7 Wh | CUKTECH 10 / 12.3 Wh | CUKTECH 10 / 7.4 Wh | MacBook / 5.8 Wh |
+| 20% | MacBook / 26.8 Wh | MacBook / 26.8 Wh | MacBook / 26.8 Wh | MacBook / 26.8 Wh | MacBook / 26.8 Wh | MacBook / 26.8 Wh |
+| 40% | CUKTECH 10 / 26.0 Wh | MacBook / 24.7 Wh | MacBook / 24.7 Wh | MacBook / 24.7 Wh | MacBook / 24.7 Wh | MacBook / 24.7 Wh |
+| 60% | CUKTECH 10 / 26.0 Wh | CUKTECH 10 / 22.8 Wh | CUKTECH 10 / 19.0 Wh | MacBook / 18.8 Wh | MacBook / 18.8 Wh | MacBook / 18.8 Wh |
+| 80% | CUKTECH 10 / 26.0 Wh | CUKTECH 10 / 22.8 Wh | CUKTECH 10 / 19.0 Wh | CUKTECH 10 / 14.8 Wh | MacBook / 10.1 Wh | MacBook / 10.1 Wh |
+| 90% | CUKTECH 10 / 26.0 Wh | CUKTECH 10 / 22.8 Wh | CUKTECH 10 / 19.0 Wh | CUKTECH 10 / 14.8 Wh | CUKTECH 10 / 7.4 Wh | MacBook / 5.8 Wh |
 
 ## 30-minute gain from 0% state of charge
 
@@ -43,7 +43,7 @@ AC65B2 once the Anker goes to the CUKTECH 10).
 | Apple iPad 10th generation | 30W | 11.5 Wh |
 | Apple MacBook Pro 14-inch M4 Pro | 92W | 36.8 Wh |
 | Samsung Galaxy Watch8 | 10W | 0.7 Wh |
-| Raydyn Y270 | 65W | 24.6 Wh |
+| Raydyn Y270 | 65W | 26.6 Wh |
 | CUKTECH 10 | 90W | 27.3 Wh |
 
 ## Rule of thumb
@@ -59,8 +59,11 @@ AC65B2 once the Anker goes to the CUKTECH 10).
 
 The Anker 747 publishes no fixed split for two USB-C ports in use (150W
 shared, dynamic PowerIQ 4.0 allocation; two laptops balance near 75W + 75W).
-A high-draw primary can leave the second port far below the first-order
-model: the Y270 measured ~25W at 20V on the second port while the MacBook
-charged on the first, versus a 54W model estimate. Treat the second USB-C
-port behind a charging laptop as a ~25-50W slot, and prefer the CUKTECH AC65B2
-(~60W measured to the same Y270) when the bank is the priority.
+The Y270 drew ~25W at 20V on the second port while the MacBook charged on
+the first - a draw reading under unrecorded conditions (bank SOC, charge
+stage, renegotiation state), not a measured charger cap. PD-packet-capture
+tester data shows such second-port starvation is a transient priority
+state that can recover to ~75W once both ports renegotiate, so treat the
+second USB-C port behind a charging laptop as a ~25-50W slot, and prefer
+the CUKTECH AC65B2 (~60W measured to the same Y270) when the bank is the
+priority.

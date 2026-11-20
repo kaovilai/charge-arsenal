@@ -151,7 +151,8 @@ def curves_section(targets: list) -> str:
             fallback = f"{t.get('brand', '')} {t.get('model', '')}".strip()
             provenance = (curve.get("reference", "") + " " + curve.get("note", "")).lower()
             estimated = any(
-                k in provenance for k in ("derived", "approximate", "no timing", "estimated")
+                k in provenance
+                for k in ("derived", "approximate", "no timing", "estimated", "interpolated")
             )
             series.append({
                 "id": t["id"],
@@ -240,7 +241,11 @@ def curves_section(targets: list) -> str:
     for m in minutes:
         tbl.append(f"<tr><td>{fmt_num(m)}m</td>")
         for s in series:
-            tbl.append(f'<td class="num">{fmt_num(round(curve_watts(s["points"], m)))}W</td>')
+            last = s["points"][-1][0]
+            if m > last:
+                tbl.append('<td class="num">-</td>')  # series ended: no reading
+            else:
+                tbl.append(f'<td class="num">{fmt_num(round(curve_watts(s["points"], m)))}W</td>')
         tbl.append("</tr>")
     tbl.append("</tbody></table></details>")
     parts.extend(tbl)

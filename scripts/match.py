@@ -59,10 +59,13 @@ def pps_deal(source_port: dict, sink_port: dict, cable: dict) -> dict | None:
         return None
     v_op = sink_pps.get("v_operate", 9)
     a_op = sink_pps.get("a_operate", sink_pps.get("a_needed", 0))
+    a_needed = sink_pps.get("a_needed", 0)
     best = None
     for apdo in offers:
         if apdo.get("v_max", 0) < v_op or apdo.get("v_min", 0) > v_op:
             continue  # operating point outside this PPS window
+        if a_needed and apdo.get("a", 0) < a_needed:
+            continue  # APDO cannot deliver the current the sink requires for SFC
         if cable.get("max_v", 0) < v_op:
             continue
         current = min(a_op, apdo.get("a", 0), cable.get("max_a", float("inf")))
@@ -128,9 +131,15 @@ def negotiate(source_port: dict, sink_port: dict, cable: dict) -> dict | None:
         if best:
             # Required PPS unavailable (e.g. the Y270, whose PPS is
             # undocumented): conservative Samsung fixed-PD fallback.
+            fallback_w = min(best["watts"], 15.0)
+            v = best["profile"]["v"]
             return {
-                "watts": min(best["watts"], 15.0),
-                "profile": {**best["profile"], "fallback": "no PPS source: conservative 15W fallback"},
+                "watts": fallback_w,
+                "profile": {
+                    "v": v,
+                    "a": round(fallback_w / v, 2),
+                    "fallback": "no PPS source: conservative 15W fallback",
+                },
             }
         return None
     if pps and (best is None or pps["watts"] > best["watts"]):
@@ -169,8 +178,8 @@ def curve_estimate(
     curve = pick_curve(behavior, available_w)
     if not curve or capacity_wh <= 0:
         return None
-    scale = min(1.0, available_w / curve["peak_w"])
-    points = [(m, w * scale) for m, w in curve["points"]]
+    # clamp per point: a weaker source caps the peak draw, not the tapered tail
+    points = [(m, min(w, available_w)) for m, w in curve["points"]]
 
     step = 0.5  # minutes
     first_30_wh = 0.0
@@ -216,8 +225,9 @@ def select_soc_curve(behavior: dict, available_w: float):
         if fitting
         else min(soc_curves, key=lambda c: c["peak_w"])
     )
-    scale = min(1.0, available_w / curve["peak_w"])
-    return curve, [(s, w * scale) for s, w in curve["points"]]
+    # clamp per point, not proportional scaling: a weaker source limits the
+    # peak draw but must not slow the already-tapered tail below the source cap
+    return curve, [(s, min(w, available_w)) for s, w in curve["points"]]
 
 
 def soc_time_to_full(target: dict, available_w: float) -> float | None:
@@ -272,13 +282,14 @@ def soc_gain(
         gained = 0.0
         t = 0.0
         while t < minutes and soc < 100:
+            dt = min(step, minutes - t)  # never integrate past the request
             w = curve_watts(points, soc) * efficiency
-            dwh = w * step / 60.0
+            dwh = w * dt / 60.0
             remaining = capacity_wh * (1 - soc / 100.0)
             dwh = min(dwh, max(0.0, remaining))
             soc += 100.0 * dwh / capacity_wh
             gained += dwh
-            t += step
+            t += dt
         return {
             "wh": gained,
             "end_soc": min(100.0, soc),
@@ -288,13 +299,22 @@ def soc_gain(
         # time-based curve can only model a charge from empty
         if start_soc > 0:
             return None
-        est = curve_estimate(behavior, available_w, capacity_wh, efficiency)
-        if est is None:
+        curve = pick_curve(behavior, available_w)
+        if curve is None:
             return None
+        pts = [(m, min(w, available_w)) for m, w in curve["points"]]
+        step = 0.25
+        t = 0.0
+        gained = 0.0
+        while t < minutes:
+            dt = min(step, minutes - t)
+            gained += curve_watts(pts, t) * efficiency * dt / 60.0
+            t += dt
+        gained = min(gained, capacity_wh)
         return {
-            "wh": est["wh_per_30"],
-            "end_soc": est["pct_per_30"],
-            "effective_w": est["effective_w"],
+            "wh": gained,
+            "end_soc": min(100.0, 100.0 * gained / capacity_wh),
+            "effective_w": gained / (minutes / 60.0) if minutes else 0.0,
         }
     return None
 
@@ -608,7 +628,7 @@ def render_device_bottom_line(devices: list, device_rows: list) -> list:
                     f" -> {best_wall['device_port']['label']} with the {best_wall['cable']['label']}:"
                     f" **{fmt_watts(best_wall['watts'])}** ({fmt_profile(best_wall['profile'])}).",
                     f"- **Estimated time to full:** ~{best_wall['hours']:.1f} h"
-                    f" ({fmt_watts(best_wall['effective_w'])} average effective input).",
+                    f" ({fmt_watts(best_wall['effective_w'])} first-30-min average input).",
                     f"- **30 minutes at the wall buys:** ~{fmt_num(round(best_wall['wh_per_30'], 1))} Wh"
                     f" (~{best_wall['pct_per_30']:.0f}% of the battery). Early charging is faster than this average.",
                 ]
@@ -642,7 +662,7 @@ def render_bottom_line(banks: list, input_rows: list) -> list:
                 f" -> {best['bank_port']['label']} with the {best['cable']['label']}:"
                 f" **{fmt_watts(best['watts'])}** ({fmt_profile(best['profile'])}).",
                 f"- **Estimated time to full:** ~{best['hours']:.1f} h"
-                f" ({fmt_watts(best['effective_w'])} average effective input).",
+                f" ({fmt_watts(best['effective_w'])} first-30-min average input).",
                 f"- **30 minutes at the wall buys:** ~{fmt_num(round(best['wh_per_30'], 1))} Wh"
                 f" (~{best['pct_per_30']:.0f}% of the pack). Early charging is faster than this"
                 " average; the tail end tapers.",
