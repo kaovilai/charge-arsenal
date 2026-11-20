@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Charge Arsenal</title>
+<style>
+.viz-root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b; --text-secondary: #52514e; --muted: #898781;
+  --grid: #e1e0d9; --axis: #c3c2b7; --border: rgba(11,11,11,0.10);
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100;
+  --bar: #2a78d6;
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) .viz-root {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface-1: #1a1a19;
+    --text-primary: #f0efec; --text-secondary: #c3c2b7; --muted: #898781;
+    --grid: #2c2c2a; --axis: #383835; --border: rgba(255,255,255,0.10);
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500;
+    --bar: #3987e5;
+  }
+}
+:root[data-theme="dark"] .viz-root {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface-1: #1a1a19;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --muted: #898781;
+  --grid: #2c2c2a; --axis: #383835; --border: rgba(255,255,255,0.10);
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500;
+  --bar: #3987e5;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); }
+.viz-root {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--text-primary); max-width: 860px; margin: 0 auto;
+  padding: 32px 20px 64px; line-height: 1.5;
+}
+h1 { font-size: 24px; margin: 0 0 4px; }
+h2 { font-size: 17px; margin: 40px 0 4px; }
+h3 { font-size: 14px; margin: 24px 0 4px; color: var(--text-secondary); }
+.sub { color: var(--text-secondary); font-size: 13px; margin: 0 0 14px; }
+header { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+header p { color: var(--text-secondary); margin: 0; font-size: 14px; }
+#theme-toggle {
+  margin-left: auto; background: var(--surface-1); color: var(--text-secondary);
+  border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px;
+  font: inherit; font-size: 12px; cursor: pointer;
+}
+table { border-collapse: collapse; width: 100%; font-size: 13px; background: var(--surface-1);
+  border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+th { text-align: left; color: var(--text-secondary); font-weight: 600; padding: 8px 10px;
+  border-bottom: 1px solid var(--grid); }
+td { padding: 6px 10px; border-bottom: 1px solid var(--grid); color: var(--text-primary); }
+tbody tr:last-child td { border-bottom: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.measured { font-weight: 600; }
+.chart { width: 100%; height: auto; display: block; background: var(--surface-1);
+  border: 1px solid var(--border); border-radius: 8px; }
+.grid { stroke: var(--grid); stroke-width: 1; }
+.axis { stroke: var(--axis); stroke-width: 1; }
+.tick { fill: var(--muted); font-size: 10px; font-family: inherit; }
+.cat { fill: var(--text-primary); font-size: 12px; font-family: inherit; }
+.val { fill: var(--text-secondary); font-size: 11px; font-family: inherit; }
+.bar { fill: var(--bar); }
+.row:hover .bar, .row:focus-within .bar { opacity: 0.82; }
+.hit { cursor: default; outline: none; }
+.line { stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.s1 { stroke: var(--s1); fill: var(--s1); } .s2 { stroke: var(--s2); fill: var(--s2); }
+.s3 { stroke: var(--s3); fill: var(--s3); } .s4 { stroke: var(--s4); fill: var(--s4); }
+.dot { stroke: var(--surface-1); stroke-width: 2; }
+.legend { list-style: none; display: flex; gap: 18px; flex-wrap: wrap;
+  padding: 0; margin: 10px 0 0; font-size: 12px; color: var(--text-secondary); }
+.legend .key { display: inline-block; width: 14px; height: 2px; border-radius: 1px;
+  margin-right: 6px; vertical-align: middle; }
+.legend li.s1 .key { background: var(--s1); } .legend li.s2 .key { background: var(--s2); }
+.legend li.s3 .key { background: var(--s3); } .legend li.s4 .key { background: var(--s4); }
+#tooltip {
+  position: fixed; pointer-events: none; z-index: 10; display: none;
+  background: var(--surface-1); border: 1px solid var(--border); border-radius: 6px;
+  padding: 6px 10px; font-size: 12px; color: var(--text-primary);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12); max-width: 260px;
+}
+#tooltip .t-value { font-weight: 600; }
+#tooltip .t-note { color: var(--text-secondary); }
+footer { margin-top: 48px; color: var(--muted); font-size: 12px; }
+a { color: var(--s1); }
+</style>
+</head>
+<body>
+<div class="viz-root">
+<header>
+  <h1>Charge Arsenal</h1>
+  <p>which port into which, to move the most watts in the least time</p>
+  <button id="theme-toggle" aria-label="Toggle color theme">Toggle theme</button>
+</header>
+
+<h2>Arsenal</h2>
+<table class=""><thead><tr><th>Device</th><th>Role</th><th>Power</th></tr></thead><tbody><tr><td>Raydyn Y270</td><td>power bank</td><td>in 65W / out 250W</td></tr><tr><td>CUKTECH 10</td><td>power bank</td><td>in 90W / out 150W</td></tr><tr><td>Anker 747</td><td>wall brick</td><td>out 150W</td></tr><tr><td>CUKTECH A12</td><td>wall brick</td><td>out 65W max port</td></tr><tr><td>Galaxy Z Fold7</td><td>device</td><td>in 25W</td></tr><tr><td>iPad 10th gen</td><td>device</td><td>in 30W</td></tr><tr><td>MacBook Pro 14</td><td>device</td><td>in 96W</td></tr><tr><td>Galaxy Watch8</td><td>device</td><td>in 10W</td></tr></tbody></table>
+
+<h2>30 minutes at the wall, from 0%</h2>
+<p class="sub">Watt-hours recovered per device on its best single-port route, conversion
+losses included. Every value is also in the table below.</p>
+<svg viewBox="0 0 690 234" role="img" aria-label="Watt-hours recovered in 30 minutes from 0 percent, best single-port route per device" class="chart" xmlns="http://www.w3.org/2000/svg"><line class="grid" x1="150.0" y1="8" x2="150.0" y2="212"/><text class="tick" x="150.0" y="228" text-anchor="middle">0</text><line class="grid" x1="267.5" y1="8" x2="267.5" y2="212"/><text class="tick" x="267.5" y="228" text-anchor="middle">10</text><line class="grid" x1="385.0" y1="8" x2="385.0" y2="212"/><text class="tick" x="385.0" y="228" text-anchor="middle">20</text><line class="grid" x1="502.5" y1="8" x2="502.5" y2="212"/><text class="tick" x="502.5" y="228" text-anchor="middle">30</text><line class="grid" x1="620.0" y1="8" x2="620.0" y2="212"/><text class="tick" x="620.0" y="228" text-anchor="middle">40</text><line class="axis" x1="150" y1="8" x2="150" y2="212"/><g class='row'><text class="cat" x="140" y="29.0" text-anchor="end">Galaxy Watch8</text><path class="bar" d="M150.0,15.0 L154.8,15.0 Q158.8,15.0 158.8,19.0 L158.8,31.0 Q158.8,35.0 154.8,35.0 L150.0,35.0 Z"/><text class="val" x="166.8" y="29.0">0.7 Wh</text><rect class="hit" x="150" y="8" width="470" height="34" fill="transparent" tabindex="0" data-label="Galaxy Watch8" data-value="0.7 Wh in 30 min" data-note="best wall route 10W"/></g><g class='row'><text class="cat" x="140" y="63.0" text-anchor="end">Galaxy Z Fold7</text><path class="bar" d="M150.0,49.0 L256.8,49.0 Q260.8,49.0 260.8,53.0 L260.8,65.0 Q260.8,69.0 256.8,69.0 L150.0,69.0 Z"/><text class="val" x="268.8" y="63.0">9.4 Wh</text><rect class="hit" x="150" y="42" width="470" height="34" fill="transparent" tabindex="0" data-label="Galaxy Z Fold7" data-value="9.4 Wh in 30 min" data-note="best wall route 25W"/></g><g class='row'><text class="cat" x="140" y="97.0" text-anchor="end">iPad 10th gen</text><path class="bar" d="M150.0,83.0 L280.8,83.0 Q284.8,83.0 284.8,87.0 L284.8,99.0 Q284.8,103.0 280.8,103.0 L150.0,103.0 Z"/><text class="val" x="292.8" y="97.0">11.5 Wh</text><rect class="hit" x="150" y="76" width="470" height="34" fill="transparent" tabindex="0" data-label="iPad 10th gen" data-value="11.5 Wh in 30 min" data-note="best wall route 30W"/></g><g class='row'><text class="cat" x="140" y="131.0" text-anchor="end">Raydyn Y270</text><path class="bar" d="M150.0,117.0 L434.7,117.0 Q438.7,117.0 438.7,121.0 L438.7,133.0 Q438.7,137.0 434.7,137.0 L150.0,137.0 Z"/><text class="val" x="446.7" y="131.0">24.6 Wh</text><rect class="hit" x="150" y="110" width="470" height="34" fill="transparent" tabindex="0" data-label="Raydyn Y270" data-value="24.6 Wh in 30 min" data-note="best wall route 65W"/></g><g class='row'><text class="cat" x="140" y="165.0" text-anchor="end">CUKTECH 10</text><path class="bar" d="M150.0,151.0 L444.0,151.0 Q448.0,151.0 448.0,155.0 L448.0,167.0 Q448.0,171.0 444.0,171.0 L150.0,171.0 Z"/><text class="val" x="456.0" y="165.0">25.4 Wh</text><rect class="hit" x="150" y="144" width="470" height="34" fill="transparent" tabindex="0" data-label="CUKTECH 10" data-value="25.4 Wh in 30 min" data-note="best wall route 90W"/></g><g class='row'><text class="cat" x="140" y="199.0" text-anchor="end">MacBook Pro 14</text><path class="bar" d="M150.0,185.0 L577.8,185.0 Q581.8,185.0 581.8,189.0 L581.8,201.0 Q581.8,205.0 577.8,205.0 L150.0,205.0 Z"/><text class="val" x="589.8" y="199.0">36.8 Wh</text><rect class="hit" x="150" y="178" width="470" height="34" fill="transparent" tabindex="0" data-label="MacBook Pro 14" data-value="36.8 Wh in 30 min" data-note="best wall route 96W"/></g></svg>
+<table class=""><thead><tr><th>Device</th><th>Best route</th><th>Negotiated</th><th>Profile</th></tr></thead><tbody><tr><td>Raydyn Y270</td><td>Anker 747 Charger (GaNPrime 150W) USB-C 1</td><td>65W</td><td>20V/3.25A</td></tr><tr><td>CUKTECH 10</td><td>Anker 747 Charger (GaNPrime 150W) USB-C 1</td><td>90W</td><td>20V/4.5A</td></tr><tr><td>Galaxy Z Fold7</td><td>any USB-C brick port</td><td>25W</td><td>device is the ceiling</td></tr><tr><td>iPad 10th gen</td><td>any USB-C brick port</td><td>30W</td><td>device is the ceiling</td></tr><tr><td>MacBook Pro 14</td><td>any USB-C brick port</td><td>96W</td><td>device is the ceiling</td></tr><tr><td>Galaxy Watch8</td><td>any USB-C brick port</td><td>10W</td><td>device is the ceiling</td></tr></tbody></table>
+
+<h2>Multi-port allocation</h2>
+<p class="sub">Shared-budget bricks keep the negotiated voltage but change the granted
+current. Measured values beat the model.</p>
+<table class=""><thead><tr><th>Brick</th><th>Ports in use</th><th>Published cap</th><th>Split</th></tr></thead><tbody><tr><td>Anker 747</td><td>any two USB-C</td><td>150W total</td><td>none published; dynamic</td></tr><tr><td>Anker 747</td><td>USB-C 1 + USB-A</td><td>24W total</td><td>5V/4.8A</td></tr><tr><td>Anker 747</td><td>USB-C 2 + USB-A</td><td>122.5W total</td><td>100W + 22.5W</td></tr><tr><td>Anker 747</td><td>USB-C 3 + USB-A</td><td>122.5W total</td><td>100W + 22.5W</td></tr><tr><td>Anker 747</td><td>USB-C 2 or USB-C 3 + USB-C 1 + USB-A</td><td>124W total</td><td>100W + 24W</td></tr></tbody></table>
+<h3>Two-device scenarios (Anker 747)</h3>
+<table class=""><thead><tr><th>Primary (first port)</th><th>Secondary (second port)</th><th>Model: primary</th><th>Model: secondary</th><th>Measured secondary</th></tr></thead><tbody><tr><td>Apple iPad 10th generation</td><td>Apple MacBook Pro 14-inch M4 Pro</td><td>30W</td><td>96W</td><td>-</td></tr><tr><td>Samsung Galaxy Z Fold7</td><td>Apple MacBook Pro 14-inch M4 Pro</td><td>25W</td><td>96W</td><td>-</td></tr><tr><td>Samsung Galaxy Watch8</td><td>Apple MacBook Pro 14-inch M4 Pro</td><td>10W</td><td>96W</td><td>-</td></tr><tr><td>Apple iPad 10th generation</td><td>CUKTECH 10</td><td>30W</td><td>90W</td><td>-</td></tr><tr><td>Samsung Galaxy Z Fold7</td><td>CUKTECH 10</td><td>25W</td><td>90W</td><td>-</td></tr><tr><td>Samsung Galaxy Watch8</td><td>CUKTECH 10</td><td>10W</td><td>90W</td><td>-</td></tr><tr><td>Raydyn Y270</td><td>CUKTECH 10</td><td>65W</td><td>85W</td><td>-</td></tr><tr><td>Raydyn Y270</td><td>Apple MacBook Pro 14-inch M4 Pro</td><td>65W</td><td>85W</td><td>-</td></tr><tr><td>CUKTECH 10</td><td>Apple MacBook Pro 14-inch M4 Pro</td><td>75W</td><td>75W</td><td>-</td></tr><tr><td>Apple MacBook Pro 14-inch M4 Pro</td><td>CUKTECH 10</td><td>75W</td><td>75W</td><td>-</td></tr><tr><td>Apple iPad 10th generation</td><td>Raydyn Y270</td><td>30W</td><td>65W</td><td>-</td></tr><tr><td>Samsung Galaxy Z Fold7</td><td>Raydyn Y270</td><td>25W</td><td>65W</td><td>-</td></tr><tr><td>Samsung Galaxy Watch8</td><td>Raydyn Y270</td><td>10W</td><td>65W</td><td>-</td></tr><tr><td>CUKTECH 10</td><td>Raydyn Y270</td><td>90W</td><td>60W</td><td>-</td></tr><tr><td>Apple MacBook Pro 14-inch M4 Pro</td><td>Raydyn Y270</td><td>96W</td><td>54W</td><td class="measured">~25W</td></tr><tr><td>Apple MacBook Pro 14-inch M4 Pro</td><td>Apple iPad 10th generation</td><td>96W</td><td>30W</td><td>-</td></tr><tr><td>CUKTECH 10</td><td>Apple iPad 10th generation</td><td>90W</td><td>30W</td><td>-</td></tr><tr><td>Raydyn Y270</td><td>Apple iPad 10th generation</td><td>65W</td><td>30W</td><td>-</td></tr><tr><td>Samsung Galaxy Z Fold7</td><td>Apple iPad 10th generation</td><td>25W</td><td>30W</td><td>-</td></tr><tr><td>Samsung Galaxy Watch8</td><td>Apple iPad 10th generation</td><td>10W</td><td>30W</td><td>-</td></tr><tr><td>Apple MacBook Pro 14-inch M4 Pro</td><td>Samsung Galaxy Z Fold7</td><td>96W</td><td>25W</td><td>-</td></tr><tr><td>CUKTECH 10</td><td>Samsung Galaxy Z Fold7</td><td>90W</td><td>25W</td><td>-</td></tr><tr><td>Raydyn Y270</td><td>Samsung Galaxy Z Fold7</td><td>65W</td><td>25W</td><td>-</td></tr><tr><td>Apple iPad 10th generation</td><td>Samsung Galaxy Z Fold7</td><td>30W</td><td>25W</td><td>-</td></tr><tr><td>Samsung Galaxy Watch8</td><td>Samsung Galaxy Z Fold7</td><td>10W</td><td>25W</td><td>-</td></tr><tr><td>Apple MacBook Pro 14-inch M4 Pro</td><td>Samsung Galaxy Watch8</td><td>96W</td><td>10W</td><td>-</td></tr><tr><td>CUKTECH 10</td><td>Samsung Galaxy Watch8</td><td>90W</td><td>10W</td><td>-</td></tr><tr><td>Raydyn Y270</td><td>Samsung Galaxy Watch8</td><td>65W</td><td>10W</td><td>-</td></tr><tr><td>Apple iPad 10th generation</td><td>Samsung Galaxy Watch8</td><td>30W</td><td>10W</td><td>-</td></tr><tr><td>Samsung Galaxy Z Fold7</td><td>Samsung Galaxy Watch8</td><td>25W</td><td>10W</td><td>-</td></tr></tbody></table>
+
+<h2>Measured observations</h2>
+<table class=""><thead><tr><th>Date</th><th>Device</th><th>Charger</th><th>Reading</th><th>Source</th></tr></thead><tbody><tr><td>2026-11-17</td><td>Raydyn Y270</td><td>Anker 747</td><td>~25W @ 20V</td><td>user observation, Raydyn Y270 on-display V/A/W readout</td></tr><tr><td>2026-11-17</td><td>Raydyn Y270</td><td>CUKTECH A12</td><td>~60W @ 20V</td><td>user observation, Raydyn Y270 on-display V/A/W readout</td></tr><tr><td>2025-09-21</td><td>Raydyn Y270</td><td>third-party USB tester</td><td>~60W @ 20V</td><td>Amazon.co.jp review, USB tester (ASIN B0D9JHS7BQ)</td></tr><tr><td>2025-09-14</td><td>Raydyn Y270</td><td>third-party 100W PD charger</td><td>~100W @ 20V</td><td>Amazon.co.jp review, USB tester from a 100W PD charger (ASIN B0D9JHS7BQ)</td></tr><tr><td>2026-11-19</td><td>CUKTECH 10</td><td>Apple 140W adapter</td><td>~86W @ 20V</td><td>Tim McMahon POWER-Z / Gizmochina (via roadmap research 2026-11-19)</td></tr><tr><td>2026-11-19</td><td>MacBook Pro 14</td><td>Apple 140W / Anker 100W / CUKTECH 210Wh bank</td><td>~92W @ 20V</td><td>chongdiantou/ChargerLAB compatibility tests (via roadmap research 2026-11-19)</td></tr><tr><td>2026-11-19</td><td>iPad 10th gen</td><td>Apple 67W adapter</td><td>~30W @ 15V</td><td>chongdiantou POWER-Z (via roadmap research 2026-11-19)</td></tr></tbody></table>
+<section id="curves"><h2>Input watts over time (measured taper)</h2><p class="sub">Watts drawn from the source through a charge, from tester metering. Curves end at the measured full-charge time. Hover for values. <span class="sub">Showing the four highest-power devices; also measured: Galaxy Z Fold7, Galaxy Watch8.</span></p><svg viewBox="0 0 696 300" role="img" aria-label="Input watts versus minutes into a charge, per device" class="chart" id="curve-chart" xmlns="http://www.w3.org/2000/svg"><line class="grid" x1="46" y1="252.0" x2="606" y2="252.0"/><text class="tick" x="38" y="256.0" text-anchor="end">0W</text><line class="grid" x1="46" y1="204.0" x2="606" y2="204.0"/><text class="tick" x="38" y="208.0" text-anchor="end">25W</text><line class="grid" x1="46" y1="156.0" x2="606" y2="156.0"/><text class="tick" x="38" y="160.0" text-anchor="end">50W</text><line class="grid" x1="46" y1="108.0" x2="606" y2="108.0"/><text class="tick" x="38" y="112.0" text-anchor="end">75W</text><line class="grid" x1="46" y1="60.0" x2="606" y2="60.0"/><text class="tick" x="38" y="64.0" text-anchor="end">100W</text><line class="grid" x1="46" y1="12.0" x2="606" y2="12.0"/><text class="tick" x="38" y="16.0" text-anchor="end">125W</text><line class="grid" x1="46.0" y1="12" x2="46.0" y2="252"/><text class="tick" x="46.0" y="270" text-anchor="middle">0m</text><line class="grid" x1="158.0" y1="12" x2="158.0" y2="252"/><text class="tick" x="158.0" y="270" text-anchor="middle">30m</text><line class="grid" x1="270.0" y1="12" x2="270.0" y2="252"/><text class="tick" x="270.0" y="270" text-anchor="middle">60m</text><line class="grid" x1="382.0" y1="12" x2="382.0" y2="252"/><text class="tick" x="382.0" y="270" text-anchor="middle">90m</text><line class="grid" x1="494.0" y1="12" x2="494.0" y2="252"/><text class="tick" x="494.0" y="270" text-anchor="middle">120m</text><line class="grid" x1="606.0" y1="12" x2="606.0" y2="252"/><text class="tick" x="606.0" y="270" text-anchor="middle">150m</text><line class="axis" x1="46" y1="12" x2="46" y2="252"/><line class="axis" x1="46" y1="252" x2="606" y2="252"/><line id="crosshair" class="grid" x1="0" y1="12" x2="0" y2="252" visibility="hidden"/><polyline class="line s1" fill="none" points="46.0,60.0 270.0,146.4"/><circle class="dot s1" cx="46.0" cy="60.0" r="4"/><circle class="dot s1" cx="270.0" cy="146.4" r="4"/><text class="val" x="278.0" y="150.4">Raydyn Y270</text><polyline class="line s2" fill="none" points="46.0,83.0 158.0,83.0 214.0,127.2 270.0,165.6 326.0,209.8 393.2,236.6"/><circle class="dot s2" cx="46.0" cy="83.0" r="4"/><circle class="dot s2" cx="158.0" cy="83.0" r="4"/><circle class="dot s2" cx="214.0" cy="127.2" r="4"/><circle class="dot s2" cx="270.0" cy="165.6" r="4"/><circle class="dot s2" cx="326.0" cy="209.8" r="4"/><circle class="dot s2" cx="393.2" cy="236.6" r="4"/><text class="val" x="401.2" y="240.6">MacBook Pro 14</text><polyline class="line s3" fill="none" points="46.0,86.9 83.3,165.6 120.7,175.2 158.0,184.8 195.3,213.6 217.7,236.6"/><circle class="dot s3" cx="46.0" cy="86.9" r="4"/><circle class="dot s3" cx="83.3" cy="165.6" r="4"/><circle class="dot s3" cx="120.7" cy="175.2" r="4"/><circle class="dot s3" cx="158.0" cy="184.8" r="4"/><circle class="dot s3" cx="195.3" cy="213.6" r="4"/><circle class="dot s3" cx="217.7" cy="236.6" r="4"/><text class="val" x="225.7" y="240.6">CUKTECH 10</text><polyline class="line s4" fill="none" points="46.0,200.2 232.7,200.2 270.0,213.6 396.9,223.2 546.3,240.5"/><circle class="dot s4" cx="46.0" cy="200.2" r="4"/><circle class="dot s4" cx="232.7" cy="200.2" r="4"/><circle class="dot s4" cx="270.0" cy="213.6" r="4"/><circle class="dot s4" cx="396.9" cy="223.2" r="4"/><circle class="dot s4" cx="546.3" cy="240.5" r="4"/><text class="val" x="554.3" y="244.5">iPad 10th gen</text></svg><ul class="legend"><li class="s1"><span class="key"></span>Raydyn Y270</li><li class="s2"><span class="key"></span>MacBook Pro 14</li><li class="s3"><span class="key"></span>CUKTECH 10</li><li class="s4"><span class="key"></span>iPad 10th gen</li></ul><script type="application/json" id="curve-data">{"label_w": 46, "chart_w": 560, "margin_t": 12, "plot_h": 240, "x_max": 150, "series": [{"id": "raydyn-y270", "label": "Raydyn Y270", "points": [[0, 100], [60, 55]]}, {"id": "macbook-pro-14-m4-pro", "label": "MacBook Pro 14", "points": [[0, 88], [30, 88], [45, 65], [60, 45], [75, 22], [93, 8]]}, {"id": "cuktech-10", "label": "CUKTECH 10", "points": [[0, 86], [10, 45], [20, 40], [30, 35], [40, 20], [46, 8]]}, {"id": "ipad-10th-gen", "label": "iPad 10th gen", "points": [[0, 27], [50, 27], [60, 20], [94, 15], [134, 6]]}]}</script></section>
+
+<footer>Generated by <code>scripts/view.py</code> from <code>data/*.json</code> — edit the
+JSON, never this file. Multi-port and negotiation logic shared with
+<code>scripts/match.py</code>.</footer>
+</div>
+<div id="tooltip" role="status"></div>
+<script>
+(function () {
+  var tooltip = document.getElementById('tooltip');
+
+  function show(clientX, clientY, rows) {
+    tooltip.textContent = '';
+    rows.forEach(function (r) {
+      var line = document.createElement('div');
+      var value = document.createElement('span');
+      value.className = 't-value';
+      value.textContent = r.value;
+      line.appendChild(value);
+      if (r.label) {
+        var label = document.createElement('span');
+        label.className = 't-note';
+        label.textContent = ' ' + r.label;
+        line.appendChild(label);
+      }
+      tooltip.appendChild(line);
+      if (r.note) {
+        var note = document.createElement('div');
+        note.className = 't-note';
+        note.textContent = r.note;
+        tooltip.appendChild(note);
+      }
+    });
+    tooltip.style.display = 'block';
+    var x = clientX + 12, y = clientY + 12;
+    var box = tooltip.getBoundingClientRect();
+    if (x + box.width > window.innerWidth - 8) x = clientX - box.width - 12;
+    if (y + box.height > window.innerHeight - 8) y = clientY - box.height - 12;
+    tooltip.style.left = x + 'px';
+    tooltip.style.top = y + 'px';
+  }
+  function hide() { tooltip.style.display = 'none'; }
+
+  document.querySelectorAll('.hit').forEach(function (bar) {
+    function rows() {
+      return [
+        { value: bar.dataset.value, label: bar.dataset.label },
+        { value: '', note: bar.dataset.note || '' }
+      ];
+    }
+    bar.addEventListener('pointerenter', function (e) { show(e.clientX, e.clientY, rows()); });
+    bar.addEventListener('pointermove', function (e) { show(e.clientX, e.clientY, rows()); });
+    bar.addEventListener('pointerleave', hide);
+    bar.addEventListener('focus', function () {
+      var rect = bar.getBoundingClientRect();
+      show(rect.left + rect.width / 2, rect.top, rows());
+    });
+    bar.addEventListener('blur', hide);
+  });
+
+  var chart = document.getElementById('curve-chart');
+  var dataEl = document.getElementById('curve-data');
+  if (chart && dataEl) {
+    var data = JSON.parse(dataEl.textContent);
+    var crosshair = document.getElementById('crosshair');
+    function onPoint(e) {
+      var rect = chart.getBoundingClientRect();
+      var scale = (rect.width / chart.viewBox.baseVal.width);
+      var px = (e.clientX - rect.left) / scale;
+      var minute = Math.round(Math.max(0, Math.min(data.x_max,
+        (px - data.label_w) / data.chart_w * data.x_max)));
+      crosshair.setAttribute('x1', data.label_w + data.chart_w * minute / data.x_max);
+      crosshair.setAttribute('x2', data.label_w + data.chart_w * minute / data.x_max);
+      crosshair.setAttribute('visibility', 'visible');
+      var rows = data.series.map(function (s) {
+        if (minute > s.points[s.points.length - 1][0]) {
+          return { value: 'full', label: s.label + ' @ ' + s.points[s.points.length - 1][0] + 'm' };
+        }
+        var best = s.points[0];
+        s.points.forEach(function (p) {
+          if (Math.abs(p[0] - minute) < Math.abs(best[0] - minute)) best = p;
+        });
+        return { value: best[1] + 'W', label: s.label + ' @ ' + minute + 'm' };
+      });
+      show(e.clientX, e.clientY, rows);
+    }
+    chart.addEventListener('pointermove', onPoint);
+    chart.addEventListener('pointerleave', function () {
+      crosshair.setAttribute('visibility', 'hidden');
+      hide();
+    });
+  }
+
+  var toggle = document.getElementById('theme-toggle');
+  toggle.addEventListener('click', function () {
+    var root = document.documentElement;
+    var current = root.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    root.dataset.theme = current === 'dark' ? 'light' : 'dark';
+  });
+})();
+</script>
+</body>
+</html>

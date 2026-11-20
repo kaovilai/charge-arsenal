@@ -11,6 +11,9 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
 OUTPUT_FILE = ROOT / "STRATEGY.md"
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from match import charge_estimate, soc_gain  # noqa: E402
+
 SOC_STEPS = [0, 20, 40, 60, 80, 90]
 
 
@@ -62,7 +65,14 @@ def wall_watts_from_bricks(device: dict, bricks: list, brick_ids: list[str]) -> 
 
 
 def gain_wh(device: dict, soc: int, watts: float) -> float:
-    """First-order 30-minute gain, capped by remaining capacity."""
+    """30-minute gain from a given state of charge.
+
+    SOC-aware: uses the measured taper curves so a nearly-full battery gains
+    less than an empty one. Flat first-order estimate when no curve exists.
+    """
+    tapered = soc_gain(device, soc, watts)
+    if tapered:
+        return tapered["wh"]
     capacity_wh = device.get("capacity_wh", 0)
     efficiency = device.get("charge_behavior", {}).get("avg_input_efficiency", 0.85)
     remaining_wh = capacity_wh * (1 - soc / 100)
@@ -138,9 +148,9 @@ def render_gain_table(devices: list, bricks: list) -> str:
     ]
     for device in devices:
         watts = best_wall_watts(device, bricks)
-        gain = gain_wh(device, 0, watts)
+        est = charge_estimate(device, watts)
         label = f"{device['brand']} {device['model']}"
-        lines.append(f"| {label} | {watts:g}W | {fmt_wh(gain)} |")
+        lines.append(f"| {label} | {watts:g}W | {fmt_wh(est['wh_per_30'])} |")
     return "\n".join(lines)
 
 
@@ -163,8 +173,8 @@ def main() -> int:
         "",
         "Assumes two AC wall plugs: one Anker 747 Charger and one CUKTECH A12.",
         "The matrix shows which device should get the Anker 747; the other device",
-        "uses the CUKTECH A12. Numbers are first-order estimates and do not yet",
-        "model charge taper near full.",
+        "uses the CUKTECH A12. Gains are state-of-charge aware where measured taper",
+        "curves exist (the last 20% charges much slower), flat first-order otherwise.",
         "",
         "## Who gets the Anker 747?",
         "",
@@ -183,11 +193,22 @@ def main() -> int:
         "",
         "## Rule of thumb",
         "",
-        "- If the MacBook is below about 60%, put it on the Anker 747.",
-        "- If the MacBook is above 60% and the CUKTECH 10 is below about 20%, put the CUKTECH 10 on the Anker 747.",
-        "- Otherwise, the MacBook still wins the Anker 747.",
-        "- Put the Z Fold7, iPad, or Y270 on the CUKTECH A12 or the Anker 747's second USB-C port.",
+        "- If the MacBook is below about 40%, put it on the Anker 747.",
+        "- If the MacBook is above about 60%, give the Anker to the CUKTECH 10 - unless the CUKTECH 10 is itself nearly full (80%+), where the MacBook still wins.",
+        "- The taper is the reason the boundary moved: the same device at 90% SOC gains roughly a quarter of what it gains at 0%, so a nearly-full battery rarely deserves the big port.",
+        "- Put the Z Fold7, iPad, or Y270 on the CUKTECH A12 or the Anker 747's second USB-C port - but expect far less than the single-port number on that second port (see below).",
         "- The Galaxy Watch8 is modeled as a 10W USB-C-fed target through Samsung's official wireless charger.",
+        "- Samsung Super Fast Charging: the Z Fold7 needs PPS 3.3-11V at >=2.75A for its ~22W full speed. Every brick here (Anker 747, CUKTECH A12, and the banks' PPS) covers that; plain non-PPS 9V charging is disputed (~15-22W depending on source).",
+        "",
+        "## Multi-port reality check",
+        "",
+        "The Anker 747 publishes no fixed split for two USB-C ports in use (150W",
+        "shared, dynamic PowerIQ 4.0 allocation; two laptops balance near 75W + 75W).",
+        "A high-draw primary can leave the second port far below the first-order",
+        "model: the Y270 measured ~25W at 20V on the second port while the MacBook",
+        "charged on the first, versus a 54W model estimate. Treat the second USB-C",
+        "port behind a charging laptop as a ~25-50W slot, and prefer the CUKTECH A12",
+        "(~60W measured to the same Y270) when the bank is the priority.",
         "",
     ]
 

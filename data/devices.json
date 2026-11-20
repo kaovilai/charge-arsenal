@@ -4,13 +4,86 @@
       "id": "galaxy-z-fold7",
       "brand": "Samsung",
       "model": "Galaxy Z Fold7",
-      "data_confidence": "researched-listings",
+      "data_confidence": "reviewer-measured",
       "capacity_mah": 4400,
       "capacity_wh": 16.95,
       "charge_behavior": {
         "max_input_w": 25,
         "avg_input_efficiency": 0.85,
-        "notes": "Samsung advertises 25W wired charging. Full speed generally requires a USB-C PD/PPS source; the matcher models the equivalent fixed-PD rails until PPS negotiation is added."
+        "charge_curves": [
+          {
+            "reference": "Samsung 25W official adapter, Lover of Tech test relayed by SammyGuru: 29% @15min, 54% @30min, 74% @45min, 89% @60min, 95% @75min, full 1h25m49s",
+            "peak_w": 23,
+            "points": [
+              [
+                0,
+                23
+              ],
+              [
+                15,
+                23
+              ],
+              [
+                30,
+                20
+              ],
+              [
+                45,
+                16
+              ],
+              [
+                60,
+                12
+              ],
+              [
+                75,
+                5
+              ],
+              [
+                86,
+                3
+              ]
+            ],
+            "note": "Watts per 15-minute segment derived from published SOC milestones; approximate."
+          }
+        ],
+        "notes": "Samsung advertises 25W wired charging (25W-class phone; no 45W SFC 2.0 tier). Full speed requires a PD 3.0 PPS source covering 3.3-11V at >=2.75A (Samsung Super Fast Charging). Metered with multiple PPS chargers (45W/65W/100W/140W): the phone converges at ~9V/2.5A = 21.6-22.9W, so any 25W+ PPS port reaches full speed and bigger bricks gain nothing. One independent bench measured 22.9W from a plain non-PPS 9V PD charger too, but Samsung/GSMArena guidance says PPS is required - the matcher models the PPS path. Measured charge times (GSMArena, 25W PPS): 28% in 15 min, 53% in 30 min, full in 1h27m.",
+        "soc_curves": [
+          {
+            "reference": "Lover of Tech/SammyGuru 25W-adapter milestones: 29% @15min, 54% @30min, 74% @45min, 89% @60min, 95% @75min, full 1h26m",
+            "points": [
+              [
+                0,
+                23
+              ],
+              [
+                29,
+                23
+              ],
+              [
+                54,
+                20
+              ],
+              [
+                74,
+                16
+              ],
+              [
+                89,
+                12
+              ],
+              [
+                95,
+                5
+              ],
+              [
+                100,
+                3
+              ]
+            ],
+            "note": "Segment watts derived from milestone deltas; approximate."
+          }
+        ]
       },
       "ports": [
         {
@@ -18,29 +91,104 @@
           "label": "USB-C",
           "type": "usb-c",
           "direction": "in",
-          "protocols": ["pd3.0", "pps", "samsung-super-fast-charging"],
+          "protocols": [
+            "pd3.0",
+            "pps",
+            "samsung-super-fast-charging"
+          ],
+          "pps": {
+            "v_min": 3.3,
+            "v_max": 11,
+            "a_needed": 2.75,
+            "v_operate": 9,
+            "a_operate": 2.5,
+            "note": "SFC 25W operating point measured at ~9V/2.5A (21.6-22.9W). Source PPS must cover 3.3-11V at >=2.75A.",
+            "required": true
+          },
           "input": {
             "max_w": 25,
             "pd_profiles": [
-              { "v": 9, "a": 2.77 }
+              {
+                "v": 9,
+                "a": 2.77
+              }
             ]
           }
         }
       ],
       "sources": [
-        "https://www.samsung.com/us/smartphones/galaxy-z-fold7/"
+        "https://www.samsung.com/us/smartphones/galaxy-z-fold7/",
+        "https://www.gsmarena.com/samsung_galaxy_z_fold7-review-2871",
+        "https://namu.wiki/w/초고속 충전"
       ]
     },
     {
       "id": "ipad-10th-gen",
       "brand": "Apple",
       "model": "iPad 10th generation",
-      "data_confidence": "researched-listings",
+      "data_confidence": "reviewer-measured",
       "capacity_wh": 28.6,
       "charge_behavior": {
-        "max_input_w": 20,
+        "max_input_w": 30,
         "avg_input_efficiency": 0.85,
-        "notes": "Apple lists a 20W USB-C Power Adapter for this iPad. The 20W input ceiling is the practical wired limit for this arsenal."
+        "charge_curves": [
+          {
+            "reference": "chongdiantou POWER-Z full cycle with Apple 29W charger: ~27W for first 50 min, ~15W from 1h34, trickle, full ~2h14",
+            "peak_w": 27,
+            "points": [
+              [
+                0,
+                27
+              ],
+              [
+                50,
+                27
+              ],
+              [
+                60,
+                20
+              ],
+              [
+                94,
+                15
+              ],
+              [
+                134,
+                6
+              ]
+            ],
+            "note": "Curve from the 29W-charger test; 35W/67W runs are near-identical in duration."
+          }
+        ],
+        "notes": "Correction from earlier repo data: the real ceiling is ~29-30W, not 20W. The iPad negotiates a 15V fixed PDO and peaks at 30.06W (15V/2A) with a 67W charger, 29.1W with 35W, 28.9W with 29W - but only 19.6W from the bundled 20W adapter, which is locked to the 9V PDO. The cap is the negotiated PDO, not a hard 20W limit. Higher-watt chargers beyond ~30W save nothing on total time (~2h14-2h32 full depending on charger). Measured 0-100% on the bundled 20W charger ~2h32.",
+        "soc_curves": [
+          {
+            "reference": "chongdiantou 29W full cycle: ~27W first 50min (~67% by integration), ~15W from 1h34, trickle, full ~2h14",
+            "points": [
+              [
+                0,
+                27
+              ],
+              [
+                67,
+                27
+              ],
+              [
+                80,
+                19
+              ],
+              [
+                90,
+                15
+              ],
+              [
+                100,
+                6
+              ]
+            ],
+            "note": "SOC derived by integrating the measured watts against 28.6Wh capacity; approximate."
+          }
+        ]
       },
       "ports": [
         {
@@ -48,30 +196,178 @@
           "label": "USB-C",
           "type": "usb-c",
           "direction": "in",
-          "protocols": ["pd3.0"],
+          "protocols": [
+            "pd3.0"
+          ],
           "input": {
-            "max_w": 20,
+            "max_w": 30,
             "pd_profiles": [
-              { "v": 9, "a": 2.22 },
-              { "v": 15, "a": 1.33 }
+              {
+                "v": 9,
+                "a": 2.22
+              },
+              {
+                "v": 15,
+                "a": 2
+              }
             ]
           }
         }
       ],
       "sources": [
-        "https://www.apple.com/ipad-10.9/specs/"
+        "https://www.apple.com/ipad-10.9/specs/",
+        "https://www.chongdiantou.com/"
       ]
     },
     {
       "id": "macbook-pro-14-m4-pro",
       "brand": "Apple",
       "model": "MacBook Pro 14-inch M4 Pro",
-      "data_confidence": "researched-listings",
+      "data_confidence": "reviewer-measured",
       "capacity_wh": 72.4,
       "charge_behavior": {
         "max_input_w": 96,
+        "measured_input_ceiling_w": 92,
         "avg_input_efficiency": 0.85,
-        "notes": "Apple specifies fast charging with a 96W or higher USB-C PD source. Any of the three Thunderbolt 4 USB-C ports can charge the laptop; MagSafe 3 is not part of this matcher."
+        "charge_curves": [
+          {
+            "reference": "96W-class sources: Apple 0-50% ~30 min, notebookcheck 0-100% ~93 min (14 min faster than the 70W adapter)",
+            "peak_w": 88,
+            "points": [
+              [
+                0,
+                88
+              ],
+              [
+                30,
+                88
+              ],
+              [
+                45,
+                65
+              ],
+              [
+                60,
+                45
+              ],
+              [
+                75,
+                22
+              ],
+              [
+                93,
+                8
+              ]
+            ],
+            "note": "Interpolated for 96W-class input; measured SOC milestones 50% @30 min."
+          },
+          {
+            "reference": "chongdiantou POWER-Z full cycle on 70W adapter (same 72.4Wh platform): ~66W 0-44min, 55W to 54min, ~37W to 1h17, declining trickle, full 1h56m; 20% @14min, 40% @30min, 50% @37min, 70% @53min, 80% @65min",
+            "peak_w": 66,
+            "points": [
+              [
+                0,
+                66
+              ],
+              [
+                44,
+                66
+              ],
+              [
+                54,
+                55
+              ],
+              [
+                60,
+                37
+              ],
+              [
+                77,
+                37
+              ],
+              [
+                90,
+                20
+              ],
+              [
+                100,
+                12
+              ],
+              [
+                116,
+                6
+              ]
+            ],
+            "note": "Direct measured curve, 70W adapter."
+          }
+        ],
+        "notes": "Apple specifies fast charging with a 96W or higher source, but the laptop does not draw 96W from anything: metered ceiling is ~88-92W (Apple 140W charger = 91.8W, Anker 100W = 87.8W, CUKTECH 210Wh bank = 88.9W), all at 20V/~4.5A. So a 90W+ source (Anker 747, Y270, CUKTECH 10 on a good cable) reaches essentially full speed. MagSafe 3 and USB-C charge identically. Measured 0-100%: ~93 min on 96W, 107 min on 70W. Under full system load (75-98W draw) the adapter is saturated and battery charging slows or pauses.",
+        "soc_curves": [
+          {
+            "reference": "chongdiantou 70W-adapter full cycle: 20% @14min, 40% @30min, 50% @37min, 70% @53min, 80% @65min, 100% @116min; watts 66/55/37 per segment",
+            "points": [
+              [
+                0,
+                66
+              ],
+              [
+                40,
+                66
+              ],
+              [
+                50,
+                60
+              ],
+              [
+                70,
+                55
+              ],
+              [
+                80,
+                37
+              ],
+              [
+                90,
+                20
+              ],
+              [
+                100,
+                6
+              ]
+            ],
+            "note": "SOC mapped to measured segment watts; interpolation between milestones."
+          },
+          {
+            "reference": "96W-class sources: Apple 0-50% ~30min, notebookcheck 0-100% ~93min; shape interpolated from the measured 70W curve scaled to the ~88W ceiling",
+            "points": [
+              [
+                0,
+                88
+              ],
+              [
+                50,
+                85
+              ],
+              [
+                65,
+                55
+              ],
+              [
+                80,
+                37
+              ],
+              [
+                90,
+                25
+              ],
+              [
+                100,
+                12
+              ]
+            ],
+            "note": "Derived, not directly metered at 96W."
+          }
+        ]
       },
       "ports": [
         {
@@ -79,31 +375,91 @@
           "label": "Any Thunderbolt 4 / USB-C",
           "type": "usb-c",
           "direction": "in",
-          "protocols": ["pd3.0"],
+          "protocols": [
+            "pd3.0"
+          ],
           "input": {
-            "max_w": 96,
+            "max_w": 92,
             "pd_profiles": [
-              { "v": 20, "a": 4.8 }
+              {
+                "v": 20,
+                "a": 4.6
+              }
             ]
           }
         }
       ],
       "sources": [
-        "https://www.apple.com/macbook-pro-14-and-16/specs/"
+        "https://www.apple.com/macbook-pro-14-and-16/specs/",
+        "https://www.notebookcheck.net/",
+        "https://www.chongdiantou.com/"
       ]
     },
     {
       "id": "galaxy-watch8",
       "brand": "Samsung",
       "model": "Galaxy Watch8",
-      "data_confidence": "researched-listings",
+      "data_confidence": "reviewer-measured",
       "capacity_mah": 435,
       "capacity_wh": 1.65,
-      "variant_note": "Default entry is the 44mm model (435mAh). The 40mm model is 325mAh.",
+      "variant_note": "Default entry is the 44mm model (435mAh). The 40mm model is 325mAh; Classic 46mm is 445mAh.",
       "charge_behavior": {
         "max_input_w": 10,
-        "avg_input_efficiency": 0.65,
-        "notes": "Modeled as a 10W USB-C-fed target through Samsung's official magnetic wireless charger. The watch itself has no USB-C port; this represents the charger puck's USB-C input."
+        "avg_input_efficiency": 0.15,
+        "charge_curves": [
+          {
+            "reference": "PhoneArena in-box EP-OL300 puck: 45% @30min, 70% @45min, full 1h19m (40mm); reviewers report 80-115 min depending on model",
+            "peak_w": 10,
+            "points": [
+              [
+                0,
+                10
+              ],
+              [
+                70,
+                10
+              ],
+              [
+                85,
+                5
+              ],
+              [
+                100,
+                3
+              ],
+              [
+                115,
+                2
+              ]
+            ],
+            "note": "Estimated taper - puck is a flat 5V/2A source until the watch slows above ~70-80%."
+          }
+        ],
+        "notes": "Official puck is Samsung EP-OL300: USB-C input rated 5V/2A (10W), requiring a PD adapter with at least 5V/2A. The puck has a PD-certified chip but only draws 5V. A higher-watt brick does not speed it up - the puck is the bottleneck; any arsenal USB-C port (all support 5V/3A+) runs it at full speed. Samsung warns non-PD sources, some power banks, and multi-port hubs can slow charging. Measured full charge ~1h19m-1h54m depending on reviewer and model; 45% in 30 min. The watch has no USB-C port; the model tracks the puck input. No reverse PowerShare support. Efficiency set to 0.15: measured 45% in 30 min on a 10W puck implies ~1.5W into the battery - the wireless transfer and watch-side regulation dominate, so the puck input wattage overstates charging speed.",
+        "soc_curves": [
+          {
+            "reference": "PhoneArena in-box puck: 45% @30min, 70% @45min, full 1h19m; reviewers report sharp slowdown above ~70-80%",
+            "points": [
+              [
+                0,
+                10
+              ],
+              [
+                70,
+                10
+              ],
+              [
+                85,
+                5
+              ],
+              [
+                100,
+                2
+              ]
+            ],
+            "note": "Estimated - flat 5V/2A until the watch slows."
+          }
+        ]
       },
       "ports": [
         {
@@ -111,18 +467,26 @@
           "label": "USB-C via official wireless charger",
           "type": "usb-c",
           "direction": "in",
-          "protocols": ["pd3.0", "samsung-wireless"],
+          "protocols": [
+            "pd3.0",
+            "samsung-wireless"
+          ],
           "input": {
             "max_w": 10,
             "pd_profiles": [
-              { "v": 5, "a": 2 }
+              {
+                "v": 5,
+                "a": 2
+              }
             ],
-            "notes": "Assumes Samsung's official USB-C fast wireless charger."
+            "notes": "Assumes Samsung's official EP-OL300 USB-C wireless charger."
           }
         }
       ],
       "sources": [
-        "https://www.samsung.com/us/watches/galaxy-watch8/"
+        "https://www.samsung.com/us/watches/galaxy-watch8/",
+        "https://www.phonearena.com/",
+        "https://www.chongdiantou.com/"
       ]
     }
   ]
