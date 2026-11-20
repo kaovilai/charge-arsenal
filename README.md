@@ -105,17 +105,10 @@ Anker 747 and one CUKTECH AC65B2.
 
 ```mermaid
 flowchart TD
-    start[30 minutes, 2 AC plugs] --> q1{MacBook below 60%?}
-
-    q1 -->|Yes| a1[Anker 747 USB-C 1 -> MacBook 96W]
+    start[30 minutes, 2 AC plugs] --> a1[Anker 747 USB-C 1 -> MacBook 92W]
     a1 --> b1[CUKTECH AC65B2 USB-C -> CUKTECH 10 65W<br/>or next best device]
 
-    q1 -->|No| q2{CUKTECH 10 below 20%?}
-    q2 -->|Yes| a2[Anker 747 USB-C 1 -> CUKTECH 10 90W]
-    a2 --> b2[CUKTECH AC65B2 USB-C -> MacBook 65W]
-
-    q2 -->|No| a3[Anker 747 USB-C 1 -> MacBook 96W]
-    a3 --> b3[CUKTECH AC65B2 USB-C -> CUKTECH 10 65W]
+    start --> m[With current calibrated curves the MacBook wins the Anker<br/>at every state of charge. If gear or curves change,<br/>the STRATEGY.md matrix is the authority.]
 ```
 
 ## 30-minute gain ranking
