@@ -374,5 +374,5 @@ Every device entry carries a `data_confidence` field:
 - Verify remaining third-party numbers with the owner's own USB power meter
   (highest value: Y270 real capacity and ~100W input, A12 PPS range, Y270
   multi-output 5V collapse)
-- Confirm model codes: whether the owner's "A12 card charger" is AD651N or
-  AD652S, and whether the "Anker 160" is the 747 150W
+- Confirm the A12's model code: whether the owner's "A12 card charger" is
+  AD651N or AD652S

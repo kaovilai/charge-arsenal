@@ -7,7 +7,7 @@
       "data_confidence": "measured",
       "setup": {
         "charger": "anker-747-a2340",
-        "charger_note": "User referred to this charger as 'the anker 160'; arsenal lists the Anker 747 (GaNPrime 150W, A2340). Confirm they are the same unit - if a separate 160W Prime charger exists, add it to bricks.json.",
+        "charger_note": "Confirmed by the owner (2026-11-20): the charger referred to as 'the anker 160' is the Anker 747 Charger (GaNPrime, model A2340) already in bricks.json - no separate 160W unit exists in the arsenal.",
         "port_1": "MacBook Pro 14 M4 Pro charging",
         "port_1_device": "macbook-pro-14-m4-pro",
         "port_2": "Raydyn Y270, USB-C input",
