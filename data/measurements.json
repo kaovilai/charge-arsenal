@@ -1,0 +1,134 @@
+{
+  "measurements": [
+    {
+      "id": "2026-11-17-y270-anker-second-port",
+      "date": "2026-11-17",
+      "source": "user observation, Raydyn Y270 on-display V/A/W readout",
+      "data_confidence": "measured",
+      "setup": {
+        "charger": "anker-747-a2340",
+        "charger_note": "Confirmed by the owner (2026-11-20): the charger referred to as 'the anker 160' is the Anker 747 Charger (GaNPrime, model A2340) already in bricks.json - no separate 160W unit exists in the arsenal.",
+        "port_1": "MacBook Pro 14 M4 Pro charging",
+        "port_1_device": "macbook-pro-14-m4-pro",
+        "port_2": "Raydyn Y270, USB-C input",
+        "port_2_device": "raydyn-y270"
+      },
+      "reading": {
+        "device": "raydyn-y270",
+        "watts": 25,
+        "volts": 20,
+        "amps_est": 1.25
+      },
+      "interpretation": "The Y270 drew ~25W at 20V (~1.25A) under these conditions - a display reading of current drawn, not necessarily the charger's granted cap. Bank SOC, charge stage, and renegotiation state were not recorded; PD-packet-capture tester data shows such second-port starvation is a transient priority state that can recover to ~75W once both ports renegotiate. Same 20V contract as the fast case, so not a protocol mismatch.",
+      "compared_to": "2026-11-17-y270-cuktech-ac65b2-alone"
+    },
+    {
+      "id": "2026-11-17-y270-cuktech-ac65b2-alone",
+      "date": "2026-11-17",
+      "source": "user observation, Raydyn Y270 on-display V/A/W readout",
+      "data_confidence": "measured",
+      "setup": {
+        "charger": "cuktech-ac65b2-65w",
+        "port_1": "Raydyn Y270, USB-C input, only device attached",
+        "port_1_device": "raydyn-y270"
+      },
+      "reading": {
+        "device": "raydyn-y270",
+        "watts": 60,
+        "volts": 20,
+        "amps_est": 3.0
+      },
+      "interpretation": "Single-device 20V/3A PD contract. The AC65B2's 20V/3.25A ceiling binds, not the Y270's 65W input cap."
+    },
+    {
+      "id": "2025-09-21-y270-single-port-20v3a",
+      "date": "2025-09-21",
+      "source": "Amazon.co.jp review, USB tester (ASIN B0D9JHS7BQ)",
+      "data_confidence": "measured-third-party",
+      "setup": {
+        "charger": "third-party USB tester",
+        "port_1": "Raydyn Y270 single USB-C port, bundled cable",
+        "port_1_device": "raydyn-y270"
+      },
+      "reading": {
+        "device": "raydyn-y270",
+        "watts": 60,
+        "volts": 20,
+        "amps_est": 3.0
+      },
+      "interpretation": "Single-port input AND output up to 20V/3A confirmed with the bundled cable. 28V/5A EPR (140W) remains unverified."
+    },
+    {
+      "id": "2025-09-14-y270-input-peak-100w",
+      "date": "2025-09-14",
+      "source": "Amazon.co.jp review, USB tester from a 100W PD charger (ASIN B0D9JHS7BQ)",
+      "data_confidence": "measured-third-party",
+      "setup": {
+        "charger": "third-party 100W PD charger",
+        "port_1": "Raydyn Y270 USB-C input",
+        "port_1_device": "raydyn-y270"
+      },
+      "reading": {
+        "device": "raydyn-y270",
+        "watts": 100,
+        "volts": 20,
+        "amps_est": 5.0
+      },
+      "interpretation": "Y270 accepted ~100W initially (above its 65W vendor input rating), tapering to 50-60W as charge progressed. Same tester measured 74Wh input energy for a full recharge (~20000mAh real capacity); unit was returned. Single reviewer, acknowledged measurement error."
+    },
+    {
+      "id": "cuktech10-metered-86w-46min",
+      "date": "2026-11-19",
+      "source": "Tim McMahon POWER-Z / Gizmochina (via roadmap research 2026-11-19)",
+      "data_confidence": "measured-third-party",
+      "setup": {
+        "charger": "Apple 140W adapter",
+        "port_1": "CUKTECH 10 USB-C input",
+        "port_1_device": "cuktech-10"
+      },
+      "reading": {
+        "device": "cuktech-10",
+        "watts": 86,
+        "volts": 20,
+        "amps_est": 4.3
+      },
+      "interpretation": "Peak 86W (20V/4.3A); full recharge 44-46 min consuming 37.3Wh; usable output 30.2-31.9Wh USB-C (83.9-88.6% efficiency)."
+    },
+    {
+      "id": "macbook14-measured-ceiling-88w",
+      "date": "2026-11-19",
+      "source": "chongdiantou/ChargerLAB compatibility tests (via roadmap research 2026-11-19)",
+      "data_confidence": "measured-third-party",
+      "setup": {
+        "charger": "Apple 140W / Anker 100W / CUKTECH 210Wh bank",
+        "port_1": "MacBook Pro 14 (72.4Wh) USB-C",
+        "port_1_device": "macbook-pro-14-m4-pro"
+      },
+      "reading": {
+        "device": "macbook-pro-14-m4-pro",
+        "watts": 92,
+        "volts": 20,
+        "amps_est": 4.49
+      },
+      "interpretation": "Measured ceiling ~88-92W at 20V/~4.5A regardless of source size; 0-100% ~93min on 96W-class, 107min on 70W."
+    },
+    {
+      "id": "ipad10-measured-ceiling-30w",
+      "date": "2026-11-19",
+      "source": "chongdiantou POWER-Z (via roadmap research 2026-11-19)",
+      "data_confidence": "measured-third-party",
+      "setup": {
+        "charger": "Apple 67W adapter",
+        "port_1": "iPad 10th gen USB-C",
+        "port_1_device": "ipad-10th-gen"
+      },
+      "reading": {
+        "device": "ipad-10th-gen",
+        "watts": 30,
+        "volts": 15,
+        "amps_est": 2.0
+      },
+      "interpretation": "Peaks at 30.06W via the 15V PDO - the real ceiling is ~29-30W, not 20W; the bundled 20W adapter is locked to 9V/2.2A."
+    }
+  ]
+}

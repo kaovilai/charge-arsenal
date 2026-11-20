@@ -5,10 +5,73 @@
       "label": "Anker 747 Charger (GaNPrime 150W)",
       "brand": "Anker",
       "model": "747 Charger (GaNPrime 150W)",
-      "aka": ["Anker A2340"],
+      "aka": [
+        "Anker A2340"
+      ],
       "data_confidence": "researched-listings",
       "total_output_w": 150,
-      "port_distribution_note": "One USB-C port alone can provide 100W. Two USB-C ports together share a 150W maximum; exact split depends on negotiation.",
+      "port_distribution_note": "One USB-C port alone can provide 100W. Two USB-C ports together share a 150W maximum; no fixed per-port split is published - allocation is dynamic (PowerIQ 4.0).",
+      "multiport_allocation": {
+        "mode": "dynamic-shared-budget",
+        "total_budget_w": 150,
+        "per_port_cap_w": 100,
+        "balanced_split_w": 75,
+        "combos": [
+          {
+            "ports": [
+              "any two USB-C"
+            ],
+            "total_w": 150,
+            "per_port_split": "none published; dynamic",
+            "measured": "71.6W + 67.6W with two 16-inch MacBooks attached; characterized as a 75W+75W rule"
+          },
+          {
+            "ports": [
+              "c1",
+              "a1"
+            ],
+            "total_w": 24,
+            "profile": "5V/4.8A"
+          },
+          {
+            "ports": [
+              "c2",
+              "a1"
+            ],
+            "total_w": 122.5,
+            "per_port_split": "100W + 22.5W"
+          },
+          {
+            "ports": [
+              "c3",
+              "a1"
+            ],
+            "total_w": 122.5,
+            "per_port_split": "100W + 22.5W"
+          },
+          {
+            "ports": [
+              "c2 or c3",
+              "c1+a1"
+            ],
+            "total_w": 124,
+            "per_port_split": "100W + 24W"
+          }
+        ],
+        "priority_rule": "Dynamic Power Distribution (PowerIQ 4.0): no fixed C+C split. A high-draw primary can leave the secondary port well under 50W - user-measured ~25W to the Y270 while a MacBook charged on the first port.",
+        "sources": [
+          "https://service.anker.com/product-description/a085g000004xGpeAAE",
+          "https://www.chongdiantou.com/archives/190475.html",
+          "https://www.chargerlab.com/teardown-of-anker-150w-ganprime-747-charger-a2340/"
+        ],
+        "measured_combos": {
+          "two_macbooks_c1_c2": "71.64W + 67.58W (75W+75W rule)",
+          "c1_usb_a": "88.56W + 20.59W (100W+24W rule; exceeded the 24W C1+A label cap via dynamic allocation)",
+          "three_usb_c": "47.75W + 42.17W + 24.91W",
+          "all_four_ports": "60.19W + 54.66W + 7.40W + 10.10W"
+        },
+        "cascade_detail": "Re-advertised PDOs on a new port are capped at (budget - existing draw). A port already charging can see its granted current cut without a new PD message: measured 20V/3.25A (~65W) -> 20V/2.2A (~44W) immediately when another device attached (PD-packet capture). Anker documents redistribution roughly every 3 minutes, releasing extra power to other ports. So a ~25W second-port reading is a transient/priority state, not a hard cap - when both devices renegotiate, the ceiling is much higher (75W+75W observed)."
+      },
       "ports": [
         {
           "id": "c1",
@@ -18,13 +81,36 @@
           "output": {
             "max_w": 100,
             "pd_profiles": [
-              { "v": 5, "a": 3 },
-              { "v": 9, "a": 3 },
-              { "v": 12, "a": 3 },
-              { "v": 15, "a": 3 },
-              { "v": 20, "a": 5 }
+              {
+                "v": 5,
+                "a": 3
+              },
+              {
+                "v": 9,
+                "a": 3
+              },
+              {
+                "v": 12,
+                "a": 3
+              },
+              {
+                "v": 15,
+                "a": 3
+              },
+              {
+                "v": 20,
+                "a": 5
+              }
             ]
-          }
+          },
+          "pps_profiles": [
+            {
+              "v_min": 3.3,
+              "v_max": 11,
+              "a": 5
+            }
+          ],
+          "pps_note": "Metered PPS 3.3-11V/5A on all three USB-C ports (chongdiantou POWER-Z KM002C, ChargerLab KM003C). Satisfies Samsung SFC 25W (needs >=2.75A in 3.3-11V) and the 5A threshold for SFC 2.0 45W via the 10V/4.5A path."
         },
         {
           "id": "c2",
@@ -34,13 +120,36 @@
           "output": {
             "max_w": 100,
             "pd_profiles": [
-              { "v": 5, "a": 3 },
-              { "v": 9, "a": 3 },
-              { "v": 12, "a": 3 },
-              { "v": 15, "a": 3 },
-              { "v": 20, "a": 5 }
+              {
+                "v": 5,
+                "a": 3
+              },
+              {
+                "v": 9,
+                "a": 3
+              },
+              {
+                "v": 12,
+                "a": 3
+              },
+              {
+                "v": 15,
+                "a": 3
+              },
+              {
+                "v": 20,
+                "a": 5
+              }
             ]
-          }
+          },
+          "pps_profiles": [
+            {
+              "v_min": 3.3,
+              "v_max": 11,
+              "a": 5
+            }
+          ],
+          "pps_note": "Metered PPS 3.3-11V/5A on all three USB-C ports (chongdiantou POWER-Z KM002C, ChargerLab KM003C). Satisfies Samsung SFC 25W (needs >=2.75A in 3.3-11V) and the 5A threshold for SFC 2.0 45W via the 10V/4.5A path."
         },
         {
           "id": "c3",
@@ -50,13 +159,36 @@
           "output": {
             "max_w": 100,
             "pd_profiles": [
-              { "v": 5, "a": 3 },
-              { "v": 9, "a": 3 },
-              { "v": 12, "a": 3 },
-              { "v": 15, "a": 3 },
-              { "v": 20, "a": 5 }
+              {
+                "v": 5,
+                "a": 3
+              },
+              {
+                "v": 9,
+                "a": 3
+              },
+              {
+                "v": 12,
+                "a": 3
+              },
+              {
+                "v": 15,
+                "a": 3
+              },
+              {
+                "v": 20,
+                "a": 5
+              }
             ]
-          }
+          },
+          "pps_profiles": [
+            {
+              "v_min": 3.3,
+              "v_max": 11,
+              "a": 5
+            }
+          ],
+          "pps_note": "Metered PPS 3.3-11V/5A on all three USB-C ports (chongdiantou POWER-Z KM002C, ChargerLab KM003C). Satisfies Samsung SFC 25W (needs >=2.75A in 3.3-11V) and the 5A threshold for SFC 2.0 45W via the 10V/4.5A path."
         },
         {
           "id": "a1",
@@ -70,34 +202,166 @@
       ],
       "sources": [
         "https://web.archive.org/web/20240912211829/https://www.anker.com/products/a2340"
-      ]
+      ],
+      "measured": {
+        "efficiency": "87.3-94.4% across voltage taps at full load; no-load draw 0.221W",
+        "thermal": "65.6C (220V) / 69.9C (110V) surface after 1h at sustained 100W, no derating trip",
+        "macbook16_full_charge": "1h57m (45% @30min, 82% @60min), peak 90.6W - device taper, not charger derating",
+        "sources": [
+          "https://www.chongdiantou.com/archives/190475.html",
+          "https://www.chargerlab.com/teardown-of-anker-150w-ganprime-747-charger-a2340/",
+          "https://makoro.hatenablog.com/"
+        ]
+      }
     },
     {
-      "id": "cuktech-a12-65w-card",
-      "label": "CUKTECH A12 65W GaN ultrathin card charger",
+      "id": "cuktech-ac65b2-65w",
+      "label": "CUKTECH AC65B2 65W GaN ultra-slim (2C)",
       "brand": "CUKTECH",
-      "model": "A12 65W GaN ultrathin card charger",
-      "data_confidence": "researched-listings",
+      "model": "AC65B2 超薄GaN充电器 65W(2C) / Lighter 65W",
+      "aka": [
+        "CUKTECH Lighter 65W",
+        "previously logged as 'A12 card charger'"
+      ],
+      "data_confidence": "reviewer-measured",
+      "total_output_w": 65,
+      "model_note": "Owner confirmed the model code AC65B2 (2026-11-20) - this is NOT the 'A12' (AD651N cube); the earlier repo label came from the purchase name. Two hardware revisions share the AC65B2 code: the original white wide-input unit (100-240V; C1 derates to 45W max on 100-130V mains) and a 2023 silver-grey unit (200-240V input only). Check the input line on the label to identify yours; dual-port splits also differ by revision. The owner's ~60W reading into the Y270 shows C1 running at full 20V/3A+ where measured.",
+      "multiport_allocation": {
+        "combos": [
+          {
+            "ports": [
+              "c1",
+              "c2"
+            ],
+            "total_w": 57,
+            "per_port_split": "39W + 18W (2023 revision)"
+          },
+          {
+            "ports": [
+              "c1",
+              "c2"
+            ],
+            "total_w": 55,
+            "per_port_split": "45W + 10W (2023 revision)"
+          },
+          {
+            "ports": [
+              "c1",
+              "c2"
+            ],
+            "total_w": 63,
+            "per_port_split": "45W + 18W (original wide-input revision)"
+          },
+          {
+            "ports": [
+              "c1",
+              "c2"
+            ],
+            "total_w": 36,
+            "per_port_split": "18W + 18W (original wide-input revision)"
+          },
+          {
+            "ports": [
+              "c1",
+              "c2"
+            ],
+            "total_w": 45,
+            "per_port_split": "40W + 5W (original wide-input revision)"
+          }
+        ],
+        "note": "Fixed published splits per revision - no modeled scenarios. Which revision applies depends on the input range on the label (open roadmap item)."
+      },
       "ports": [
         {
           "id": "c1",
-          "label": "USB-C",
+          "label": "USB-C 1 (65W)",
           "type": "usb-c",
           "direction": "out",
           "output": {
             "max_w": 65,
             "pd_profiles": [
-              { "v": 5, "a": 3 },
-              { "v": 9, "a": 3 },
-              { "v": 12, "a": 3 },
-              { "v": 15, "a": 3 },
-              { "v": 20, "a": 3.25 }
+              {
+                "v": 5,
+                "a": 3
+              },
+              {
+                "v": 9,
+                "a": 3
+              },
+              {
+                "v": 12,
+                "a": 3
+              },
+              {
+                "v": 15,
+                "a": 3
+              },
+              {
+                "v": 20,
+                "a": 3.25
+              }
+            ],
+            "mains_derating": {
+              "100-130V": {
+                "max_w": 45,
+                "pd_profile": {
+                  "v": 20,
+                  "a": 2.25
+                },
+                "applies_to": "original wide-input revision only"
+              },
+              "note": "The matcher assumes full 65W output (the owner's measured ~60W at 20V/3A supports this where the brick is used). If the label reads 100-240V and the brick is used on 120V mains, cap C1 at 45W per this table. 2023 revision is 200-240V input only."
+            }
+          },
+          "pps_profiles": [
+            {
+              "v_min": 5,
+              "v_max": 11,
+              "a": 3
+            },
+            {
+              "v_min": 5,
+              "v_max": 20,
+              "a": 3
+            }
+          ],
+          "pps_note": "Metered (chongdiantou POWER-Z KM002C/KM003C): 5-20V/3A PPS on the original revision; the 2023 revision adds 5-11V/3A. Covers Samsung SFC 25W (needs >=2.75A in 3.3-11V) at the 9-10V operating point; no 45W SFC 2.0 (needs 5A)."
+        },
+        {
+          "id": "c2",
+          "label": "USB-C 2 (20W)",
+          "type": "usb-c",
+          "direction": "out",
+          "output": {
+            "max_w": 20,
+            "pd_profiles": [
+              {
+                "v": 5,
+                "a": 3
+              },
+              {
+                "v": 9,
+                "a": 2.25
+              }
             ]
-          }
+          },
+          "notes": "20W secondary port; original revision also offered 11V/1.8A and 12V/1.67A here."
         }
       ],
+      "measured": {
+        "efficiency": "86.01-93.83% across taps (90%+ except 5V/3A)",
+        "thermal": "59.6C surface after 1h at 20V/3.25A (220V); 56.5C at 110V/20V/2.25A",
+        "standby": "0.099W at 220V, 0.004W at 110V",
+        "sustained": "63W stable for the first 1h09m charging a MacBook Pro 16 M1 Max; full charge 2h20m",
+        "sources": [
+          "https://www.chongdiantou.com/archives/195245.html",
+          "https://www.chongdiantou.com/archives/241482.html",
+          "https://www.chongdiantou.com/archives/196821.html"
+        ]
+      },
       "sources": [
-        "https://cuktech.com/products/a12-cuktech-65w-usb-c-pd-power-charger"
+        "https://www.chongdiantou.com/archives/195245.html",
+        "https://www.chongdiantou.com/archives/241482.html"
       ]
     }
   ]

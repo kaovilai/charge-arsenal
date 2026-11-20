@@ -4,16 +4,22 @@
       "id": "raydyn-y270",
       "brand": "Raydyn",
       "model": "Y270",
-      "aka": ["Shenzhen Yonglian Y270"],
+      "aka": [
+        "Shenzhen Yonglian Y270"
+      ],
       "manufacturer": "Shenzhen Yonglian Technology Co., Ltd",
-      "data_confidence": "researched-listings",
+      "data_confidence": "reviewer-measured",
       "capacity_mah": 27000,
       "cell_voltage": 3.68,
       "capacity_wh": 99.3,
       "airline_carry_on": true,
       "pse_certified": true,
       "weight_g": 455,
-      "dimensions_mm": [55, 34, 153],
+      "dimensions_mm": [
+        55,
+        34,
+        153
+      ],
       "display": "LCD showing battery percentage, real-time watts, volts, and amps",
       "total_output_w": 250,
       "pass_through": true,
@@ -21,8 +27,35 @@
       "charge_behavior": {
         "max_input_w": 65,
         "claimed_full_charge_hours": 2.5,
-        "avg_input_efficiency": 0.61,
-        "notes": "65W is the input circuit cap. The bank negotiates the PD 20V fixed profile (20V/3.25A); higher-wattage bricks do not speed it up. The 2.5h full-charge claim implies roughly 40W average effective input after conversion losses and end-of-charge taper."
+        "avg_input_efficiency": 0.85,
+        "dual_input": false,
+        "measured": {
+          "single_port": "20V/3A in AND out with the bundled cable (Amazon.co.jp review 2025-09-21, USB tester)",
+          "input_peak_w": 100,
+          "input_taper": "~100W early from a 100W PD charger, dropping to 50-60W as charging progressed (Amazon.co.jp review 2025-09-14, USB tester, reviewer acknowledges measurement error)",
+          "full_charge_input_wh": 74,
+          "capacity_discrepancy": "74Wh input for a 0-100% recharge implies ~20000mAh at 3.7V, not 27000mAh; that reviewer returned the unit. Single tester, unverified.",
+          "multi_output": "All ports drop to 5V during 3-device simultaneous use and pass-through (two independent Amazon.co.jp reviews)."
+        },
+        "charge_curves": [
+          {
+            "reference": "Amazon.co.jp USB-tester review: near 100W early, 50-60W later; no time/SOC detail published",
+            "peak_w": 100,
+            "points": [
+              [
+                0,
+                100
+              ],
+              [
+                60,
+                55
+              ]
+            ],
+            "note": "Two-step approximation - the reviewer published no timing. Medium confidence."
+          }
+        ],
+        "notes": "Vendor spec: 65W input (20V/3.25A), ~2.5h full charge, 27000mAh/99.3Wh. Independent USB-tester reviews contradict parts of that: measured input peaked near 100W from a 100W PD charger before tapering to 50-60W, a full recharge consumed 74Wh of input energy (~20000mAh real), and all ports drop to 5V in 3-device use. Treat 65W as the conservative model value and the measured numbers as caveats. No lab PDO dump or PPS range exists for this model - PPS is undocumented/unverified; only fixed 20V/3A has been observed. Dual-input (both USB-C ports charging the bank) is undocumented - treat as unsupported. Pass-through supported but self-recharge slows; no numeric split published. EPR 28V/5A output (140W) remains unverified by any measurement. Efficiency revised from 0.61 (a figure back-derived from the vendor 2.5h claim) to 0.85, matching measured bank input->stored efficiencies; with the reviewer's two-step taper this lands near the vendor's 2.5h full-charge claim.",
+        "confidence_note": "measured fields are single-reviewer USB-tester readings, not lab tests"
       },
       "ports": [
         {
@@ -30,26 +63,63 @@
           "label": "USB-C 1",
           "type": "usb-c",
           "direction": "inout",
-          "protocols": ["pd3.1", "pd3.0", "pd2.0"],
+          "protocols": [
+            "pd3.1",
+            "pd3.0",
+            "pd2.0"
+          ],
           "input": {
             "max_w": 65,
             "pd_profiles": [
-              { "v": 5, "a": 3 },
-              { "v": 9, "a": 3 },
-              { "v": 12, "a": 3 },
-              { "v": 15, "a": 3 },
-              { "v": 20, "a": 3.25 }
+              {
+                "v": 5,
+                "a": 3
+              },
+              {
+                "v": 9,
+                "a": 3
+              },
+              {
+                "v": 12,
+                "a": 3
+              },
+              {
+                "v": 15,
+                "a": 3
+              },
+              {
+                "v": 20,
+                "a": 3.25
+              }
             ]
           },
           "output": {
             "max_w": 140,
             "pd_profiles": [
-              { "v": 5, "a": 3 },
-              { "v": 9, "a": 3 },
-              { "v": 12, "a": 3 },
-              { "v": 15, "a": 3 },
-              { "v": 20, "a": 5 },
-              { "v": 28, "a": 5 }
+              {
+                "v": 5,
+                "a": 3
+              },
+              {
+                "v": 9,
+                "a": 3
+              },
+              {
+                "v": 12,
+                "a": 3
+              },
+              {
+                "v": 15,
+                "a": 3
+              },
+              {
+                "v": 20,
+                "a": 5
+              },
+              {
+                "v": 28,
+                "a": 5
+              }
             ]
           }
         },
@@ -58,26 +128,63 @@
           "label": "USB-C 2",
           "type": "usb-c",
           "direction": "inout",
-          "protocols": ["pd3.1", "pd3.0", "pd2.0"],
+          "protocols": [
+            "pd3.1",
+            "pd3.0",
+            "pd2.0"
+          ],
           "input": {
             "max_w": 65,
             "pd_profiles": [
-              { "v": 5, "a": 3 },
-              { "v": 9, "a": 3 },
-              { "v": 12, "a": 3 },
-              { "v": 15, "a": 3 },
-              { "v": 20, "a": 3.25 }
+              {
+                "v": 5,
+                "a": 3
+              },
+              {
+                "v": 9,
+                "a": 3
+              },
+              {
+                "v": 12,
+                "a": 3
+              },
+              {
+                "v": 15,
+                "a": 3
+              },
+              {
+                "v": 20,
+                "a": 3.25
+              }
             ]
           },
           "output": {
             "max_w": 140,
             "pd_profiles": [
-              { "v": 5, "a": 3 },
-              { "v": 9, "a": 3 },
-              { "v": 12, "a": 3 },
-              { "v": 15, "a": 3 },
-              { "v": 20, "a": 5 },
-              { "v": 28, "a": 5 }
+              {
+                "v": 5,
+                "a": 3
+              },
+              {
+                "v": 9,
+                "a": 3
+              },
+              {
+                "v": 12,
+                "a": 3
+              },
+              {
+                "v": 15,
+                "a": 3
+              },
+              {
+                "v": 20,
+                "a": 5
+              },
+              {
+                "v": 28,
+                "a": 5
+              }
             ]
           }
         },
@@ -86,7 +193,9 @@
           "label": "USB-A",
           "type": "usb-a",
           "direction": "out",
-          "protocols": ["legacy-fast-charge"],
+          "protocols": [
+            "legacy-fast-charge"
+          ],
           "output": {
             "max_w": 22.5,
             "confidence": "estimated",
@@ -99,20 +208,26 @@
         "https://shopstaff.jp/items/B0DGD4FFDS",
         "https://www.amazon.co.jp/dp/B0DBDS1ZF3"
       ]
-    }
-    ,
+    },
     {
       "id": "cuktech-10",
       "brand": "CUKTECH",
       "model": "10",
-      "aka": ["CUKTECH 10 Power Bank 10000mAh 150W"],
-      "data_confidence": "researched-listings",
+      "aka": [
+        "CUKTECH 10 Power Bank 10000mAh 150W",
+        "PB100P"
+      ],
+      "data_confidence": "reviewer-measured",
       "capacity_mah": 10000,
       "cell_voltage": 3.7,
       "capacity_wh": 37,
       "airline_carry_on": true,
       "weight_g": 287,
-      "dimensions_mm": [143, 45, 33.4],
+      "dimensions_mm": [
+        143,
+        45,
+        33.4
+      ],
       "display": "TFT color screen showing battery percentage, power, voltage, current, and remaining charge/discharge time",
       "total_output_w": 150,
       "pass_through": true,
@@ -120,8 +235,90 @@
       "charge_behavior": {
         "max_input_w": 90,
         "claimed_15_min_charge_percent": 55,
-        "avg_input_efficiency": 0.85,
-        "notes": "Official spec claims 55% charge in 15 minutes at 90W. The 85% average input efficiency is an estimate for the whole charge cycle; early charging is faster and the tail tapers."
+        "avg_input_efficiency": 0.95,
+        "measured": {
+          "input_peak_w": 86,
+          "input_contract": "20V/4.3A (measured with Apple 140W charger)",
+          "full_charge_minutes": [
+            44,
+            46
+          ],
+          "full_charge_input_wh": 37.3,
+          "usable_output_wh_usb_c": [
+            30.2,
+            31.9
+          ],
+          "output_efficiency": [
+            0.839,
+            0.886
+          ],
+          "usable_output_wh_usb_a": 27.4,
+          "sustained_output": "100W constant with no thermal or SOC throttling; 120W Xiaomi mode sustained 7 min in a load test",
+          "simultaneous_c_plus_a": "Disputed: manual's multi-port table caps the combination well below the marketing 100W+33W"
+        },
+        "charge_curves": [
+          {
+            "reference": "Tim McMahon POWER-Z (Apple 140W): 86W 0-10min, step to ~30W at 10min, declining after 30min, full 46:01, 37.3Wh in. Gizmochina: 86.2W start, 50W after 10min, 43% @10min, full 45min",
+            "peak_w": 86,
+            "points": [
+              [
+                0,
+                86
+              ],
+              [
+                10,
+                45
+              ],
+              [
+                20,
+                40
+              ],
+              [
+                30,
+                35
+              ],
+              [
+                40,
+                20
+              ],
+              [
+                46,
+                8
+              ]
+            ],
+            "note": "Measured metered taper; the 30-46min segment is approximate."
+          }
+        ],
+        "notes": "Official spec IN1: 5V3A/9V3A/12V3A/15V3A/20V4.5A (90W). Reviewers measured 86W peak (20V/4.3A) and a full recharge in 44-46 min (35 min on a 100W laptop charger). The official '55% in 15 minutes' milestone is NOT reproducible from that metered curve - 86W stepping to ~38W at 10 min yields ~45% at 15 min - so the model follows the metered data. Efficiency is calibrated to 0.95 so the SOC curve's full-charge time (~52 min) tracks the metered cycle. The manual says ~1 hour with 90W+. Usable output: 30.2-31.9Wh from USB-C (83.9-88.6% efficiency), 27.4Wh from USB-A (76.0%). The bank exports PPS 5-11V/5A and 5-20V/3A (some meters read 6A on the low range; safest values kept). Covers Samsung SFC 25W. Output holds a constant 100W with no throttling. Battery: 4x 2500mAh 18650 in series (14.4V nominal). The '150W' name is Xiaomi-private 120W + USB-A 33W; standard PD max is 100W.",
+        "confidence_note": "measured fields aggregate ChargerLAB/chongdiantou/techtest/Gizmochina metered reviews",
+        "soc_curves": [
+          {
+            "reference": "Gizmochina/Tim McMahon: 43% @10min (86W until then), 55% @15min, input regulated to ~half after, full 45-46min",
+            "points": [
+              [
+                0,
+                86
+              ],
+              [
+                10,
+                80
+              ],
+              [
+                43,
+                55
+              ],
+              [
+                70,
+                40
+              ],
+              [
+                100,
+                20
+              ]
+            ],
+            "note": "SOC-to-watts mapping from published milestones, calibrated so integrated input energy matches the metered 37.3Wh full charge."
+          }
+        ]
       },
       "ports": [
         {
@@ -129,25 +326,74 @@
           "label": "USB-C",
           "type": "usb-c",
           "direction": "inout",
-          "protocols": ["pd3.0", "pps", "qc", "fcp", "scp"],
+          "protocols": [
+            "pd3.0",
+            "pps",
+            "qc",
+            "fcp",
+            "scp"
+          ],
+          "pps_profiles": [
+            {
+              "v_min": 5,
+              "v_max": 11,
+              "a": 5
+            },
+            {
+              "v_min": 5,
+              "v_max": 20,
+              "a": 3
+            }
+          ],
+          "pps_note": "Metered PPS: 5-11V/5A and 5-20V/3A (some meters read 6A on the low range; safest values kept). Covers Samsung SFC 25W (needs 3.3-11V >=2.75A) - the 5V floor does not affect the 9-10V operating point.",
           "input": {
             "max_w": 90,
             "pd_profiles": [
-              { "v": 5, "a": 3 },
-              { "v": 9, "a": 3 },
-              { "v": 12, "a": 3 },
-              { "v": 15, "a": 3 },
-              { "v": 20, "a": 4.5 }
+              {
+                "v": 5,
+                "a": 3
+              },
+              {
+                "v": 9,
+                "a": 3
+              },
+              {
+                "v": 12,
+                "a": 3
+              },
+              {
+                "v": 15,
+                "a": 3
+              },
+              {
+                "v": 20,
+                "a": 4.5
+              }
             ]
           },
           "output": {
             "max_w": 100,
             "pd_profiles": [
-              { "v": 5, "a": 3 },
-              { "v": 9, "a": 3 },
-              { "v": 12, "a": 3 },
-              { "v": 15, "a": 3 },
-              { "v": 20, "a": 5 }
+              {
+                "v": 5,
+                "a": 3
+              },
+              {
+                "v": 9,
+                "a": 3
+              },
+              {
+                "v": 12,
+                "a": 3
+              },
+              {
+                "v": 15,
+                "a": 3
+              },
+              {
+                "v": 20,
+                "a": 5
+              }
             ],
             "proprietary_max_w": 120,
             "proprietary_note": "Xiaomi proprietary fast charge can reach 120W on compatible Xiaomi devices."
@@ -158,7 +404,9 @@
           "label": "USB-A",
           "type": "usb-a",
           "direction": "out",
-          "protocols": ["legacy-fast-charge"],
+          "protocols": [
+            "legacy-fast-charge"
+          ],
           "output": {
             "max_w": 33
           }
