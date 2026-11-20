@@ -22,9 +22,8 @@ curves exist (the last 20% charges much slower), flat first-order otherwise.
 
 Use this only when the AC65B2 is the only charger in play. In the two-plug
 scenario, use the Anker 747 matrix above and give the other device the AC65B2 -
-this standalone table can disagree with that pairing (e.g. MacBook 60% / CUKTECH
-10 0% reads CUKTECH 10 here, but the pairing correctly gives the MacBook the
-AC65B2 once the Anker goes to the CUKTECH 10).
+this standalone table can disagree with that pairing, because the pairing
+follows the Anker matrix by complement, not this table.
 
 | MacBook SOC | CUKTECH 10: 0% | CUKTECH 10: 20% | CUKTECH 10: 40% | CUKTECH 10: 60% | CUKTECH 10: 80% | CUKTECH 10: 90% |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -48,7 +47,7 @@ AC65B2 once the Anker goes to the CUKTECH 10).
 
 ## Rule of thumb
 
-- Rough guide: below ~40% MacBook SOC the MacBook wins the Anker 747; above ~60% the CUKTECH 10 usually does. Near the boundary - and whenever either battery is 80%+ - trust the matrix above, not these thresholds: the taper flips assignments there.
+- With the current calibrated data the MacBook wins the Anker 747 in every sampled pairing - its taper still out-gains the CUKTECH 10 on the 65W AC65B2 at every state of charge. Recalibrated curves or new gear can flip cells, so the matrix above is the authority, not this sentence.
 - The taper is the reason the boundary moved: the same device at 90% SOC gains roughly a quarter of what it gains at 0%, so a nearly-full battery rarely deserves the big port.
 - Put the Z Fold7, iPad, or Y270 on the CUKTECH AC65B2 or the Anker 747's second USB-C port - but expect far less than the single-port number on that second port (see below).
 - The Galaxy Watch8 is modeled as a 10W USB-C-fed target through Samsung's official wireless charger.

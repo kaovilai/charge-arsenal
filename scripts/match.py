@@ -198,10 +198,13 @@ def curve_estimate(
             hours = t / 60.0
         t += step
     avg_w = first_30_wh / 0.5 if first_30_wh else 0.0
+    # report input-side average (stored-side average / efficiency)
+    avg_w = avg_w / efficiency if efficiency else avg_w
     if hours is None:
         # curve ran out before a full charge; extrapolate at the final rate
+        # (capped by the source, like the preceding integration)
         remaining = capacity_wh - total_wh
-        tail = max(curve_watts(points, last_minute) * efficiency, 1.0)
+        tail = max(min(curve_watts(points, last_minute), available_w) * efficiency, 1.0)
         minutes = t + remaining / tail * 60.0
         hours = minutes / 60.0
     return {
@@ -294,7 +297,8 @@ def soc_gain(
         return {
             "wh": gained,
             "end_soc": min(100.0, soc),
-            "effective_w": gained / (minutes / 60.0) if minutes else 0.0,
+            # input-side average: the stored-side average divided by efficiency
+            "effective_w": (gained / (minutes / 60.0) / efficiency) if minutes and efficiency else 0.0,
         }
     if time_curves:
         # time-based curve can only model a charge from empty
@@ -315,7 +319,7 @@ def soc_gain(
         return {
             "wh": gained,
             "end_soc": min(100.0, 100.0 * gained / capacity_wh),
-            "effective_w": gained / (minutes / 60.0) if minutes else 0.0,
+            "effective_w": (gained / (minutes / 60.0) / efficiency) if minutes and efficiency else 0.0,
         }
     return None
 
@@ -344,9 +348,10 @@ def charge_estimate(target: dict, watts: float) -> dict:
     curved = curve_estimate(behavior, watts, capacity_wh, efficiency)
     if curved:
         return curved
-    effective_w = watts * efficiency
-    hours = capacity_wh / effective_w if effective_w > 0 else None
-    wh_per_30 = min(effective_w * 0.5, capacity_wh)
+    effective_w = watts  # input-side: the negotiated input itself
+    stored_w = watts * efficiency
+    hours = capacity_wh / stored_w if stored_w > 0 else None
+    wh_per_30 = min(stored_w * 0.5, capacity_wh)
     pct_per_30 = min(100.0, 100.0 * wh_per_30 / capacity_wh)
     return {
         "effective_w": effective_w,
