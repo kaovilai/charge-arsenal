@@ -8,7 +8,7 @@
       "capacity_mah": 4400,
       "capacity_wh": 16.95,
       "charge_behavior": {
-        "max_input_w": 25,
+        "max_input_w": 22.5,
         "avg_input_efficiency": 0.85,
         "charge_curves": [
           {
@@ -47,7 +47,7 @@
             "note": "Watts per 15-minute segment derived from published SOC milestones; approximate."
           }
         ],
-        "notes": "Samsung advertises 25W wired charging (25W-class phone; no 45W SFC 2.0 tier). Full speed requires a PD 3.0 PPS source covering 3.3-11V at >=2.75A (Samsung Super Fast Charging). Metered with multiple PPS chargers (45W/65W/100W/140W): the phone converges at ~9V/2.5A = 21.6-22.9W, so any 25W+ PPS port reaches full speed and bigger bricks gain nothing. One independent bench measured 22.9W from a plain non-PPS 9V PD charger too, but Samsung/GSMArena guidance says PPS is required - the matcher models the PPS path. Measured charge times (GSMArena, 25W PPS): 28% in 15 min, 53% in 30 min, full in 1h27m.",
+        "notes": "Samsung advertises 25W wired charging (25W-class phone; no 45W SFC 2.0 tier). Full speed requires a PD 3.0 PPS source covering 3.3-11V at >=2.75A (Samsung Super Fast Charging). Metered with multiple PPS chargers (45W/65W/100W/140W): the phone converges at ~9V/2.5A = 21.6-22.9W, so any 25W+ PPS port reaches full speed and bigger bricks gain nothing. One independent bench measured 22.9W from a plain non-PPS 9V PD charger too, but Samsung/GSMArena guidance says PPS is required - the matcher models the PPS path. Measured charge times (GSMArena, 25W PPS): 28% in 15 min, 53% in 30 min, full in 1h27m. Model ceiling set to the measured 22.5W PPS operating point (was the 25W nominal rating).",
         "soc_curves": [
           {
             "reference": "Lover of Tech/SammyGuru 25W-adapter milestones: 29% @15min, 54% @30min, 74% @45min, 89% @60min, 95% @75min, full 1h26m",
@@ -175,18 +175,18 @@
               ],
               [
                 80,
-                19
+                14
               ],
               [
                 90,
-                15
+                9
               ],
               [
                 100,
-                6
+                4
               ]
             ],
-            "note": "SOC derived by integrating the measured watts against 28.6Wh capacity; approximate."
+            "note": "SOC derived by integrating measured watts against 28.6Wh; tail calibrated so time-to-full matches the measured ~2h14."
           }
         ]
       },
@@ -226,7 +226,7 @@
       "data_confidence": "reviewer-measured",
       "capacity_wh": 72.4,
       "charge_behavior": {
-        "max_input_w": 96,
+        "max_input_w": 92,
         "measured_input_ceiling_w": 92,
         "avg_input_efficiency": 0.85,
         "charge_curves": [

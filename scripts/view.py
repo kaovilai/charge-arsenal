@@ -27,6 +27,7 @@ from match import (  # noqa: E402
     build_multiport_rows,
     charge_estimate,
     charge_targets,
+    curve_watts,
     fmt_num,
     fmt_watts,
     load_measurements,
@@ -148,9 +149,13 @@ def curves_section(targets: list) -> str:
         curve = max(curves, key=lambda c: c["peak_w"])
         if curve.get("points"):
             fallback = f"{t.get('brand', '')} {t.get('model', '')}".strip()
+            provenance = (curve.get("reference", "") + " " + curve.get("note", "")).lower()
+            estimated = any(
+                k in provenance for k in ("derived", "approximate", "no timing", "estimated")
+            )
             series.append({
                 "id": t["id"],
-                "label": SHORT_LABELS.get(t["id"], fallback),
+                "label": SHORT_LABELS.get(t["id"], fallback) + (" (est.)" if estimated else ""),
                 "points": curve["points"],
             })
     if not series:
@@ -178,7 +183,7 @@ def curves_section(targets: list) -> str:
     parts = [
         '<section id="curves"><h2>Input watts over time (measured taper)</h2>',
         '<p class="sub">Watts drawn from the source through a charge, from tester '
-        f"metering. Curves end at the measured full-charge time. Hover for values.{omitted_note}</p>",
+        f"metering. Curves end at their last measured sample. Hover for values.{omitted_note}</p>",
         f'<svg viewBox="0 0 {width} {height}" role="img" aria-label="Input watts versus '
         f'minutes into a charge, per device" class="chart" id="curve-chart" '
         f'xmlns="http://www.w3.org/2000/svg">',
@@ -226,9 +231,22 @@ def curves_section(targets: list) -> str:
             f'<li class="s{i + 1}"><span class="key"></span>{esc(s["label"])}</li>'
         )
     parts.append("</ul>")
+    # keyboard-accessible table of the sampled data (also the table view)
+    minutes = sorted({m for s in series for m, _ in s["points"]})
+    tbl = ['<details class="curve-table"><summary>Curve data</summary><table><thead><tr><th>Minute</th>']
+    for s in series:
+        tbl.append(f"<th>{esc(s['label'])}</th>")
+    tbl.append("</tr></thead><tbody>")
+    for m in minutes:
+        tbl.append(f"<tr><td>{fmt_num(m)}m</td>")
+        for s in series:
+            tbl.append(f'<td class="num">{fmt_num(round(curve_watts(s["points"], m)))}W</td>')
+        tbl.append("</tr>")
+    tbl.append("</tbody></table></details>")
+    parts.extend(tbl)
     parts.append(
         '<script type="application/json" id="curve-data">'
-        + json.dumps({"label_w": label_w, "chart_w": chart_w, "margin_t": margin_t, "plot_h": plot_h, "x_max": x_max, "series": series})
+        + json.dumps({"label_w": label_w, "chart_w": chart_w, "margin_t": margin_t, "plot_h": plot_h, "x_max": x_max, "series": series}).replace("</", "<\\/")
         + "</script>"
     )
     parts.append("</section>")
@@ -252,6 +270,24 @@ def html_table(headers: list, rows: list, cls: str = "") -> str:
     return "".join(out)
 
 
+def best_device_route(dev: dict, bricks: list):
+    """Best (watts, route-label) for a device across bricks, honoring port caps."""
+    device_max = dev.get("charge_behavior", {}).get("max_input_w", 0)
+    if device_max <= 0:
+        return None
+    best = None
+    for brick in bricks:
+        for port in brick.get("ports", []):
+            if port.get("type") != "usb-c":
+                continue
+            port_max = port.get("output", {}).get("max_w", 0)
+            watts = min(device_max, port_max)
+            route = f"{SHORT_LABELS.get(brick['id'], brick['label'])} {port['label']}"
+            if best is None or watts > best[0]:
+                best = (watts, route)
+    return best
+
+
 def best_route_rows(banks, devices, bricks, cables):
     """Best single-port route per charge target (bank or device)."""
     rows = []
@@ -265,14 +301,21 @@ def best_route_rows(banks, devices, bricks, cables):
                         if deal and (best is None or deal["watts"] > best[0]):
                             best = (deal["watts"], f"{brick['label']} {port['label']}", deal["profile"])
         if best:
+            est = charge_estimate(bank, best[0])
             rows.append([SHORT_LABELS.get(bank["id"], bank["model"]), best[1], fmt_watts(best[0]),
-                         f"{fmt_num(best[2]['v'])}V/{fmt_num(best[2]['a'])}A"])
+                         f"{fmt_num(best[2]['v'])}V/{fmt_num(best[2]['a'])}A",
+                         f"{est['wh_per_30']:.1f} Wh"])
     for dev in devices:
         if dev.get("charge_behavior", {}).get("max_input_w", 0) <= 0:
             continue
-        watts = best_wall_watts(dev, bricks)
-        rows.append([SHORT_LABELS.get(dev["id"], dev["model"]), "any USB-C brick port",
-                     fmt_watts(watts), "device is the ceiling"])
+        route = best_device_route(dev, bricks)
+        if not route:
+            continue
+        watts, route_label = route
+        est = charge_estimate(dev, watts)
+        rows.append([SHORT_LABELS.get(dev["id"], dev["model"]), route_label,
+                     fmt_watts(watts), "device is the ceiling",
+                     f"{est['wh_per_30']:.1f} Wh"])
     return rows
 
 
@@ -375,16 +418,16 @@ def main() -> int:
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Charge Arsenal</title>
 <style>
-.viz-root {{
+:root {{
   color-scheme: light;
   --page: #f9f9f7; --surface-1: #fcfcfb;
-  --text-primary: #0b0b0b; --text-secondary: #52514e; --muted: #898781;
+  --text-primary: #0b0b0b; --text-secondary: #52514e; --muted: #66645e;
   --grid: #e1e0d9; --axis: #c3c2b7; --border: rgba(11,11,11,0.10);
   --s1: {SERIES[0]}; --s2: {SERIES[1]}; --s3: {SERIES[2]}; --s4: {SERIES[3]};
   --bar: {SERIES[0]};
 }}
 @media (prefers-color-scheme: dark) {{
-  :root:where(:not([data-theme="light"])) .viz-root {{
+  :root:where(:not([data-theme="light"])) {{
     color-scheme: dark;
     --page: #0d0d0d; --surface-1: #1a1a19;
     --text-primary: #f0efec; --text-secondary: #c3c2b7; --muted: #898781;
@@ -393,7 +436,7 @@ def main() -> int:
     --bar: {SERIES_DARK[0]};
   }}
 }}
-:root[data-theme="dark"] .viz-root {{
+:root[data-theme="dark"] {{
   color-scheme: dark;
   --page: #0d0d0d; --surface-1: #1a1a19;
   --text-primary: #f0efec; --text-secondary: #c3c2b7; --muted: #898781;
@@ -437,10 +480,15 @@ td.measured {{ font-weight: 600; }}
 .bar {{ fill: var(--bar); }}
 .row:hover .bar, .row:focus-within .bar {{ opacity: 0.82; }}
 .hit {{ cursor: default; outline: none; }}
-.line {{ stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }}
-.s1 {{ stroke: var(--s1); fill: var(--s1); }} .s2 {{ stroke: var(--s2); fill: var(--s2); }}
-.s3 {{ stroke: var(--s3); fill: var(--s3); }} .s4 {{ stroke: var(--s4); fill: var(--s4); }}
+.line {{ stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; fill: none; }}
+.s1 {{ stroke: var(--s1); }} .s2 {{ stroke: var(--s2); }}
+.s3 {{ stroke: var(--s3); }} .s4 {{ stroke: var(--s4); }}
+.dot.s1 {{ fill: var(--s1); }} .dot.s2 {{ fill: var(--s2); }}
+.dot.s3 {{ fill: var(--s3); }} .dot.s4 {{ fill: var(--s4); }}
 .dot {{ stroke: var(--surface-1); stroke-width: 2; }}
+details.curve-table {{ margin-top: 10px; font-size: 13px; }}
+details.curve-table summary {{ color: var(--text-secondary); cursor: pointer; }}
+details.curve-table td.num {{ text-align: right; font-variant-numeric: tabular-nums; }}
 .legend {{ list-style: none; display: flex; gap: 18px; flex-wrap: wrap;
   padding: 0; margin: 10px 0 0; font-size: 12px; color: var(--text-secondary); }}
 .legend .key {{ display: inline-block; width: 14px; height: 2px; border-radius: 1px;
@@ -474,11 +522,12 @@ a {{ color: var(--s1); }}
 <p class="sub">Watt-hours recovered per device on its best single-port route, conversion
 losses included. Every value is also in the table below.</p>
 {gain_chart_svg(gain_rows)}
-{html_table(["Device", "Best route", "Negotiated", "Profile"], route_rows)}
+{html_table(["Device", "Best route", "Negotiated", "Profile", "30-min gain"], route_rows)}
 
 <h2>Multi-port allocation</h2>
-<p class="sub">Shared-budget bricks keep the negotiated voltage but change the granted
-current. Measured values beat the model.</p>
+<p class="sub">Shared-budget bricks re-negotiate contracts when ports change: the granted
+current shifts, and some published combos (USB-C 1 + USB-A) drop the voltage to 5V.
+Measured values beat the model.</p>
 {html_table(["Brick", "Ports in use", "Published cap", "Split"], combo_rows)}
 <h3>Two-device scenarios (Anker 747)</h3>
 {html_table(["Primary (first port)", "Secondary (second port)", "Model: primary", "Model: secondary", "Measured secondary"], scenario_rows)}
@@ -559,15 +608,23 @@ JSON, never this file. Multi-port and negotiation logic shared with
       crosshair.setAttribute('x1', data.label_w + data.chart_w * minute / data.x_max);
       crosshair.setAttribute('x2', data.label_w + data.chart_w * minute / data.x_max);
       crosshair.setAttribute('visibility', 'visible');
-      var rows = data.series.map(function (s) {{
-        if (minute > s.points[s.points.length - 1][0]) {{
-          return {{ value: 'full', label: s.label + ' @ ' + s.points[s.points.length - 1][0] + 'm' }};
+      function interp(points, minute) {{
+        if (minute <= points[0][0]) return points[0][1];
+        for (var i = 0; i < points.length - 1; i++) {{
+          var a = points[i], b = points[i + 1];
+          if (minute >= a[0] && minute <= b[0]) {{
+            var span = b[0] - a[0];
+            return span ? a[1] + (b[1] - a[1]) * (minute - a[0]) / span : b[1];
+          }}
         }}
-        var best = s.points[0];
-        s.points.forEach(function (p) {{
-          if (Math.abs(p[0] - minute) < Math.abs(best[0] - minute)) best = p;
-        }});
-        return {{ value: best[1] + 'W', label: s.label + ' @ ' + minute + 'm' }};
+        return points[points.length - 1][1];
+      }}
+      var rows = data.series.map(function (s) {{
+        var last = s.points[s.points.length - 1][0];
+        if (minute > last) {{
+          return {{ value: Math.round(interp(s.points, last)) + 'W', label: s.label + ' @ ' + last + 'm (last sample)' }};
+        }}
+        return {{ value: Math.round(interp(s.points, minute)) + 'W', label: s.label + ' @ ' + minute + 'm' }};
       }});
       show(e.clientX, e.clientY, rows);
     }}

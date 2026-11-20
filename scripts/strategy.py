@@ -198,7 +198,7 @@ def main() -> int:
         "- The taper is the reason the boundary moved: the same device at 90% SOC gains roughly a quarter of what it gains at 0%, so a nearly-full battery rarely deserves the big port.",
         "- Put the Z Fold7, iPad, or Y270 on the CUKTECH AC65B2 or the Anker 747's second USB-C port - but expect far less than the single-port number on that second port (see below).",
         "- The Galaxy Watch8 is modeled as a 10W USB-C-fed target through Samsung's official wireless charger.",
-        "- Samsung Super Fast Charging: the Z Fold7 needs PPS 3.3-11V at >=2.75A for its ~22W full speed. Every brick here (Anker 747, CUKTECH AC65B2, and the banks' PPS) covers that; plain non-PPS 9V charging is disputed (~15-22W depending on source).",
+        "- Samsung Super Fast Charging: the Z Fold7 needs PPS 3.3-11V at >=2.75A for its ~22W full speed. The Anker 747, CUKTECH AC65B2, and CUKTECH 10 all meter PPS covering that; the Y270's PPS is undocumented, so Fold7-on-Y270 is modeled at the conservative 15W fallback. Plain non-PPS 9V charging is disputed (~15-22W depending on source).",
         "",
         "## Multi-port reality check",
         "",

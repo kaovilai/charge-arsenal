@@ -122,8 +122,17 @@ def negotiate(source_port: dict, sink_port: dict, cable: dict) -> dict | None:
             if better:
                 best = {"watts": watts, "profile": {"v": rail_v, "a": current}}
     pps = pps_deal(source_port, sink_port, cable)
-    if (sink_port.get("pps") or {}).get("required") and pps:
-        return pps
+    if (sink_port.get("pps") or {}).get("required"):
+        if pps:
+            return pps
+        if best:
+            # Required PPS unavailable (e.g. the Y270, whose PPS is
+            # undocumented): conservative Samsung fixed-PD fallback.
+            return {
+                "watts": min(best["watts"], 15.0),
+                "profile": {**best["profile"], "fallback": "no PPS source: conservative 15W fallback"},
+            }
+        return None
     if pps and (best is None or pps["watts"] > best["watts"]):
         return pps
     return best

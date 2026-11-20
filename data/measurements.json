@@ -19,7 +19,7 @@
         "volts": 20,
         "amps_est": 1.25
       },
-      "interpretation": "Y270 negotiated 20V PD but was granted only ~1.25A - the shared 150W budget gave priority to the MacBook on the other port. Not a protocol mismatch: same 20V contract as the fast case.",
+      "interpretation": "The Y270 drew ~25W at 20V (~1.25A) under these conditions - a display reading of current drawn, not necessarily the charger's granted cap. Bank SOC, charge stage, and renegotiation state were not recorded; PD-packet-capture tester data shows such second-port starvation is a transient priority state that can recover to ~75W once both ports renegotiate. Same 20V contract as the fast case, so not a protocol mismatch.",
       "compared_to": "2026-11-17-y270-cuktech-ac65b2-alone"
     },
     {

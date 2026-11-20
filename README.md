@@ -170,9 +170,11 @@ The current chart (taper-curve-based, interactive) is in the
 
 ### Devices
 
-- **Galaxy Z Fold7:** use any PPS-capable USB-C port (all four arsenal sources
-  qualify). Practical ceiling is **~22W measured** (9V/2.5A PPS); the phone is
-  the bottleneck, not the brick or bank.
+- **Galaxy Z Fold7:** use a PPS-capable USB-C port — the Anker 747, CUKTECH
+  AC65B2, and CUKTECH 10 all meter PPS covering Samsung SFC; the Y270's PPS is
+  undocumented (unverified — modeled at the conservative 15W fallback).
+  Practical ceiling is **~22W measured** (9V/2.5A PPS); the phone is the
+  bottleneck, not the brick or bank.
 - **iPad 10th generation:** use any USB-C port that offers a 15V PDO. Practical
   ceiling is **~30W** (not 20W) — the bundled 20W adapter is 9V-locked.
 - **MacBook Pro 14-inch M4 Pro:** use any Thunderbolt 4 / USB-C port. The

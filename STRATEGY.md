@@ -11,12 +11,12 @@ curves exist (the last 20% charges much slower), flat first-order otherwise.
 
 | MacBook SOC | CUKTECH 10: 0% | CUKTECH 10: 20% | CUKTECH 10: 40% | CUKTECH 10: 60% | CUKTECH 10: 80% | CUKTECH 10: 90% |
 | --- | --- | --- | --- | --- | --- | --- |
-| 0% | MacBook / 57.5 Wh | MacBook / 54.3 Wh | MacBook / 51.2 Wh | MacBook / 48.1 Wh | MacBook / 44.2 Wh | MacBook / 40.5 Wh |
-| 20% | MacBook / 54.2 Wh | MacBook / 50.9 Wh | MacBook / 47.8 Wh | MacBook / 44.8 Wh | MacBook / 40.8 Wh | MacBook / 37.1 Wh |
-| 40% | CUKTECH 10 / 49.8 Wh | CUKTECH 10 / 45.9 Wh | CUKTECH 10 / 42.1 Wh | CUKTECH 10 / 38.3 Wh | MacBook / 34.2 Wh | MacBook / 30.5 Wh |
-| 60% | CUKTECH 10 / 44.0 Wh | CUKTECH 10 / 40.1 Wh | CUKTECH 10 / 36.3 Wh | CUKTECH 10 / 32.5 Wh | MacBook / 26.1 Wh | MacBook / 22.4 Wh |
-| 80% | CUKTECH 10 / 35.3 Wh | CUKTECH 10 / 31.4 Wh | CUKTECH 10 / 27.6 Wh | CUKTECH 10 / 23.8 Wh | MacBook / 18.7 Wh | MacBook / 15.0 Wh |
-| 90% | CUKTECH 10 / 31.1 Wh | CUKTECH 10 / 27.2 Wh | CUKTECH 10 / 23.4 Wh | CUKTECH 10 / 19.6 Wh | MacBook / 14.6 Wh | MacBook / 10.9 Wh |
+| 0% | MacBook / 59.3 Wh | MacBook / 55.8 Wh | MacBook / 52.4 Wh | MacBook / 49.1 Wh | MacBook / 44.2 Wh | MacBook / 40.5 Wh |
+| 20% | MacBook / 55.9 Wh | MacBook / 52.4 Wh | MacBook / 49.1 Wh | MacBook / 45.8 Wh | MacBook / 40.8 Wh | MacBook / 37.1 Wh |
+| 40% | CUKTECH 10 / 51.7 Wh | CUKTECH 10 / 47.5 Wh | CUKTECH 10 / 43.4 Wh | CUKTECH 10 / 39.2 Wh | MacBook / 34.2 Wh | MacBook / 30.5 Wh |
+| 60% | CUKTECH 10 / 46.0 Wh | CUKTECH 10 / 41.8 Wh | CUKTECH 10 / 37.7 Wh | CUKTECH 10 / 33.5 Wh | MacBook / 26.1 Wh | MacBook / 22.4 Wh |
+| 80% | CUKTECH 10 / 37.3 Wh | CUKTECH 10 / 33.1 Wh | CUKTECH 10 / 29.0 Wh | CUKTECH 10 / 24.8 Wh | MacBook / 18.7 Wh | MacBook / 15.0 Wh |
+| 90% | CUKTECH 10 / 33.1 Wh | CUKTECH 10 / 28.9 Wh | CUKTECH 10 / 24.8 Wh | CUKTECH 10 / 20.6 Wh | MacBook / 14.6 Wh | MacBook / 10.9 Wh |
 
 ## Who gets the CUKTECH AC65B2?
 
@@ -28,20 +28,20 @@ which device should take the AC65B2 while the Anker 747 feeds the other port.
 | 0% | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh | MacBook / 27.6 Wh |
 | 20% | MacBook / 26.7 Wh | MacBook / 26.7 Wh | MacBook / 26.7 Wh | MacBook / 26.7 Wh | MacBook / 26.7 Wh | MacBook / 26.7 Wh |
 | 40% | MacBook / 24.4 Wh | MacBook / 24.4 Wh | MacBook / 24.4 Wh | MacBook / 24.4 Wh | MacBook / 24.4 Wh | MacBook / 24.4 Wh |
-| 60% | CUKTECH 10 / 20.8 Wh | MacBook / 18.7 Wh | MacBook / 18.7 Wh | MacBook / 18.7 Wh | MacBook / 18.7 Wh | MacBook / 18.7 Wh |
-| 80% | CUKTECH 10 / 20.8 Wh | CUKTECH 10 / 17.5 Wh | CUKTECH 10 / 14.4 Wh | CUKTECH 10 / 11.4 Wh | MacBook / 10.0 Wh | MacBook / 10.0 Wh |
-| 90% | CUKTECH 10 / 20.8 Wh | CUKTECH 10 / 17.5 Wh | CUKTECH 10 / 14.4 Wh | CUKTECH 10 / 11.4 Wh | CUKTECH 10 / 7.4 Wh | MacBook / 5.8 Wh |
+| 60% | CUKTECH 10 / 22.5 Wh | CUKTECH 10 / 19.0 Wh | MacBook / 18.7 Wh | MacBook / 18.7 Wh | MacBook / 18.7 Wh | MacBook / 18.7 Wh |
+| 80% | CUKTECH 10 / 22.5 Wh | CUKTECH 10 / 19.0 Wh | CUKTECH 10 / 15.7 Wh | CUKTECH 10 / 12.3 Wh | MacBook / 10.0 Wh | MacBook / 10.0 Wh |
+| 90% | CUKTECH 10 / 22.5 Wh | CUKTECH 10 / 19.0 Wh | CUKTECH 10 / 15.7 Wh | CUKTECH 10 / 12.3 Wh | CUKTECH 10 / 7.4 Wh | MacBook / 5.8 Wh |
 
 ## 30-minute gain from 0% state of charge
 
 | Device | Best wall input | 30-minute gain from 0% |
 | --- | ---: | ---: |
-| Samsung Galaxy Z Fold7 | 25W | 9.4 Wh |
+| Samsung Galaxy Z Fold7 | 22.5W | 9.3 Wh |
 | Apple iPad 10th generation | 30W | 11.5 Wh |
-| Apple MacBook Pro 14-inch M4 Pro | 96W | 36.8 Wh |
+| Apple MacBook Pro 14-inch M4 Pro | 92W | 36.8 Wh |
 | Samsung Galaxy Watch8 | 10W | 0.7 Wh |
 | Raydyn Y270 | 65W | 24.6 Wh |
-| CUKTECH 10 | 90W | 25.4 Wh |
+| CUKTECH 10 | 90W | 27.3 Wh |
 
 ## Rule of thumb
 
@@ -50,7 +50,7 @@ which device should take the AC65B2 while the Anker 747 feeds the other port.
 - The taper is the reason the boundary moved: the same device at 90% SOC gains roughly a quarter of what it gains at 0%, so a nearly-full battery rarely deserves the big port.
 - Put the Z Fold7, iPad, or Y270 on the CUKTECH AC65B2 or the Anker 747's second USB-C port - but expect far less than the single-port number on that second port (see below).
 - The Galaxy Watch8 is modeled as a 10W USB-C-fed target through Samsung's official wireless charger.
-- Samsung Super Fast Charging: the Z Fold7 needs PPS 3.3-11V at >=2.75A for its ~22W full speed. Every brick here (Anker 747, CUKTECH AC65B2, and the banks' PPS) covers that; plain non-PPS 9V charging is disputed (~15-22W depending on source).
+- Samsung Super Fast Charging: the Z Fold7 needs PPS 3.3-11V at >=2.75A for its ~22W full speed. The Anker 747, CUKTECH AC65B2, and CUKTECH 10 all meter PPS covering that; the Y270's PPS is undocumented, so Fold7-on-Y270 is modeled at the conservative 15W fallback. Plain non-PPS 9V charging is disputed (~15-22W depending on source).
 
 ## Multi-port reality check
 
